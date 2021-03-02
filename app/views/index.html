@@ -10,11 +10,6 @@
     - add custom CSS and JavaScript
 -->
 
-<!-- Set the page title -->
-{% block pageTitle %}
-  NHS.UK prototype kit
-{% endblock %}
-
 <!-- For adding a breadcrumb -->
 <!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
 {% block beforeContent %}
@@ -28,13 +23,19 @@
 <!-- For adding page content -->
 <!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
 {% block content %}
+{# {% block headCSS %}
+ <link href="/css/main.css" rel="stylesheet">
+{% endblock %} #}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
-      <!-- Change the page title here -->
       <h1>
-        Capacity Grids Prototype **Placeholder**
+        Capacity Grids Prototype
         <span class="nhsuk-caption-xl nhsuk-caption--bottom">Version 1.01</span>
       </h1>
+      <ul>
+        <li><a href="capacity-status" class="nhsuk-caption-xl nhsuk-caption--bottom">Capacity Status</a></li>
+        <li><a href="grid" class="nhsuk-caption-xl nhsuk-caption--bottom">Grid (View)</a></li>
+      </ul>
     </div>
   </div>
 {% endblock %}

@@ -1,0 +1,541 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!--
+ Page saved with SingleFile 
+ url: https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/home/home.php 
+ saved date: Tue Mar 02 2021 09:28:26 GMT+0000 (Greenwich Mean Time)
+-->
+<meta charset=utf-8>
+<title>Home | NHS DoS</title>
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<style>
+    :root {
+        --sf-img-6: url("data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///////wAAACH5BAAAAAAALAAAAAALAAsAAAIVnI8my6zd3hqRujpRjvg6C21hliQFADs=")
+    }
+
+    .ui-helper-reset {
+        outline: 0;
+        list-style: none
+    }
+
+    .ui-button {
+        vertical-align: middle
+    }
+
+    .ui-helper-reset {
+        line-height: 1.3;
+        text-decoration: none;
+        font-size: 100%
+    }
+
+    .ui-helper-clearfix:after,
+    .ui-helper-clearfix:before {
+        content: "";
+        display: table
+    }
+
+    .ui-helper-clearfix:after {
+        clear: both
+    }
+
+    .ui-helper-clearfix {
+        min-height: 0
+    }
+
+    .ui-button {
+        display: inline-block;
+        position: relative;
+        padding: 0;
+        line-height: normal;
+        margin-right: .1em;
+        cursor: pointer;
+        text-align: center;
+        overflow: visible
+    }
+
+    .ui-button,
+    .ui-button:active,
+    .ui-button:hover,
+    .ui-button:link,
+    .ui-button:visited {
+        text-decoration: none
+    }
+
+    .ui-button .ui-button-text {
+        display: block;
+        line-height: normal
+    }
+
+    .ui-dialog {
+        top: 0;
+        left: 0;
+        padding: .2em
+    }
+
+    .ui-tabs {
+        position: relative;
+        padding: .2em
+    }
+
+    .ui-tabs .ui-tabs-nav {
+        margin: 0;
+        padding: .2em .2em 0
+    }
+
+    .ui-tabs .ui-tabs-nav li {
+        list-style: none;
+        float: left;
+        position: relative;
+        top: 0;
+        margin: 1px .2em 0 0;
+        border-bottom: 0;
+        padding: 0;
+        white-space: nowrap
+    }
+
+    .ui-tabs .ui-tabs-nav li a {
+        float: left;
+        padding: .5em 1em;
+        text-decoration: none
+    }
+
+    .ui-tabs .ui-tabs-nav li.ui-tabs-active {
+        margin-bottom: -1px;
+        padding-bottom: 1px
+    }
+
+    .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
+        cursor: text
+    }
+
+    .ui-tabs .ui-tabs-nav li a {
+        cursor: pointer
+    }
+
+    .ui-tabs .ui-tabs-panel {
+        display: block;
+        border-width: 0;
+        padding: 1em 1.4em;
+        background: 0 0
+    }
+
+    .ui-widget {
+        font-family: inherit;
+        font-size: 1.1em
+    }
+
+    .ui-widget-content {
+        border: 1px solid #ccc;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABkCAYAAABHLFpgAAAAH0lEQVQYlWP48/fvfyYGBgaGEUcw4pRlZBwM7qMZAQB3GQS/3cDasAAAAABJRU5ErkJggg==) 50% bottom repeat-x #fcfdfd;
+        color: #222
+    }
+
+    .ui-widget-content a {
+        color: #222
+    }
+
+    .ui-widget-header {
+        border: 1px solid #ccc;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAD0ZHJ6AAAAfUlEQVRoge3OMQGAIAAAQaQeVcxkVYnAcIMOfwnuWvfzjh+bXwdOCqqCqqAqqAqqgqqgKqgKqoKqoCqoCqqCqqAqqAqqgqqgKqgKqoKqoCqoCqqCqqAqqAqqgqqgKqgKqoKqoCqoCqqCqqAqqAqqgqqgKqgKqoKqoCqoCqoNPdADHApeJRAAAAAASUVORK5CYII=) 50% 50% repeat-x #4b6c9e;
+        color: #fff;
+        font-weight: 700
+    }
+
+    .ui-state-default,
+    .ui-widget-header .ui-state-default {
+        border: 1px solid #fff;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAGQCAYAAABvWArbAAAASUlEQVQ4je3PoRGDABQE0b09CqURCkptCBSaKFD4zGS+ebPmxLFun0uAYRj+lv04MYBJUIOtaMClRRusYr1LQRV9Zr8/MwzDG1/rJAi+JDP9OwAAAABJRU5ErkJggg==) 50% 50% repeat-x #4b6c9e;
+        font-weight: 700;
+        color: #fff
+    }
+
+    .ui-state-default a,
+    .ui-state-default a:link,
+    .ui-state-default a:visited {
+        color: #fff;
+        text-decoration: none
+    }
+
+    .ui-widget-header .ui-state-active {
+        border: 1px solid #fff;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAGDY0LsAAAAnElEQVRoge3XsQ2DQBTA0JA12JuNmCupgyiQ/FMgnsvTx/gOCcSybvvndeB9XHjQ4uJAfjk9kMtXG7zToGdt0OCDBy+/AMbvTEhISEhISPh3oQ89ISEhISEhISEhISEhIeEdheN/9NOM73gagRWBFYEVgRWBFYEVgRWBFYEVgRWBFYEVgRWBFYEVgRWBFYEVgRWBFYEVgRWBFYGVL5maEqUgoxIWAAAAAElFTkSuQmCC) 50% 50% repeat-x #1b96c5;
+        font-weight: 700;
+        color: #fff
+    }
+
+    .ui-state-active a,
+    .ui-state-active a:link,
+    .ui-state-active a:visited {
+        color: #fff;
+        text-decoration: none
+    }
+
+    .ui-corner-all,
+    .ui-corner-top {
+        border-top-left-radius: 5px
+    }
+
+    .ui-corner-all,
+    .ui-corner-top {
+        border-top-right-radius: 5px
+    }
+
+    .ui-corner-all,
+    .ui-corner-bottom {
+        border-bottom-left-radius: 5px
+    }
+
+    .ui-corner-all,
+    .ui-corner-bottom {
+        border-bottom-right-radius: 5px
+    }
+
+    body {
+        font-size: 0.8em;
+        font-family: Verdana, Geneva, Arial, Helvetica;
+        margin: 0 auto
+    }
+
+    img {
+        border: 0px
+    }
+
+    ul li {
+        list-style: none
+    }
+
+    ul li a {
+        font-weight: 600
+    }
+
+    h2 {
+        color: #666666;
+        text-transform: none;
+        margin-bottom: 0px
+    }
+
+    h2 {
+        font-size: 1.5em;
+        font-weight: 600
+    }
+
+    .head-wrapper {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+        background-color: #4b6c9e;
+        min-height: 35px
+    }
+
+    #header {
+        width: 1020px;
+        margin: 0 auto
+    }
+
+    #header-logo {
+        float: left;
+        width: 75px;
+        margin-top: 2px
+    }
+
+    #header-logo-text {
+        font-size: 15px;
+        margin: 3px 0 0 0;
+        color: #ffffff;
+        text-shadow: 1px 1px 3px #205d85;
+        float: left;
+        text-align: left;
+        padding-left: 10px;
+        padding-top: 4px;
+        clear: right
+    }
+
+    #menubar .ui-button-text-only .ui-button-text {
+        padding: 4px 5px
+    }
+
+    #menubar {
+        float: left;
+        padding-left: 15px;
+        text-align: left;
+        max-width: 610px
+    }
+
+    #menubar ul {
+        margin: 0;
+        padding: 0;
+        margin-top: 2px;
+        float: left
+    }
+
+    #menubar ul li {
+        float: left;
+        padding-right: 1px;
+        padding-top: 3px;
+        padding-bottom: 3px
+    }
+
+    #menubar ul li a.menuBarLinks {
+        color: white;
+        height: 22px;
+        font-size: 12px
+    }
+
+    #menuLinks {
+        float: right;
+        padding-top: 5px;
+        padding-left: 10px;
+        text-align: right
+    }
+
+    #menuLinks a {
+        color: white;
+        font-size: 7pt;
+        font-weight: bold;
+        float: left;
+        clear: both;
+        text-decoration: none
+    }
+
+    #menuLinks a:hover {
+        text-decoration: underline
+    }
+
+    #tabs {
+        min-width: 680px
+    }
+
+    #main {
+        padding: 5px 12px;
+        background-color: #fff;
+        width: 1000px;
+        margin: 0 auto
+    }
+
+    #footer {
+        color: #4e5766;
+        margin: 50px auto;
+        text-align: center;
+        line-height: normal;
+        width: 100%;
+        font-size: 0.7em
+    }
+
+    a:link,
+    a:visited,
+    a:active {
+        color: #2b599e;
+        text-decoration: none
+    }
+
+    a:hover {
+        color: #2b599e;
+        text-decoration: underline
+    }
+
+    .expandOrg {
+        cursor: pointer
+    }
+
+    #myServices {
+        font-size: 0.9em
+    }
+
+    #myServices ul li {
+        margin: 5px
+    }
+
+    #myServices ul li img {
+        margin-right: 5px
+    }
+
+    div.ui-widget-content ul.ui-tabs-nav a:link,
+    div.ui-widget-content ul.ui-tabs-nav a:visited,
+    div.ui-widget-content ul.ui-tabs-nav a:active {
+        color: #fff;
+        text-decoration: none;
+        font-size: 12px
+    }
+
+    div.ui-widget-content ul.ui-tabs-nav a:hover {
+        color: #fff;
+        text-decoration: underline
+    }
+
+    div#tabs div a:link,
+    a:visited,
+    a:active {
+        color: #2b599e;
+        text-decoration: none
+    }
+
+    div#tabs div a:hover {
+        color: #2b599e;
+        text-decoration: underline
+    }
+
+    a.ui-button:link,
+    a.ui-button:visited,
+    a.ui-button:active {
+        color: #fff !important
+    }
+
+    a.ui-button:hover {
+        color: #fff !important
+    }
+</style>
+<!--[if IE 7]>
+    <script type='text/javascript' src='/app/library/js/json2/json2.js'></script>
+    <![endif]-->
+<style>
+    .clear {
+        clear: both
+    }
+</style>
+<link type=image/x-icon rel="shortcut icon" href=data:>
+<style>
+    .sf-hidden {
+        display: none !important
+    }
+</style>
+<link rel=canonical
+    href=https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/home/home.php>
+</head>
+
+<body style=display:block>
+    <div id=divTimeoutWarningOuter
+        style="position:absolute;top:150px;background-color:#dddddd;width:100%;padding:20px;z-index:1000;box-shadow:0px 2px 5px #888888;display:none">
+
+    </div>
+    <div id=dialog-form class="ui-helper-hidden sf-hidden"></div>
+    <div id=banner-messages-wrapper style=text-align:center>
+
+    </div>
+    <div class=head-wrapper>
+        <div id=header>
+            <div id=header-logo>
+                <a
+                    href=https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/home/home.php><img
+                        src="data:image/gif;base64,R0lGODlhSAAcAMZ8AD1gnz1joT5koj5moj5npD9qpUJrpENtpUZvpkdwp0pwqExwpk1xp0pyqFBzqE50qFB2qlF2qVR2qlR4qld7q1x7qll8q118q2B+qmB/qmJ/qmV/qWKAqmSAqmaDqmiEqmuGq26Gqm2Hq26HqnGIq3KLrHWMq3aNrHqOrHmPrXqQrnySsH2Sr36SsH+UsYGUsYGVs4SXtISYtIaYtIWZtYibtombt42fuY6huo+hu5Giu5OkvZSmvpamvpiowJmpwZqpwJuqwZyqwp2sw6CtxKCuxKGvxaGwx6SzyKWzx6e1yai2yqy5zK26zbC8zrK90LG+z7S/0LXA0bbB0rfC07vF1b3H177J2MHL2cLM2sXO28bP3MjR3srS3svT38/X4dDX4tHY49HZ49Xb5dbc5tfe59nf59rf6Nvg6d3i6d/k6+Dl7OHm7eTo7uXp7+jr8Ons8ert8uzv8u7w9O/x9fP09/b3+vb4+vj5+vr7/Pz8/P7+/v///////////////yH5BAEKAH8ALAAAAABIABwAAAf+gAWCg4SFhoeIiYqGBI2Ni4IDkpOSiJSVBQSXA5aXhQMCBAwVGhoYFQ4HoIgwWlmvr1pLhw9TsFlWFgQ3rrBSDYYyva9UEZEEJ0pfbnR1znRvaFhDGYxWe9jZe3gXhiXae3QRBGDgaAaFBFngbgkFAyRdeuD0e0cChQdm9Xs4BIQEdIDrQuCBG3BO/hFCgAacFU037PADh0cEJ0IX6PC7olAQgSjglAgQgQecv0IZwQURkCLPRHBk0BVyMfHNg0JhwMkQcANcHhGGaIJLQYAMPTxoumjhMuYNtiT4ABZ5uYKQhDja6nAY4ASczXRTtc2JUGKetjAhDEwq4ECFExD+HQetm9ikowmz2NIgKCAGnBdGc7OVIeDD54iohFYZasDm5Zm9mXaAuzIgAhxwTOIWSKAG3BQBTHymQAzJg0TBRrPdAeFRCrghAkq41NYCgIDbAgJMqAOOB2h6a1AoVkSgBsIh4H78MzAG3AoBkrXpcTKEiHUiQqaA02NiQI56ebTMUECaUWhtOkDg3dNF0AQ52uhQGKD9Jb84EgpIgM9PDRAFFx3yhXQnHLBGfBQgs14ZBhiQmn30hIEOATasR48ZJARISAROZSPHBAO4pg0NAvDg2QAUzAFhPQlFEkNjE9EBlDezYUPGAQTEAA4VAtSXzQ4sHXWHHUQSeQc9J0X+wsAQaUw0BmSDEBBdNlT8EwFW2bCxQHPZ5FGCAD+AU0cLHpRZ5gbIafOTIQIgEEMWFmKjQjo+YtPDP+qoOUOH2LwRwQDXaJPGO44QEMASXt10iAADtHCZSnEd8OAeepzgkUDaeHEaNl8UcEBD2nBkSDmZLhKAceAkERcFGnmYnyAY8EbXAClpM4RmlmGmWTrqvdbRACuAM4ZMBRiQ00Q2CCCUNizQCE4NBEAQwW0dEcAoSODAQIgAaWYzRbVHTGTHBwOElY186UyJzbgCKPFGEzN4EMECo7wQWDZxGDPIAFj0Fpds/LDRQJ7alHFAOiJm2YABZWRjBxxtvNEqPUefxIVAZ9lUWsjF/GhBAMfaVFkIc+BsMcAHR67I3sFRdrDpHh+mAwU/RgzAgazZ3FnIe6kGgITKe1ShQCE8mUPsIMtmW/RQQdEjwwBLYCmuFzFoOMgJRhShtRExHNIAEFqHXcQQEBRgQtZhAwFMISCgrTXZgkiwwhBUeGHGGmqQ0cUTO3igSSK43Wb1IIEHTnjhiBROGiihGIDAXozvOkggADs="
+                        alt="nhs logo" border=0></a>
+            </div>
+            <div id=header-logo-text>
+                <span style=color:#c8ecfa>Directory of Services</span>
+            </div>
+
+            <div id=menubar>
+                <ul>
+                    <li>
+                        <a href=https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/home/home.php
+                            class="menuBarLinks ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                            role=button aria-disabled=false><span class=ui-button-text>
+                                Home
+                            </span></a>
+                    </li>
+                    <li>
+                        <a href=https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/search/search.php
+                            class="menuBarLinks ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                            role=button aria-disabled=false><span class=ui-button-text>
+                                Search
+                            </span></a>
+                    </li>
+                    <li>
+                        <a href=https://finder.directoryofservices.nhs.uk/#/login target=_blank
+                            class="menuBarLinks ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                            role=button aria-disabled=false><span class=ui-button-text>
+                                Service Finder
+                            </span></a>
+                    </li>
+                    <li>
+                        <a href=https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/tools/publicHolidays/publicHolidays.php
+                            target
+                            class="menuBarLinks ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                            role=button aria-disabled=false><span class=ui-button-text>
+                                Tools
+                            </span></a>
+                    </li>
+
+                    <li>
+                        <a href=https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/privacy/privacypolicy.php
+                            class="menuBarLinks ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                            role=button aria-disabled=false><span class=ui-button-text>
+                                Privacy
+                            </span></a>
+                    </li>
+                </ul>
+            </div>
+            <div id=menuLinks>
+                <a
+                    href="https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/login/login.php?logout=true">
+                    Logout »
+                </a>
+                <a
+                    href=https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/account/account.php>
+                    Account »
+                </a>
+            </div>
+            <div class=clear></div>
+        </div>
+    </div>
+    <div id=main>
+        <h2>Welcome Capacity User <strong style="color:red">{{PROTOTYPE}}</strong></h2>
+        <br>
+        <div id=tabs class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+            <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role=tablist>
+                <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role=tab tabindex=0
+                    aria-controls=myServices aria-labelledby=ui-id-2 aria-selected=true><a href=#myServices
+                        class=ui-tabs-anchor role=presentation tabindex=-1 id=ui-id-2>My Services</a></li>
+                <li class="ui-state-default ui-corner-top" role=tab tabindex=-1 aria-controls=mySavedSearches
+                    aria-labelledby=ui-id-3 aria-selected=false><a href=#mySavedSearches class=ui-tabs-anchor
+                        role=presentation tabindex=-1 id=ui-id-3>My Saved Searches</a></li>
+                <li class="ui-state-default ui-corner-top" role=tab tabindex=-1 aria-controls=outstandingUserRequests
+                    aria-labelledby=ui-id-4 aria-selected=false><a href=#outstandingUserRequests class=ui-tabs-anchor
+                        role=presentation tabindex=-1 id=ui-id-4>Outstanding User Requests (0)</a></li>
+            </ul>
+            <div id=myServices aria-labelledby=ui-id-2 class="ui-tabs-panel ui-widget-content ui-corner-bottom"
+                role=tabpanel aria-expanded=true aria-hidden=false>
+                <ul>
+                    <li id=list_1384256819><span id=1384256819 class=expandOrg><img
+                                src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
+                                alt=expand
+                                style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-6)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span><a
+                            id=1384256819 href=2.html>SE KM Darent Valley Hospital - General ICU</a>
+                    <li id=list_1384257309><span id=1384257309 class=expandOrg><img
+                                src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
+                                alt=expand
+                                style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-6)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span><a
+                            id=1384257309
+                            href=https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/search/search.php#org/1384257309>SE
+                            KM Kent and Canterbury Hospital ICU - General ICU</a>
+                    <li id=list_1384257804><span id=1384257804 class=expandOrg><img
+                                src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
+                                alt=expand
+                                style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-6)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span><a
+                            id=1384257804
+                            href=https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/search/search.php#org/1384257804>SE
+                            KM William Harvey Hospital - General ICU</a></li>
+                </ul>
+            </div>
+            <div id=mySavedSearches aria-labelledby=ui-id-3 class="ui-tabs-panel ui-widget-content ui-corner-bottom"
+                role=tabpanel aria-expanded=false aria-hidden=true style=display:none>
+
+            </div>
+
+            <div id=outstandingUserRequests aria-labelledby=ui-id-4
+                class="ui-tabs-panel ui-widget-content ui-corner-bottom" role=tabpanel aria-expanded=false
+                aria-hidden=true style=display:none>
+
+
+            </div>
+        </div>
+    </div>
+    <div id=footer>
+        <div style=padding-top:3px;color:red></div>
+        <div style=padding-top:3px>v6.7.0.RC4 (7c69b838) - Build Date: 2021/02/26 13:33:08 </div>
+        <div style=padding-top:3px>Environment name: test4</div>
+    </div>
+    <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable" tabindex=-1 role=dialog
+        aria-labelledby=ui-id-1 style=display:none;outline:0px;z-index:1000;position:absolute></div>
+    <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-dialog-buttons"
+        tabindex=-1 role=dialog aria-labelledby=ui-id-5 style=display:none;outline:0px;z-index:1000;position:absolute>
+    </div>
