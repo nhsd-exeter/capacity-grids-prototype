@@ -2,3 +2,9 @@
 <script src="/js/main.js"></script>
 
 <!-- Add any custom scripts -->
+<script>
+    $('#paneToggle').click(function() {
+        $('.search-config').toggle();
+        $('.paneToggle').text($(this).text() == "<<" ? ">>" : "<<")
+    });
+</script>

@@ -1,0 +1,265 @@
+<div class=search-config style=height:1286px>
+    <br>
+    <div>
+        <input type=radio class=selector name=selectSearch value=service id=serviceSearchSelector checked>
+        <label for=serviceSearchSelector>Service Search</label>
+        <input type=radio class=selector name=selectSearch value=clinical id=clinicalSearchSelector>
+        <label for=clinicalSearchSelector>Clinical Search</label>
+    </div>
+    <div class=serviceSearchScreen style=overflow:hidden;display:block>
+
+        <h3>Service Search</h3>
+        <h3>
+            <span class=nameSearchCollapsed><img
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
+                    alt=collapse title=collapse
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-7)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
+            By
+            Service Name
+        </h3>
+        <div id=nameSearch>
+            <input type=text name=serviceName id=serviceName value maxlength=110 class=ui-autocomplete-input
+                autocomplete=off><span role=status aria-live=polite class=ui-helper-hidden-accessible></span>
+            <div id=nameSearchMessages></div>
+        </div>
+        <h3>
+            <span class=locationSearchCollapsed><img
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
+                    alt=collapse title=collapse
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-7)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
+            By
+            Location
+        </h3>
+        <div id=locationSearch>
+            <h4>Within:</h4>
+            <select id=locationSearchDistance>
+                <option value=0.5 selected>0.5 Miles</option>
+                <option value=1>1 Miles</option>
+                <option value=2>2 Miles</option>
+                <option value=5>5 Miles</option>
+                <option value=10>10 Miles</option>
+                <option value=20>20 Miles</option>
+                <option value=30>30 Miles</option>
+                <option value=40>40 Miles</option>
+                <option value=50>50 Miles</option>
+                <option value=60>60 Miles</option>
+            </select>
+            of
+            <input type=text value="Enter Postcode, City or Town" id=locationSearchPostcode maxlength=50>
+            <div id=locationSearchPostcodeInfo></div>
+            <p>(or)</p>
+            <div id=populateActiveRegionsViaJquery class="redWhite sf-hidden"></div>
+            <select class=locationSearchRegion id=locationSearchRegionViaJquery title="Select Region">
+                <option value selected>Select Region</option>
+                <option value=allRegions>All regions</option>
+                <option value=100000005>East Midlands</option>
+                <option value=100000003>East of England</option>
+                <option value=100000018>Isle of Wight</option>
+                <option value=100000011>London Region</option>
+                <option value=100000019>National Critical Care &amp; Burns</option>
+                <option value=100000020>National Services</option>
+                <option value=100000008>North East</option>
+                <option value=100000009>North West Region</option>
+                <option value=100000004>Other</option>
+                <option value=100000014>Scotland</option>
+                <option value=100000002>South Central</option>
+                <option value=100000001>South East Coast</option>
+                <option value=100000012>South West (GW)</option>
+                <option value=100000017>South West (SW)</option>
+                <option value=110000001>Starter Templates</option>
+                <option value=100000013>Wales</option>
+                <option value=100000006>West Midlands</option>
+                <option value=100000010>Yorkshire And The Humber</option>
+            </select>
+            <div class=subRegionCheckboxes>
+                <h4 class=subRegionCheckboxesHeader style=display:none>Select a Subregion</h4>
+                <div id=subRegionCheckboxes_100000005 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000003 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000018 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000011 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000019 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000020 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000008 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000009 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000004 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000014 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000002 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000001 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000012 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000017 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_110000001 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000013 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000006 class=subRegionCheckboxesList></div>
+                <div id=subRegionCheckboxes_100000010 class=subRegionCheckboxesList></div>
+            </div>
+            <h4 id=locationSearchServiceTypesHeader style=display:none>For service type(s):</h4>
+            <table id=locationSearchServiceTypes style=display:none>
+
+            </table>
+            <h4>Which are open:</h4>
+            <select name=locationSearchOpeningTimes id=locationSearchOpeningTimes>
+                <option value=0>Now</option>
+                <option value=1>Within 1 hour</option>
+                <option value=2>Within 2 hours</option>
+                <option value=3>Within 3 hours</option>
+                <option value=4>Within 4 hours</option>
+                <option value=5>Within 5 hours</option>
+                <option value=6>Within 6 hours</option>
+                <option value=7>Within 7 hours</option>
+                <option value=8>Within 8 hours</option>
+                <option value=9>Within 9 hours</option>
+                <option value=10>Within 10 hours</option>
+                <option value=11>Within 11 hours</option>
+                <option value=12>Within 12 hours</option>
+                <option value=13>Within 13 hours</option>
+                <option value=14>Within 14 hours</option>
+                <option value=15>Within 15 hours</option>
+                <option value=16>Within 16 hours</option>
+                <option value=17>Within 17 hours</option>
+                <option value=18>Within 18 hours</option>
+                <option value=19>Within 19 hours</option>
+                <option value=20>Within 20 hours</option>
+                <option value=21>Within 21 hours</option>
+                <option value=22>Within 22 hours</option>
+                <option value=23>Within 23 hours</option>
+                <option value=24>Within 24 hours</option>
+                <option selected value=ignore>Ignore opening times</option>
+            </select>
+            <p>
+                <button id=saveLocationSearch
+                    class="saveSearchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                    role=button aria-disabled=false style=display:inline-block><span class=ui-button-text>Save
+                        search</span></button>
+                <button id=loadServiceSearch
+                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role=button
+                    aria-disabled=false><span class=ui-button-text>Search</span></button>
+            </p>
+        </div>
+    </div>
+    <div class="clinicalSearchScreen sf-hidden">
+
+    </div>
+    <div class=searchSaver style=display:none>
+    </div>
+    <h3>
+        <span class=saveSearchCollapsed><img
+                src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
+                alt=collapse title=collapse
+                style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-7)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
+        Saved Searches
+    </h3>
+    <div id=savedSearches>
+        <ul id=saves>
+            <li>
+                <span id=147280225794368014 class=openSaveDetailsCollapsed><img
+                        src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
+                        alt=expand title=expand
+                        style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-8)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
+                <b><a href=# title="run search">1</a></b>
+                <img class="del-save selectable" id=5951
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
+                    alt="delete saved search" title="delete saved search"
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-9)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
+                <img class="share-save selectable" id=5951
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
+                    alt="share search with other users" title="share search with other users"
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-10)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
+                <div id=searchDetails147280225794368014 class="searchDetails sf-hidden">
+                    Name Search SE KM William Harvey Hospital - General ICU </div>
+            </li>
+            <li>
+                <span id=457329535312233168 class=openSaveDetailsCollapsed><img
+                        src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
+                        alt=expand title=expand
+                        style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-8)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
+                <b><a href=# title="run search">Test
+                        1</a></b>
+                <img class="del-save selectable" id=5954
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
+                    alt="delete saved search" title="delete saved search"
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-9)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
+                <img class="share-save selectable" id=5954
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
+                    alt="share search with other users" title="share search with other users"
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-10)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
+                <div id=searchDetails457329535312233168 class="searchDetails sf-hidden">
+                    Name Search SE KM William Harvey Hospital - General ICU </div>
+            </li>
+            <li>
+                <span id=520977575070366945 class=openSaveDetailsCollapsed><img
+                        src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
+                        alt=expand title=expand
+                        style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-8)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
+                <b><a href="#org/1405506183&amp;searchName=Test%202&amp;v=&amp;t=" title="run search">Test
+                        2</a></b>
+                <img class="del-save selectable" id=5955
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
+                    alt="delete saved search" title="delete saved search"
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-9)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
+                <img class="share-save selectable" id=5955
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
+                    alt="share search with other users" title="share search with other users"
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-10)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
+                <div id=searchDetails520977575070366945 class="searchDetails sf-hidden">
+                    Name Search (BBCCCN) Alexandra Hospital </div>
+            </li>
+            <li>
+                <span id=748194834407744729 class=openSaveDetailsCollapsed><img
+                        src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
+                        alt=expand title=expand
+                        style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-8)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
+                <b><a href=# title="run search">Test
+                        4</a></b>
+                <img class="del-save selectable" id=5956
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
+                    alt="delete saved search" title="delete saved search"
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-9)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
+                <img class="share-save selectable" id=5956
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
+                    alt="share search with other users" title="share search with other users"
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-10)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
+                <div id=searchDetails748194834407744729 class="searchDetails sf-hidden">
+                    Name Search (BBCCCN) Alexandra Hospital </div>
+            </li>
+            <li>
+                <span id=267898050206232555 class=openSaveDetailsCollapsed><img
+                        src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
+                        alt=expand title=expand
+                        style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-8)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
+                <b><a href=# title="run search">test5</a></b>
+                <img class="del-save selectable" id=5958
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
+                    alt="delete saved search" title="delete saved search"
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-9)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
+                <img class="share-save selectable" id=5958
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
+                    alt="share search with other users" title="share search with other users"
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-10)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
+                <div id=searchDetails267898050206232555 class="searchDetails sf-hidden">
+                    Name Search (BBCCCN) Alexandra Hospital </div>
+            </li>
+        </ul>
+        <h4 title="Searches shared with you">Shared Searches</h4>
+        <ul id=sharedSaves>
+            <li>
+                <span id=800473810468017766 class=openSaveDetailsCollapsed><img
+                        src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
+                        alt=expand
+                        style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-8)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
+                <b><a href=#
+                        title="run search">test 5</a></b>
+                <img class="del-save-share selectable" id=5957
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
+                    alt="delete shared search" title="delete shared search"
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-9)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
+                <img class="share-save selectable" id=5957
+                    src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
+                    alt="share search with other users" title="share search with other users"
+                    style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-10)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
+                <div id=searchDetails800473810468017766 class="searchDetails sf-hidden">
+                    Location Search 1 National Critical Care &amp; Burns Acute Hospital (Capacity), Burns (B),
+                    Critical Care (CC) 0.5 miles ignore Essex CCN Service View </div>
+            </li>
+        </ul>
+    </div>
+</div>

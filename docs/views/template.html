@@ -44,7 +44,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
 
-    <title>{% block pageTitle %}NHS.UK prototype kit{% endblock %}</title>
+    <title>{% block pageTitle %}NHS Pathways DoS{% endblock %}</title>
 
     <link href="https://www.nhs.uk/" rel="preconnect">
     <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin>
@@ -69,6 +69,11 @@
     <meta name="msapplication-square150x150logo" content="/nhsuk-frontend/assets/favicons/mediumtile-150x150.png">
     <meta name="msapplication-wide310x150logo" content="/nhsuk-frontend/assets/favicons/widetile-310x150.png">
     <meta name="msapplication-square310x310logo" content="/nhsuk-frontend/assets/favicons/largetile-310x310.png">
+
+    <!-- Google Material Ui -->
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     {% endblock %}
 
     {% block head %}{% endblock %}
@@ -83,22 +88,18 @@
       {% block header %}
         {{ header({}) }}
       {% endblock %}
-
+      
       {% block beforeContent %}{% endblock %}
 
       {% block main %}
-        <div class="nhsuk-width-container {{ containerClasses }}">
+        <div class="">
           {% block outerContent %}{% endblock %}
-          <main class="nhsuk-main-wrapper {{ mainClasses }}" id="maincontent" role="main">
-            {% block content %}{% endblock %}
+          <main class="" id="maincontent" role="main">
+            {% block content %}
+            {% endblock %}
           </main>
         </div>
       {% endblock %}
-
-      {% block footer %}
-        {{ footer() }}
-      {% endblock %}
-
     {% block bodyEnd %}{% endblock %}
 
   </body>

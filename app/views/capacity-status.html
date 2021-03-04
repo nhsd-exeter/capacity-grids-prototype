@@ -1,662 +1,298 @@
-<!-- Use this page as the index for your project -->
 
-<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
 {% set appPage = true %}
-<!-- Extends the layout from /views/layout.html -->
+
+{% set critical = {
+    'L3 beds empty and available': '0',
+    'L2 beds empty and available': '0',
+    'Total L3/L2 Mix': '6',
+    'L3 patients on unit': '3',
+    'L2 patients on unit': '2',
+    'L1/0 patients in unit': '1',
+    'L3 patients outside unit': '0',
+    'L2 patients outside unit': '0',
+    'Beds committed': '0'
+    }
+%}
+
 {% extends 'layout.html' %}
-<!-- 
-  In /views/layout.html you can:
-    - change the header and footer 
-    - add custom CSS and JavaScript
--->
 
-
-
-<!-- For adding a breadcrumb -->
-<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
 {% block beforeContent %}
 {% endblock %}
 
-<!-- For adding a back link -->
-<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
 {% block outerContent %}
 {% endblock %}
 
-<!-- For adding page content -->
-<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
 {% block content %}
-  {# <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
-      <!-- Change the page title here -->
-      <h1>
-        Capacity Grids Prototype **Placeholder**
-        <span class="nhsuk-caption-xl nhsuk-caption--bottom">Version 1.01</span>
-      </h1>
-    </div>
-  </div> #}
-  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<!--
- Page saved with SingleFile 
- url: https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/search/search.php#org/1384256819 
- saved date: Tue Mar 02 2021 09:23:10 GMT+0000 (Greenwich Mean Time)
--->
-<meta charset=utf-8>
-<title>Service Profile | NHS Pathways DoS</title>
-<meta http-equiv=X-UA-Compatible content="IE=edge">
 
-<link type=image/x-icon rel="shortcut icon" href=data:>
-<style>
-    .sf-hidden {
-        display: none !important
-    }
-</style>
-<link rel=canonical
-    href=https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/search/search.php#org/1384256819>
-<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-
-<body>
-    <div id=divTimeoutWarningOuter
-        style="position:absolute;top:150px;background-color:#dddddd;width:100%;padding:20px;z-index:1000;box-shadow:0px 2px 5px #888888;display:none">
-
-    </div>
-    <div id=dialog-form class="ui-helper-hidden sf-hidden"></div>
-    <div id=banner-messages-wrapper style=text-align:center>
-
-    </div>
-    
-    <div class=searchwrapper>
-        <div class=search-config style=height:1286px>
-            <br>
-            <div>
-                <input type=radio class=selector name=selectSearch value=service id=serviceSearchSelector checked>
-                <label for=serviceSearchSelector>Service Search</label>
-                <input type=radio class=selector name=selectSearch value=clinical id=clinicalSearchSelector>
-                <label for=clinicalSearchSelector>Clinical Search</label>
-            </div>
-            <div class=serviceSearchScreen style=overflow:hidden;display:block>
-
-                <h3>Service Search</h3>
-                <h3>
-                    <span class=nameSearchCollapsed><img
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
-                            alt=collapse title=collapse
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-7)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
-                    By
-                    Service Name
-                </h3>
-                <div id=nameSearch>
-                    <input type=text name=serviceName id=serviceName value maxlength=110 class=ui-autocomplete-input
-                        autocomplete=off><span role=status aria-live=polite class=ui-helper-hidden-accessible></span>
-                    <div id=nameSearchMessages></div>
-                </div>
-                <h3>
-                    <span class=locationSearchCollapsed><img
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
-                            alt=collapse title=collapse
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-7)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
-                    By
-                    Location
-                </h3>
-                <div id=locationSearch>
-                    <h4>Within:</h4>
-                    <select id=locationSearchDistance>
-                        <option value=0.5 selected>0.5 Miles</option>
-                        <option value=1>1 Miles</option>
-                        <option value=2>2 Miles</option>
-                        <option value=5>5 Miles</option>
-                        <option value=10>10 Miles</option>
-                        <option value=20>20 Miles</option>
-                        <option value=30>30 Miles</option>
-                        <option value=40>40 Miles</option>
-                        <option value=50>50 Miles</option>
-                        <option value=60>60 Miles</option>
-                    </select>
-                    of
-                    <input type=text value="Enter Postcode, City or Town" id=locationSearchPostcode maxlength=50>
-                    <div id=locationSearchPostcodeInfo></div>
-                    <p>(or)</p>
-                    <div id=populateActiveRegionsViaJquery class="redWhite sf-hidden"></div>
-                    <select class=locationSearchRegion id=locationSearchRegionViaJquery title="Select Region">
-                        <option value selected>Select Region</option>
-                        <option value=allRegions>All regions</option>
-                        <option value=100000005>East Midlands</option>
-                        <option value=100000003>East of England</option>
-                        <option value=100000018>Isle of Wight</option>
-                        <option value=100000011>London Region</option>
-                        <option value=100000019>National Critical Care &amp; Burns</option>
-                        <option value=100000020>National Services</option>
-                        <option value=100000008>North East</option>
-                        <option value=100000009>North West Region</option>
-                        <option value=100000004>Other</option>
-                        <option value=100000014>Scotland</option>
-                        <option value=100000002>South Central</option>
-                        <option value=100000001>South East Coast</option>
-                        <option value=100000012>South West (GW)</option>
-                        <option value=100000017>South West (SW)</option>
-                        <option value=110000001>Starter Templates</option>
-                        <option value=100000013>Wales</option>
-                        <option value=100000006>West Midlands</option>
-                        <option value=100000010>Yorkshire And The Humber</option>
-                    </select>
-                    <div class=subRegionCheckboxes>
-                        <h4 class=subRegionCheckboxesHeader style=display:none>Select a Subregion</h4>
-                        <div id=subRegionCheckboxes_100000005 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000003 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000018 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000011 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000019 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000020 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000008 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000009 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000004 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000014 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000002 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000001 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000012 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000017 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_110000001 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000013 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000006 class=subRegionCheckboxesList></div>
-                        <div id=subRegionCheckboxes_100000010 class=subRegionCheckboxesList></div>
+<div class=searchwrapper>
+    <!-- LEFT SIDEBAR -->
+    {% include "includes/left.html" %}
+    <div id="paneToggle"><span class="paneToggle" title="Show/Hide Map"><<</span></div>
+    <!-- CONTENT -->
+    <div id="resizeMapsViaJquery" class="rightCanvas" style="height:1286px">
+        <div id="nameSearchResult" style="display:block">
+            <div class="errorMessages sf-hidden"></div>
+            <div class="searchResults">
+                <div id="serviceBasicDetails" class="orgDetails">
+                    <div class="orgName">
+                        <h2>
+                            SE KM Darent Valley Hospital - General ICU</h2>
                     </div>
-                    <h4 id=locationSearchServiceTypesHeader style=display:none>For service type(s):</h4>
-                    <table id=locationSearchServiceTypes style=display:none>
-
-                    </table>
-                    <h4>Which are open:</h4>
-                    <select name=locationSearchOpeningTimes id=locationSearchOpeningTimes>
-                        <option value=0>Now</option>
-                        <option value=1>Within 1 hour</option>
-                        <option value=2>Within 2 hours</option>
-                        <option value=3>Within 3 hours</option>
-                        <option value=4>Within 4 hours</option>
-                        <option value=5>Within 5 hours</option>
-                        <option value=6>Within 6 hours</option>
-                        <option value=7>Within 7 hours</option>
-                        <option value=8>Within 8 hours</option>
-                        <option value=9>Within 9 hours</option>
-                        <option value=10>Within 10 hours</option>
-                        <option value=11>Within 11 hours</option>
-                        <option value=12>Within 12 hours</option>
-                        <option value=13>Within 13 hours</option>
-                        <option value=14>Within 14 hours</option>
-                        <option value=15>Within 15 hours</option>
-                        <option value=16>Within 16 hours</option>
-                        <option value=17>Within 17 hours</option>
-                        <option value=18>Within 18 hours</option>
-                        <option value=19>Within 19 hours</option>
-                        <option value=20>Within 20 hours</option>
-                        <option value=21>Within 21 hours</option>
-                        <option value=22>Within 22 hours</option>
-                        <option value=23>Within 23 hours</option>
-                        <option value=24>Within 24 hours</option>
-                        <option selected value=ignore>Ignore opening times</option>
-                    </select>
-                    <p>
-                        <button id=saveLocationSearch
-                            class="saveSearchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-                            role=button aria-disabled=false style=display:inline-block><span class=ui-button-text>Save
-                                search</span></button>
-                        <button id=loadServiceSearch
-                            class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role=button
-                            aria-disabled=false><span class=ui-button-text>Search</span></button>
-                    </p>
+                    <!-- TODO, in nhs grid -->
+                    <!-- <table>
+                        <tbody>
+                            <tr>
+                                <td class="orgTopLabel">Public Name</td>
+                                <td colspan="7" class="orgTopText"></td>
+                            </tr>
+                            <tr>
+                                <td class="orgTopLabel">Type</td>
+                                <td class="orgTopText">Critical Care (CC)</td>
+                                <td class="orgTopLabel">Service ID</td>
+                                <td class="orgTopText">1384256819</td>
+                                <td class="orgTopLabel">ODS Code</td>
+                                <td class="orgTopText"></td>
+                                <td class="orgTopLabel">Created by</td>
+                                <td class="orgTopText">ROBOT on 12-11-2013 11:46</td>
+                            </tr>
+                            <tr>
+                                <td class="orgTopLabel" style="width:80px">Status</td>
+                                <td class="orgTopText">Active</td>
+                                <td colspan="4"></td>
+                                <td class="orgTopLabel">Modified by</td>
+                                <td class="orgTopText">
+                                    capacityuser on 02-03-2021 08:05
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> -->
                 </div>
-            </div>
-            <div class="clinicalSearchScreen sf-hidden">
+                <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+                    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
 
-            </div>
-            <div class=searchSaver style=display:none>
-            </div>
-            <h3>
-                <span class=saveSearchCollapsed><img
-                        src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
-                        alt=collapse title=collapse
-                        style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-7)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
-                Saved Searches
-            </h3>
-            <div id=savedSearches>
-                <ul id=saves>
-                    <li>
-                        <span id=147280225794368014 class=openSaveDetailsCollapsed><img
-                                src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
-                                alt=expand title=expand
-                                style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-8)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
-                        <b><a href="#org/1384257804&amp;searchName=1&amp;v=&amp;t=" title="run search">1</a></b>
-                        <img class="del-save selectable" id=5951
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
-                            alt="delete saved search" title="delete saved search"
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-9)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
-                        <img class="share-save selectable" id=5951
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
-                            alt="share search with other users" title="share search with other users"
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-10)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
-                        <div id=searchDetails147280225794368014 class="searchDetails sf-hidden">
-                            Name Search SE KM William Harvey Hospital - General ICU </div>
-                    </li>
-                    <li>
-                        <span id=457329535312233168 class=openSaveDetailsCollapsed><img
-                                src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
-                                alt=expand title=expand
-                                style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-8)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
-                        <b><a href="#org/1384257804&amp;searchName=Test%201&amp;v=&amp;t=" title="run search">Test
-                                1</a></b>
-                        <img class="del-save selectable" id=5954
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
-                            alt="delete saved search" title="delete saved search"
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-9)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
-                        <img class="share-save selectable" id=5954
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
-                            alt="share search with other users" title="share search with other users"
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-10)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
-                        <div id=searchDetails457329535312233168 class="searchDetails sf-hidden">
-                            Name Search SE KM William Harvey Hospital - General ICU </div>
-                    </li>
-                    <li>
-                        <span id=520977575070366945 class=openSaveDetailsCollapsed><img
-                                src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
-                                alt=expand title=expand
-                                style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-8)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
-                        <b><a href="#org/1405506183&amp;searchName=Test%202&amp;v=&amp;t=" title="run search">Test
-                                2</a></b>
-                        <img class="del-save selectable" id=5955
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
-                            alt="delete saved search" title="delete saved search"
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-9)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
-                        <img class="share-save selectable" id=5955
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
-                            alt="share search with other users" title="share search with other users"
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-10)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
-                        <div id=searchDetails520977575070366945 class="searchDetails sf-hidden">
-                            Name Search (BBCCCN) Alexandra Hospital </div>
-                    </li>
-                    <li>
-                        <span id=748194834407744729 class=openSaveDetailsCollapsed><img
-                                src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
-                                alt=expand title=expand
-                                style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-8)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
-                        <b><a href="#org/1405506183&amp;searchName=Test%204&amp;v=&amp;t=" title="run search">Test
-                                4</a></b>
-                        <img class="del-save selectable" id=5956
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
-                            alt="delete saved search" title="delete saved search"
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-9)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
-                        <img class="share-save selectable" id=5956
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
-                            alt="share search with other users" title="share search with other users"
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-10)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
-                        <div id=searchDetails748194834407744729 class="searchDetails sf-hidden">
-                            Name Search (BBCCCN) Alexandra Hospital </div>
-                    </li>
-                    <li>
-                        <span id=267898050206232555 class=openSaveDetailsCollapsed><img
-                                src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
-                                alt=expand title=expand
-                                style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-8)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
-                        <b><a href="#org/1405506183&amp;searchName=test5&amp;v=&amp;t=" title="run search">test5</a></b>
-                        <img class="del-save selectable" id=5958
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
-                            alt="delete saved search" title="delete saved search"
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-9)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
-                        <img class="share-save selectable" id=5958
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
-                            alt="share search with other users" title="share search with other users"
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-10)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
-                        <div id=searchDetails267898050206232555 class="searchDetails sf-hidden">
-                            Name Search (BBCCCN) Alexandra Hospital </div>
-                    </li>
-                </ul>
-                <h4 title="Searches shared with you">Shared Searches</h4>
-                <ul id=sharedSaves>
-                    <li>
-                        <span id=800473810468017766 class=openSaveDetailsCollapsed><img
-                                src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"><rect fill-opacity="0"/></svg>'
-                                alt=expand
-                                style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-8)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important"></span>
-                        <b><a href="#locSearch/postcode=&amp;postcodeValid=1&amp;region=100000019&amp;orgType=114,109,107&amp;distance=0.5&amp;locationSearchTime=ignore&amp;subRegions=100000019:1376486013&amp;searchName=test%205&amp;v=s&amp;t=1614594250737"
-                                title="run search">test 5</a></b>
-                        <img class="del-save-share selectable" id=5957
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
-                            alt="delete shared search" title="delete shared search"
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-9)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
-                        <img class="share-save selectable" id=5957
-                            src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><rect fill-opacity="0"/></svg>'
-                            alt="share search with other users" title="share search with other users"
-                            style="background-blend-mode:normal!important;background-clip:content-box!important;background-position:50% 50%!important;background-color:rgba(0,0,0,0)!important;background-image:var(--sf-img-10)!important;background-size:100% 100%!important;background-origin:content-box!important;background-repeat:no-repeat!important">
-                        <div id=searchDetails800473810468017766 class="searchDetails sf-hidden">
-                            Location Search 1 National Critical Care &amp; Burns Acute Hospital (Capacity), Burns (B),
-                            Critical Care (CC) 0.5 miles ignore Essex CCN Service View </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div id=loader class=sf-hidden>
-            Loading...
-        </div>
-        <div id=paneToggle><span class=paneToggle title="Show/Hide Map">&lt;&lt;</span></div>
-        <div id=serviceDialog class=sf-hidden></div>
+                        <li id="demographicDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="demographicDetailsView" aria-labelledby="ui-id-9" aria-selected="false"><a href="#demographicDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-9">Demographic Details</a></li>
+                        <li id="capacityStatus" class="ui-state-default ui-corner-top ui-state-focus ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="capacityStatusView" aria-labelledby="ui-id-10" aria-selected="true"><a href="#capacityStatusView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-10">Capacity Status</a></li>
+                        <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-11">Service Attributes</a></li>
+                        <li id="endPointDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="endPointDetailsView" aria-labelledby="ui-id-12" aria-selected="false"><a href="#endPointDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-12">Endpoint Details</a></li>
+                        <li id="alignedServices" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="alignedServicesView" aria-labelledby="ui-id-13" aria-selected="false"><a href="#alignedServicesView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-13">Search Rankings</a></li>
+                        <li id="changeHistory" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="changeHistoryView" aria-labelledby="ui-id-14" aria-selected="false"><a href="#changeHistoryView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-14">Change History</a></li>
+                    </ul>
+                    <div id="demographicDetailsView" aria-labelledby="ui-id-9" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
 
-        <!-- CONTENT -->
-        <div id="resizeMapsViaJquery" class="rightCanvas" style="height:1286px">
-            <div id="nameSearchResult" style="display:block">
-                <div class="errorMessages sf-hidden"></div>
-                <div class="searchResults">
-                    <div id="serviceBasicDetails" class="orgDetails">
-                        <div class="orgName">
-                            <h2>
-                                SE KM Darent Valley Hospital - General ICU <strong style="color:red">{{PROTOTYPE}}</strong></h2>
-                        </div>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="orgTopLabel">Public Name</td>
-                                    <td colspan="7" class="orgTopText"></td>
-                                </tr>
-                                <tr>
-                                    <td class="orgTopLabel">Type</td>
-                                    <td class="orgTopText">Critical Care (CC)</td>
-                                    <td class="orgTopLabel">Service ID</td>
-                                    <td class="orgTopText">1384256819</td>
-                                    <td class="orgTopLabel">ODS Code</td>
-                                    <td class="orgTopText"></td>
-                                    <td class="orgTopLabel">Created by</td>
-                                    <td class="orgTopText">ROBOT on 12-11-2013 11:46</td>
-                                </tr>
-                                <tr>
-                                    <td class="orgTopLabel" style="width:80px">Status</td>
-                                    <td class="orgTopText">Active</td>
-                                    <td colspan="4"></td>
-                                    <td class="orgTopLabel">Modified by</td>
-                                    <td class="orgTopText">
-                                        capacityuser on 02-03-2021 08:05
-                                    </td>
-                                </tr>
-                        </tbody></table>
                     </div>
-                    <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-                        <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                    <div id="serviceAdminView">
+                    </div>
+                    <div id="capacityStatusView" aria-labelledby="ui-id-10" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display:block">
+                        <div id="capactityRAG">
+                        <!--
+                            <div class="formRow">
+                                <div class="orgLabelLeft">Status</div>
+                                <div class="orgText" id="statusPicker">
+                                    <label for="green" class="green">
+                                        <input type="radio" name="currentCapacityStatus" id="green" title="GREEN" value="GREEN" checked="">
+                                        Green
+                                    </label>
+                                    <label for="amber" class="amber">
+                                        <input type="radio" name="currentCapacityStatus" id="amber" title="AMBER" value="AMBER">
+                                        Amber
+                                    </label>
+                                    <label for="red" class="red">
+                                        <input type="radio" name="currentCapacityStatus" id="red" title="RED" value="RED">
+                                        Red
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="formRow">
+                                <div class="orgLabelLeft">&nbsp;</div>
+                                <div class="orgText">
+                                    Reset Time must be within the next 120 hours (5 days)
+                                </div>
+                            </div>
+                            <div class="formRow" id="capacity-status-reset-row">
+                                <div class="orgLabelLeft">Reset Time</div>
+                                <div class="orgText">
+                                    <input id="resetDate" name="resetDate" class="capacityStatusDatepicker" type="text" size="10" value="" readonly="" disabled="">
+                                    <br>
+                                    <div class="orgLabelLeft">At</div>
+                                    <div class="orgText" id="cmsCapacityResetTimeViaJquery_time">
+                                        <select class="input-time input-time-hour reset-input-disabled-select" name="reset-time-hours" id="reset-time-hours" disabled="">
+                                            <option value="--" selected="">--</option>
+                                            <option value="00">00
+                                            </option><option value="01">01
+                                            </option><option value="02">02
+                                            </option><option value="03">03
+                                            </option><option value="04">04
+                                            </option><option value="05">05
+                                            </option><option value="06">06
+                                            </option><option value="07">07
+                                            </option><option value="08">08
+                                            </option><option value="09">09
+                                            </option><option value="10">10
+                                            </option><option value="11">11
+                                            </option><option value="12">12
+                                            </option><option value="13">13
+                                            </option><option value="14">14
+                                            </option><option value="15">15
+                                            </option><option value="16">16
+                                            </option><option value="17">17
+                                            </option><option value="18">18
+                                            </option><option value="19">19
+                                            </option><option value="20">20
+                                            </option><option value="21">21
+                                            </option><option value="22">22
+                                            </option><option value="23">23</option>
+                                        </select>
+                                        <select class="input-time input-time-minutes reset-input-disabled-select" name="reset-time-minutes" id="reset-time-minutes" disabled="">
+                                            <option value="--" selected="">--</option>
+                                            <option value="00">00
+                                            </option><option value="15">15
+                                            </option><option value="30">30
+                                            </option><option value="45">45</option>
+                                        </select>
+                                    </div>
+                                    <div class="orgLabelLeft">&nbsp;</div>
+                                    <div class="orgText" id="cmsCapacityResetTimeViaJquery_error">
+                                        <span id="timePickerWarnings"></span>
 
-                            <li id="demographicDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="demographicDetailsView" aria-labelledby="ui-id-9" aria-selected="false"><a href="#demographicDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-9">Demographic Details</a></li>
-                            <li id="capacityStatus" class="ui-state-default ui-corner-top ui-state-focus ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="capacityStatusView" aria-labelledby="ui-id-10" aria-selected="true"><a href="#capacityStatusView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-10">Capacity Status</a></li>
-                            <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-11">Service Attributes</a></li>
-                            <li id="endPointDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="endPointDetailsView" aria-labelledby="ui-id-12" aria-selected="false"><a href="#endPointDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-12">Endpoint Details</a></li>
-                            <li id="alignedServices" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="alignedServicesView" aria-labelledby="ui-id-13" aria-selected="false"><a href="#alignedServicesView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-13">Search Rankings</a></li>
-                            <li id="changeHistory" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="changeHistoryView" aria-labelledby="ui-id-14" aria-selected="false"><a href="#changeHistoryView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-14">Change History</a></li>
-                        </ul>
-                        <div id="demographicDetailsView" aria-labelledby="ui-id-9" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
+                                    </div>
+                                    <div class="formRow" id="capacityResetNotice">
+                                        <div class="orgLabelLeft">&nbsp;</div>
+                                        <div class="orgText capacity-reset-notice">
 
-                        </div>
-                        <div id="serviceAdminView">
-                        </div>
-                        <div id="capacityStatusView" aria-labelledby="ui-id-10" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display:block">
-                            <div id="capactityRAG">
+                                            <span id="capacityResetNoticeContent"></span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="formRow">
-                                    <div class="orgLabelLeft">Status</div>
-                                    <div class="orgText" id="statusPicker">
-                                        <label for="green" class="green">
-                                            <input type="radio" name="currentCapacityStatus" id="green" title="GREEN" value="GREEN" checked="">
-                                            Green
-                                        </label>
-                                        <label for="amber" class="amber">
-                                            <input type="radio" name="currentCapacityStatus" id="amber" title="AMBER" value="AMBER">
-                                            Amber
-                                        </label>
-                                        <label for="red" class="red">
-                                            <input type="radio" name="currentCapacityStatus" id="red" title="RED" value="RED">
-                                            Red
-                                        </label>
+                                    <div class="orgLabelLeft">Last Updated</div>
+                                    <div class="orgText" id="cmsCapacityUpdateTimeViaJquery">
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="orgLabelLeft">By</div>
+                                    <div class="orgText" id="cmsCapacityUpdatedByViaJquery">
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="orgLabelLeft">Notes</div>
+                                    <div class="orgText">
+                                        <textarea maxlength="1000" name="cap007" class="capacityStatusNotes" id="capacityStatusNotes"></textarea>
                                     </div>
                                 </div>
                                 <div class="formRow">
                                     <div class="orgLabelLeft">&nbsp;</div>
                                     <div class="orgText">
-                                        Reset Time must be within the next 120 hours (5 days)
+                                        <button id="updateCapacityStatusViaJquery" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-disabled ui-state-disabled" role="button" aria-disabled="true" disabled=""><span class="ui-button-text">Save</span></button>
                                     </div>
                                 </div>
-                                <div class="formRow" id="capacity-status-reset-row">
-                                    <div class="orgLabelLeft">Reset Time</div>
-                                    <div class="orgText">
-                                        <input id="resetDate" name="resetDate" class="capacityStatusDatepicker" type="text" size="10" value="" readonly="" disabled="">
-                                        <br>
-                                        <div class="orgLabelLeft">At</div>
-                                        <div class="orgText" id="cmsCapacityResetTimeViaJquery_time">
-                                            <select class="input-time input-time-hour reset-input-disabled-select" name="reset-time-hours" id="reset-time-hours" disabled="">
-                                                <option value="--" selected="">--</option>
-                                                <option value="00">00
-                                                </option><option value="01">01
-                                                </option><option value="02">02
-                                                </option><option value="03">03
-                                                </option><option value="04">04
-                                                </option><option value="05">05
-                                                </option><option value="06">06
-                                                </option><option value="07">07
-                                                </option><option value="08">08
-                                                </option><option value="09">09
-                                                </option><option value="10">10
-                                                </option><option value="11">11
-                                                </option><option value="12">12
-                                                </option><option value="13">13
-                                                </option><option value="14">14
-                                                </option><option value="15">15
-                                                </option><option value="16">16
-                                                </option><option value="17">17
-                                                </option><option value="18">18
-                                                </option><option value="19">19
-                                                </option><option value="20">20
-                                                </option><option value="21">21
-                                                </option><option value="22">22
-                                                </option><option value="23">23</option>
-                                            </select>
-                                            <select class="input-time input-time-minutes reset-input-disabled-select" name="reset-time-minutes" id="reset-time-minutes" disabled="">
-                                                <option value="--" selected="">--</option>
-                                                <option value="00">00
-                                                </option><option value="15">15
-                                                </option><option value="30">30
-                                                </option><option value="45">45</option>
-                                            </select>
-                                        </div>
-                                        <div class="orgLabelLeft">&nbsp;</div>
-                                        <div class="orgText" id="cmsCapacityResetTimeViaJquery_error">
-                                            <span id="timePickerWarnings"></span>
+                                <div id="capacityStatusErrors" class="capacityStatusErrors"></div>
+                            </div>-->
+                            <br class="clear">
+                            <!--
+                            <h4 class="underline" title="Service Capacity Grids">Capacity Grids:</h4>
+                            <div id="saveAllSection" data-initial-count="1">
+                                <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveAllCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save all changed
+                                        grids</span></button>&nbsp;
+                                <div id="lblGridSaveAllStatus"></div>
+                            </div>
+                            <div id="populateGridContainersViaJquery">
 
-                                        </div>
-                                        <div class="formRow" id="capacityResetNotice">
-                                            <div class="orgLabelLeft">&nbsp;</div>
-                                            <div class="orgText capacity-reset-notice">
+                                <div id="gridLoadError" class="red small-font"></div>
+                                <div class="capacityInputterGrid">
+                                    <div class="capacityGridName">
+                                        <span class="fontBold" title="Grid ID 1761 : Critical Care">Critical
+                                            Care</span>
+                                        <span class="small-font" title="Date/Time grid was last updated or verified">(last updated: <span id="lastUpdated1761">02 Mar 2021 08:05:33</span>)</span>
+                                    </div>
+                                </div>
+                                -->
+                                <div class="sheetData" id="sheetData1761" data-id="1761" data-name="Critical Care">
+                                    <div class="nhsuk-design">
 
-                                                <span id="capacityResetNoticeContent"></span>
-                                            </div>
+                                        
+
+                                        <!--<div class="nhsuk-width-container">-->
+                                        <div class="">
+                                            <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+                                                <div class="nhsuk-grid-row">
+                                                    <div class="nhsuk-grid-column-one-third
+                                                    ">
+                                                        {% for key, value in critical %}
+                                                            <div class="nhsuk-form-group">
+                                                                <div class="nhsuk-grid-row">
+                                                                    <div class="nhsuk-grid-column-three-quarters">
+                                                                        <label class="nhsuk-label" for={{key}}>
+                                                                            {{ key }} 
+                                                                        </label>
+                                                                    </div>
+
+                                                                    <div class="nhsuk-grid-column-one-quarter">
+                                                                        <input class="nhsuk-input" id={{key}} name={{key}} type="text" value={{value}}>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+
+                                                         <div class="nhsuk-form-group">
+                                                        <label class="nhsuk-label" for="example">
+                                                            Need to provide more detail?
+                                                        </label>
+                                                        <div class="nhsuk-hint" id="example-hint">
+                                                            Do not include personal or financial information, for example, National Insurance number or credit card details.
+                                                        </div>
+                                                        <textarea class="nhsuk-textarea" id="example" name="example" rows="5" aria-describedby="example-hint"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </main>
                                         </div>
+
+                                        
+                                                
+                                                
+                                            
+
+
+                                       
                                     </div>
-                                    <div class="formRow">
-                                        <div class="orgLabelLeft">Last Updated</div>
-                                        <div class="orgText" id="cmsCapacityUpdateTimeViaJquery">
-                                        </div>
-                                    </div>
-                                    <div class="formRow">
-                                        <div class="orgLabelLeft">By</div>
-                                        <div class="orgText" id="cmsCapacityUpdatedByViaJquery">
-                                        </div>
-                                    </div>
-                                    <div class="formRow">
-                                        <div class="orgLabelLeft">Notes</div>
-                                        <div class="orgText">
-                                            <textarea maxlength="1000" name="cap007" class="capacityStatusNotes" id="capacityStatusNotes"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="formRow">
-                                        <div class="orgLabelLeft">&nbsp;</div>
-                                        <div class="orgText">
-                                            <button id="updateCapacityStatusViaJquery" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-disabled ui-state-disabled" role="button" aria-disabled="true" disabled=""><span class="ui-button-text">Save</span></button>
-                                        </div>
-                                    </div>
-                                    <div id="capacityStatusErrors" class="capacityStatusErrors"></div>
                                 </div>
                                 <br class="clear">
-                                <h4 class="underline" title="Service Capacity Grids">Capacity Grids:</h4>
-                                <div id="saveAllSection" data-initial-count="1">
-                                    <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveAllCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save all changed
-                                            grids</span></button>&nbsp;
-                                    <div id="lblGridSaveAllStatus"></div>
-                                </div>
-                                <div id="populateGridContainersViaJquery">
+                                <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save grid
+                                    </span></button>&nbsp;
+                                <div id="lblGridSaveStatus1761"></div>
 
-                                    <div id="gridLoadError" class="red small-font"></div>
-                                    <div class="capacityInputterGrid">
-                                        <div class="capacityGridName">
-                                            <span class="fontBold" title="Grid ID 1761 : Critical Care">Critical
-                                                Care</span>
-                                            <span class="small-font" title="Date/Time grid was last updated or verified">(last updated: <span id="lastUpdated1761">02 Mar 2021 08:05:33</span>)</span>
-                                        </div>
-                                    </div>
-                                    <div class="sheetData" id="sheetData1761" data-id="1761" data-name="Critical Care">
-
-                                        <div class="gridRow">
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffffff" size="39" disabled="" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:1,&quot;row&quot;:1,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;1&quot;,&quot;oldValue&quot;:&quot;L3 beds empty and available&quot;}" type="text" value="L3 beds empty and available" title="Locked Cell">
-                                            </div>
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffc0cb" size="34" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:2,&quot;row&quot;:1,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;0&quot;,&quot;oldValue&quot;:&quot;10&quot;}" type="text" value="10" title="">
-                                            </div>
-                                        </div>
-
-                                        <div class="gridRow">
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffffff" size="39" disabled="" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:1,&quot;row&quot;:2,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;1&quot;,&quot;oldValue&quot;:&quot;L2 beds empty and available&quot;}" type="text" value="L2 beds empty and available" title="Locked Cell">
-                                            </div>
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffc0cb" size="34" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:2,&quot;row&quot;:2,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;0&quot;,&quot;oldValue&quot;:&quot;0&quot;}" type="text" value="0" title="">
-                                            </div>
-                                        </div>
-
-                                        <div class="gridRow">
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffffff" size="39" disabled="" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:1,&quot;row&quot;:3,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;1&quot;,&quot;oldValue&quot;:&quot;Total L3\/L2 Mix&quot;}" type="text" value="Total L3/L2 Mix" title="Locked Cell">
-                                            </div>
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffc0cb" size="34" disabled="" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:2,&quot;row&quot;:3,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;1&quot;,&quot;oldValue&quot;:&quot;10&quot;}" type="text" value="10" title="Locked Cell">
-                                            </div>
-                                        </div>
-
-                                        <div class="gridRow">
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffffff" size="39" disabled="" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:1,&quot;row&quot;:4,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;1&quot;,&quot;oldValue&quot;:&quot;L3 patients on unit&quot;}" type="text" value="L3 patients on unit" title="Locked Cell">
-                                            </div>
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffc0cb" size="34" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:2,&quot;row&quot;:4,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;0&quot;,&quot;oldValue&quot;:&quot;4&quot;}" type="text" value="4" title="">
-                                            </div>
-                                        </div>
-
-                                        <div class="gridRow">
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffffff" size="39" disabled="" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:1,&quot;row&quot;:5,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;1&quot;,&quot;oldValue&quot;:&quot;L2 patients on unit&quot;}" type="text" value="L2 patients on unit" title="Locked Cell">
-                                            </div>
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffc0cb" size="34" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:2,&quot;row&quot;:5,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;0&quot;,&quot;oldValue&quot;:&quot;2&quot;}" type="text" value="2" title="">
-                                            </div>
-                                        </div>
-
-                                        <div class="gridRow">
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffffff" size="39" disabled="" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:1,&quot;row&quot;:6,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;1&quot;,&quot;oldValue&quot;:&quot;L1\/0 patients in unit&quot;}" type="text" value="L1/0 patients in unit" title="Locked Cell">
-                                            </div>
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffc0cb" size="34" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:2,&quot;row&quot;:6,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;0&quot;,&quot;oldValue&quot;:&quot;3&quot;}" type="text" value="3" title="">
-                                            </div>
-                                        </div>
-
-                                        <div class="gridRow">
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffffff" size="39" disabled="" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:1,&quot;row&quot;:7,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;1&quot;,&quot;oldValue&quot;:&quot;L3 patients outside unit&quot;}" type="text" value="L3 patients outside unit" title="Locked Cell">
-                                            </div>
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffc0cb" size="34" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:2,&quot;row&quot;:7,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;0&quot;,&quot;oldValue&quot;:&quot;0&quot;}" type="text" value="0" title="">
-                                            </div>
-                                        </div>
-
-                                        <div class="gridRow">
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffffff" size="39" disabled="" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:1,&quot;row&quot;:8,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;1&quot;,&quot;oldValue&quot;:&quot;L2 patients outside unit&quot;}" type="text" value="L2 patients outside unit" title="Locked Cell">
-                                            </div>
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffc0cb" size="34" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:2,&quot;row&quot;:8,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;0&quot;,&quot;oldValue&quot;:&quot;0&quot;}" type="text" value="0" title="">
-                                            </div>
-                                        </div>
-
-                                        <div class="gridRow">
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffffff" size="39" disabled="" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:1,&quot;row&quot;:9,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;1&quot;,&quot;oldValue&quot;:&quot;Beds committed&quot;}" type="text" value="Beds committed" title="Locked Cell">
-                                            </div>
-
-                                            <div class="cg_cell">
-                                                <input maxlength="100" class="gridInput alignLeft gridBackColor_ffc0cb" size="34" id="{&quot;sheet&quot;:&quot;1761&quot;,&quot;col&quot;:2,&quot;row&quot;:9,&quot;cmsgridstyle&quot;:&quot;0;0;000000;ffffff;left;none;0&quot;,&quot;oldValue&quot;:&quot;0&quot;}" type="text" value="0" title="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br class="clear">
-                                    <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save grid
-                                        </span></button>&nbsp;
-                                    <div id="lblGridSaveStatus1761"></div>
-
-                                    <br>
-                                    <hr class="clear">
-                                    <br>
-                                </div>
-
-
-
-
+                                <br>
+                                <hr class="clear">
+                                <br>
                             </div>
-                        </div>
-
-                        <div id="endPointDetailsView" aria-labelledby="ui-id-12" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
 
 
 
 
                         </div>
-                        <div id="alignedServicesView" aria-labelledby="ui-id-13" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
-                        </div>
-                        <div id="attributeDetailsView" aria-labelledby="ui-id-11" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
+                    </div>
+
+                    <div id="endPointDetailsView" aria-labelledby="ui-id-12" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
 
 
 
 
-                        </div>
-                        <div id="changeHistoryView" aria-labelledby="ui-id-14" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
-                        </div>
+                    </div>
+                    <div id="alignedServicesView" aria-labelledby="ui-id-13" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
+                    </div>
+                    <div id="attributeDetailsView" aria-labelledby="ui-id-11" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
+
+
+
+
+                    </div>
+                    <div id="changeHistoryView" aria-labelledby="ui-id-14" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
                     </div>
                 </div>
             </div>
-            <div class="allSearchResults" style="overflow-x:hidden;display:none"></div>
         </div>
-
-
-        <div class=allSearchResults style=overflow-x:hidden;display:none></div>
+        <div class="allSearchResults" style="overflow-x:hidden;display:none"></div>
     </div>
-    <div class=clear></div>
-    </div>
-    
-    
+
+</div>
 {% endblock %}

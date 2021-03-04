@@ -9,7 +9,7 @@
 
 <!-- Add your custom CSS or Sass in /app/assets/sass/main.scss -->
 {% block headCSS %}
-  {# <link href="/css/main.css" rel="stylesheet"> #}
+  <link href="/css/main.css" rel="stylesheet">
   <style>
    :root {
         --sf-img-7: url("data:image/gif;base64,R0lGODlhCwALAJECAAAAAP///////wAAACH5BAEAAAIALAAAAAALAAsAAAIUnI8Wy6zdHlxyvkTHdHqHCoFRQhYAOw==");
@@ -804,231 +804,7 @@
         border: none
     }
 </style>
-<!--[if IE 7]>
-    <script type='text/javascript' src='/app/library/js/json2/json2.js'></script>
-    <![endif]-->
-<style>
-    body {
-        font: 100% Verdana, Geneva, Arial, Helvetica;
-        background-color: white;
-        text-align: left;
-        width: 100%;
-        color: black;
-        font-size: 0.8em;
-        overflow-y: hidden
-    }
-
-    #paneToggle {
-        background-color: white;
-        color: black
-    }
-
-    #paneToggle:hover {
-        background-color: #ccc;
-        color: black;
-        cursor: pointer
-    }
-
-    .locationSearchCollapsed,
-    .nameSearchCollapsed,
-    .saveSearchCollapsed,
-    .openSaveDetailsCollapsed {
-        cursor: pointer
-    }
-
-    #savedSearches ul li {
-        margin-right: 5px;
-        margin-left: -36px;
-        margin-bottom: 5px
-    }
-
-    #savedSearches ul li img {
-        margin-right: 5px
-    }
-
-    #serviceName {
-        margin-top: 14px
-    }
-
-    #locationSearchDistance {
-        width: 76px
-    }
-
-    #locationSearchPostcode {
-        width: 180px
-    }
-
-    .locationSearchRegion,
-    #locationSearchOpeningTimes {
-        width: 290px
-    }
-
-    #nameSearchMessages {
-        color: red;
-        font-weight: bold
-    }
-
-    #header {
-        position: relative
-    }
-
-    .searchwrapper {
-        border-bottom: 1px black solid;
-        height: 100%;
-        width: 100%;
-        clear: both
-    }
-
-    .searchwrapper .search-config {
-        width: 20%;
-        max-width: 350px;
-        float: left;
-        padding-left: 5px;
-        padding-right: 5px;
-        max-height: 100%;
-        overflow-y: scroll
-    }
-
-    .searchwrapper .rightCanvas {
-        overflow-y: auto;
-        max-height: 100%;
-        padding-right: 10px;
-        padding-bottom: 10px
-    }
-
-    .searchwrapper .allSearchResults {
-        overflow-y: auto
-    }
-
-    h2 {
-        background: #4b6c9e;
-        font-size: 18px;
-        padding: 5px 0px 5px 5px
-    }
-
-    h3 {
-        background: #4b6c9e;
-        color: white;
-        font-size: 14px;
-        padding: 5px 0px 5px 5px
-    }
-
-    #paneToggle {
-        position: absolute;
-        left: 0%;
-        top: 0;
-        padding: 5px 10px 10px 5px
-    }
-
-    .searchResults {
-        margin: 0 auto;
-        padding-left: 10px;
-        text-align: left;
-        background-color: #fff
-    }
-
-    .searchResults h2 {
-        color: black;
-        margin-bottom: 3px;
-        background-color: #fff
-    }
-
-    .searchResults table {
-        width: 100%
-    }
-
-    .searchResults table tbody td {
-        font-size: 14px;
-        text-align: left
-    }
-
-    .searchResults table tbody tr {
-        height: 30px
-    }
-
-    .searchResults table tbody tr td {
-        padding: 3px
-    }
-
-    #capacityStatusNotes {
-        width: 500px;
-        height: 70px;
-        font-size: 12px
-    }
-
-    h4 {
-        font-weight: bold
-    }
-
-    td.orgTopLabel {
-        width: 5%;
-        font-weight: 600;
-        white-space: nowrap
-    }
-
-    td.orgTopText {
-        width: 20%;
-        white-space: nowrap
-    }
-
-    .ui-autocomplete {
-        max-height: 250px;
-        overflow-y: scroll;
-        overflow-x: hidden
-    }
-
-    .sheetData {
-        width: auto;
-        overflow-x: scroll
-    }
-
-    .gridRow {
-        width: auto;
-        white-space: nowrap
-    }
-
-    .cg_cell {
-        display: inline-block;
-        width: auto
-    }
-
-    input.gridBackColor_ffffff {
-        background-color: #ffffff
-    }
-
-    input.gridBackColor_ffc0cb {
-        background-color: #ffc0cb
-    }
-
-    input.gridInput {
-        font-size: 11px;
-        color: black;
-        width: auto
-    }
-
-    select.input-time {
-        width: 50px !important
-    }
-
-    #timePickerWarnings {
-        color: #ff0000
-    }
-
-    .reset-input-disabled-select {
-        border: 2px solid #d2d2d2 !important;
-        background-color: #dbdbdb !important
-    }
-
-    input.capacityStatusDatepicker {
-        width: 94px
-    }
-
-    input[type="text"] {
-        margin: 2px 0px
-    }
-  </style>
-
-  <!-- -->
+<!-- jQuery Ui? -->
   <style>
     :root {
         --sf-img-7: url("data:image/gif;base64,R0lGODlhCwALAJECAAAAAP///////wAAACH5BAEAAAIALAAAAAALAAsAAAIUnI8Wy6zdHlxyvkTHdHqHCoFRQhYAOw==");
@@ -1822,10 +1598,11 @@
         background: none;
         border: none
     }
+
+    .sf-hidden {
+        display: none;
+    }
 </style>
-<!--[if IE 7]>
-    <script type='text/javascript' src='/app/library/js/json2/json2.js'></script>
-    <![endif]-->
 <style>
     body {
         font: 100% Verdana, Geneva, Arial, Helvetica;
@@ -2045,6 +1822,19 @@
     input[type="text"] {
         margin: 2px 0px
     }
+  </style>
+
+<!-- DoS CSS changes -->
+<style>
+#tabs {
+    min-width: 100%;
+}
+.searchwrapper .search-config {
+    width: 100%;
+}
+body {
+    display: inline-grid;
+}
 </style>
 {% endblock %}
 
@@ -2065,7 +1855,7 @@
       "showSearch": "false"
     })
   }} #}
-  <div class=head-wrapper>
+    <div class=head-wrapper>
         <div id=header>
             <div id=header-logo>
                 <a href=#><img
@@ -2109,7 +1899,7 @@
                     </li>
 
                     <li>
-                        <a href=https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/privacy/privacypolicy.php
+                        <a href=#
                             class="menuBarLinks ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
                             role=button aria-disabled=false><span class=ui-button-text>
                                 Privacy
@@ -2119,11 +1909,11 @@
             </div>
             <div id=menuLinks>
                 <a
-                    href="https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/login/login.php?logout=true">
+                    href=#>
                     Logout »
                 </a>
                 <a
-                    href=https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/account/account.php>
+                    href=#>
                     Account »
                 </a>
             </div>
@@ -2134,8 +1924,6 @@
     </div>
 {% endblock %}
 
-<!-- Edit the footer -->
-<!-- Footer code examples can be found at https://service-manual.nhs.uk/design-system/components/footer -->
 {# {% block footer %}
   {{ footer({
     "links": [
