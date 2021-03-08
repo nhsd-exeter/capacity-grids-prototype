@@ -7,4 +7,19 @@
         $('.search-config').toggle();
         $('.paneToggle').text($(this).text() == "<<" ? ">>" : "<<")
     });
+    
+    $('#ui-id-3').click(function() {
+        $('#myServices').hide();
+        $('#mySavedSearches').show();
+        $('#ui-id-2').removeClass('ui-tabs-active ui-state-active');
+        $( "[aria-labelledby='ui-id-2']" ).removeClass('ui-tabs-active ui-state-active');
+        $('#ui-id-3').addClass('ui-tabs-active ui-state-active');
+    });
+
+    $('#ui-id-2').click(function() {
+        $('#myServices').show();
+        $('#mySavedSearches').hide();
+        $('#ui-id-3').removeClass('ui-tabs-active ui-state-active');
+        $('#ui-id-2').addClass('ui-tabs-active ui-state-active'); 
+    });
 </script>

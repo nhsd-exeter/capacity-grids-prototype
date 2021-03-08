@@ -1,0 +1,1352 @@
+
+{% set appPage = true %}
+
+{% set critical = {
+    'L3 beds empty and available': '0',
+    'L2 beds empty and available': '0',
+    'Total L3/L2 Mix': '6',
+    'L3 patients on unit': '3',
+    'L2 patients on unit': '2',
+    'L1/0 patients in unit': '1',
+    'L3 patients outside unit': '0',
+    'L2 patients outside unit': '0',
+    'Beds committed': '0'
+    }
+%}
+
+{% extends 'layout.html' %}
+
+{% block beforeContent %}
+<style>:root{--sf-img-2:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAItSURBVDhPlVNLaBNRFJ2CoLipC0ERREVRgtGKgusigj+oK0UFET8obQlBuhXqRihulBaKipo0MUg+k0/TVswiilmJotKiG0tTp5l8JzOTCUkmCclx7oMOjcFFDhwOB+ad99498/o4jttm8JjBXvDD+FhdXzCIHmEsHNy4Gwv4vSJgObmGlT8ikkIaq2sZk+Qr1RrGHL9gscWx7xa/yHHo6zjBqpDCa4cTDqcL6WweM+43cLk9TMkTBu7HEfmu4/jYB+y5EaKrM7ATZIyPsvkC8lIRkqygqKgmyROsthhmEhoG7LHuAEVRoGkaKpUKarUa6vU6Go0GU/IEy8gCJmMFHLW96w5QVRU+nw9+vx88z6PZbCIcDiMUCkHXdRZw8O4sJiIZWEej6P/3ChRQLpdRrVbZrhTQarWYkifsv8Nj8r2IIyMR9F90dM5gvQGaviDmIGYlZPIyU/KEvTe9mI6lYB3muwOEVJo14HS5jWFKiETnMTu3wJQ8Yfd1D17FUzh8z9cdQC3kChJrgRpQShpUrWwMsonhqU/YedWJHVec8CREnLAFsP3SS2wdmk6YNf6vhXa7jXMPorC/+IK5b3lEvuYQNfTh20VsOT+11BHg9XpZE4FAgE0+GAwy5pQKLLddGH32GR9/FjFuLN589mmRO/PkkBkgyzJKpZLZBHVPIaTEZVHGrsvPcWF8HptOP9a5UxMne35MS8kCrj2KgjswZN/4mKhPel290PwH/gJ7EZBbTsHhDgAAAABJRU5ErkJggg==");--sf-img-6:url("data:image/gif;base64,R0lGODlhCwALAJECAAAAAP///////wAAACH5BAEAAAIALAAAAAALAAsAAAIUnI8Wy6zdHlxyvkTHdHqHCoFRQhYAOw==");--sf-img-7:url("data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///////wAAACH5BAAAAAAALAAAAAALAAsAAAIVnI8my6zd3hqRujpRjvg6C21hliQFADs=");--sf-img-8:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAT5JREFUeNqUU0uKhDAQjUOvBBFRXIjgTr2Al+hzeAbPIC5cuBahL9FX8A4uXIgIIohL/5lJoCRmtIcJFFUvqXr18hMwxuhuRFGEi6JAtm2jIAiEq5yvu2Lf9ylzmqYCi/khsAqyLMPbtqF1Xakty0L9PM80BkwsjmPhRPB6vbDneTRpmqbDxnGkBjHxhLAsS5QkifCA7oQoz3MECqAjSWYxKIDGpy2EYYhd1z0kE08MugJZVVXH2ZwOUVVVZJrmgR3HOTpZlkXXFUVBoihe3wJJ3vcdGYZxYF3X6Rxg/tp/EQAJGcSzRTy+VQAJPGZJLglgkdwEq4hX8PElgnyIeUUftwAFrAKY+xcB25H3f26hrmtKIkkS6vuexpqmoa7raPEwDCeSB1v880Debds+m6Y5fSj2CROTZfkNNd8CDABg938S/VLKaAAAAABJRU5ErkJggg==");--sf-img-9:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAwZJREFUeNqkU0tPU0EYPffetrel0IZeCrRKBYqG+MBAABV84GNBVDa6cKFLE010oYkx0Q3RjYmYGGNi1LhSY+QPEBMxQVHwAT4QghUoLeVR6Zt7e9vep9MiK905yVnMzJkz33fODKXrOv5nUPTFwb8XS0qBIpsHNHOCTBsJygiiBF+gqb0QV+Z0PlHgGv4pq2l7ihXhSketdct2t9lJqSq7o8GZeznJtz8ZWt6f0LQbhFW4maFcrQBbBCjSKnR1QzEt93TVF+86fXBDhcPCGGVJodx2s3Hreqt9c6W5/N3XoDeXyQxCyqUYJInMOi8gZVaRTZ9bbzcdqXI7nBRjxIjvF7jSEszOpzC9wKOUc5jjyzGzfzqYI/xBBoIJ1JKfdLmOHBbzuLRn3+5tc7GEYS6RgaAA06EYEiINo60cw59nEBfSpkXfzxzhPi94oEcX0WEaw0CqJj+tCCzEWYWhIeoy6VGBJsmw52RkWRXjP2Zh5ZysnuEr8mR6zTenQUCHjVSi68srK3EJNAWGbDMUDRNrQlrkodMG0oILlVV1Up5HUEhhdNV47SHH8Ljleu5IJEdVBi7ErHUIle2HxJZCZc2Iz3xHY1sLxj58isNoGSnEeOHCmaZAIIDe3pv3+/r60LU5U6goKymYCYbxcfQBZg31CLsPI0E5wMoRYXL8x9T24qXHt+13YfD5fEgmU4hGoxAEAdmVNDF3VaTKZkRNZzNJIIL3n65pb4RN6W/DSvhq9pnYaJ2/TDoYN0QiEWSzOYiiCJ7nyVNQMEtEU8kkJElCeWUl3B4PTh0/SP/quWM8uc1ra2k/v6+oxN754tbZRwaO4wq3WywWdHd3X8+2q8d2Huh0VXu9XCQcxkIohM8jI5BlGW3NDea6jV5MDPX7I3NTkVRG76eAjal8uVbr4j1i5HKTMxPrqEaXs6ysvnXvIVftpi3cWlL+nxOx0bevQql4dGgggKdFJgwTAXjy5/PPOu/dn2hL2j3YSoSOGmnUrAmoGvyvg3j2JoiBP9wc9b/f+bcAAwBklV9jCWV9XQAAAABJRU5ErkJggg==");--sf-img-12:url("data:image/png;base64,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");--sf-img-13:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAqFJREFUeNp0U91Lk2EU/z3PNte8aUFe2QIpGCsUTEVzzg1CoovKj/yKEINu+g+M6CLoJrrrJqIuEiybzmXdBJG4+RXZIqJ0TfJjOojQ0G5c27v3fTvnqY0l9MDhcL5+zzm/5zwCRed8a/tTwzC6IQSElGAN04RpGEpLKYPPx8M9+XyTfKK9o9OkNCoQyGSy6O7txm42g5eTUfzSNOyz2XAm4Eep3Y7gcBB2ewkBEijVjIVGhLX6RE3E4XAE+MbJidfQNB03b99B6mAZwF3Q7Yfm53Fr4Jq68aTXpzpKp9MR7kLeuD5w5dPHD6/iC5+5Rei6jrLycmBrE/ixpTTb7Oc453E+1zGAlWR5cPDRVdIHWts6Yjk9h4a6OmAqClgsoEo0tLaB/Qzw8MH9WsrdJlnJA4B4WBZEGBEIkwpsmsC9x+MwrSUQuSwwG1V+zum40BXjUcJjo6IA4PU1GzzOzFSE5pRIfPmKu5dpRI04sBk4PehClfso847GJh+XGASAAkB4NNjnOXZ8SEqLImotuQ58p4AGBbCWTCo/x5mD+OJCX/4pFcDs7MwzktrOrh5qz0BjQz3wbQLIUQdWtk+B/UUcxPMA4i8H/KzEmQV+fwA7P9Nwudy0G3Z6sgw2NhJw7ncgGo2o11BdEwfc1R8OmpgDU759M6c2cGVpGbazIRjEgaQRViaqUVNfpW7zKg5EgQOp0EIj/Ys0GxdLSluKx2kFDGxvmkqzzX6Ocx7n/zMCnVIST+/FSzFfsx+riVWs172gHaA9sOg4/O4cKtwVmKbdGH4ylOdgtzACGyTvmSRm2lPpQYuzBTZLCTQ9i1RlCtmcpkjkvOIPaC02NE2Lzs1M+9VCEbr6MQJqgbiY49hzxB77CIkT/z87vPrF3/m3AAMAKlM9bH2rYGUAAAAASUVORK5CYII=");--sf-img-14:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABvklEQVR4nKWTsW4TQRCGv91b5+xzZLnACsIUp+QFiJCCeINUoaKiSnW8BO9h65SKjoZIvANvQAEoSCmChF1Eli97Z/s8k8LnwyQWAmWk1Wpmd/75Z/8do6o8xOyDsgF3N5AkiVprEREWiwVFUZDnOd574jhmOByavwIAlGU5SdO0uxl7cXR0QRzv/1MLzWazvBt7dnh4LxnApGn6cjqdfo6iCO/9tjtbzVpLFEVvXZZl709OXtHr9ZjN5qxFce5PcmUpq4oGGo0GAGdn6Tunqgfr5KKYsZa11dphGsd4VfYuLymKeQVgEFHCcAdrbb8uI7JEdUkQQBgGhGHARJVr1doPAhApEVnWzNxvAEVE2d2NuHrax6uSVevTo8dkqrz+NWIymSIi9wFUpT643ki+2djXTEWC7QzKcqXe/vdvRFHIh70+N6qcjn7i/ax6zCXObWFgqv81Go0rf9W/VyXPC7KsIMtyjDH1XQBnjLkYj8cH3W4X1VUrKxXaJBXYfF7QbttahTAMK9Zy5ZrN1vH5+cev1tr/GixVpdPpvDGqymAweGKMeY6CLuYYVYy1sDnqxiAiGOcwzqGqP5Ik+XIL/EjwzBCrO+8AAAAASUVORK5CYII=");--sf-img-15:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAQCAYAAAAbBi9cAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAEsSURBVDhPvZNBaoQwFIZ/YxfjTpxddStSV9KreAhPMRfwQK6dE1haLK2KO6eVKsKs2qKmSZoZBHUxHegHkv8l5MM8jfLeHOnh4wiVEFBchsKez+8e93cm8PBS0WtJmIMQhXuv40YlIDLPsCwLRVHICtjtdtjv97KasyhS2FtWVQXbtpFlmZgryxJ1XYu8xEzEJUmSwDRNsOPDcRwxv9lsoKqqyEvMRHyz53lo2/Zcc4ZhEOMaqz26lP8ThWGIvu+haRoMw0Acx4iiSK5OeHw98H9qBmuuGPM8502ivu/TIAhEHsdRrJ14yt/oqohvONF1nainc1O4aPVoaZrKBOi6jqZpzl9wCSJu3gKu68r0y3a7lWkZ8sVu77UMwwiFiehzWYuL9xd6JvGcW/wAJP0QGNQLg5UAAAAASUVORK5CYII=");--sf-img-16:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAANkE3LLaAgAAAnFJREFUeJx1kk9LG1EUxX9vnBkTJqaLqCgEC9YquGlA+iWEVgtdiBt3fg4/SMWNgm2NdCMUha6KhUihKrauNHFjwBhpjTOTefPe7aJN+ifthQOHy3sHzj1HAVQqlba1VvOPcRynr9FofJydnX0O1HsejI6OPjPGyP/QbrelVqvJ9vZ2Bcj//d81xghAtVrF8zxub2+5urrCcRwcx6FYLBLHMXNzc483NzffLiwsPAUaXYXh4eF5Y4w0Gg25uLiQra0tubysy91dKGEYSr1el42NDbm+vhZjjKyurn4ARnoEzs7OZH19XYyxorWWOI4limLROhVrrZTLZTk+PpZarSbT09PLXQsdkiQJpVIJEUFEsPbHPk1TwGVi4iHj4+NkMhlEpK975A45ODggn79HGIaEYRutNdYa0tQQhjGFwiBHR4edZOgRGBsbIwwjrAWlFEqBtYK1FhFotVo8eDDRG3OHzMzMcHr6hXw+wPNcPM/HdV2UUuRyWfb339NsNgGwHX+/C5ycnOC6fbx69Zr+fg/Xdejv9wiCLIeHn/j27StRFAFgjPnVgw4ZGhpiZGSEm5sb1tbWyOVyeJ5Hq9Uik8kQRTG7u7tMTU39WaQOyeVyOI5DEAQUi0VEpFsmpRTl8jZ7e7usrKyQpqnfI3B+fo61Ftd1McYQxzH5fB6tNUopSqVHNJvX7OzskM1ml4EXwF33BkmSYK0ljmN83+9a8H0fx3HwfZ+lpSUWFxdJkmR6YGDgHTBMoVCYN8ZImqaitRattbTb7S6iKPoDxhgZHBx8EwSBAE8UcH9ycnLZ/szmRwt/xfT7iIgCqFarL3/a//wdD/B70n/hb0IAAAAASUVORK5CYII=")}.ui-menu{outline:0;list-style:none}.ui-button{vertical-align:middle}.ui-helper-hidden-accessible{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.ui-autocomplete{position:absolute;top:0;left:0;cursor:default}.ui-button{display:inline-block;position:relative;padding:0;line-height:normal;margin-right:.1em;cursor:pointer;text-align:center;overflow:visible}.ui-button,.ui-button:active,.ui-button:hover,.ui-button:link,.ui-button:visited{text-decoration:none}.ui-button .ui-button-text{display:block;line-height:normal}.ui-button-text-only .ui-button-text{padding:.4em 1em}.ui-dialog{top:0;left:0;padding:.2em}.ui-menu{padding:2px;margin:0}.ui-widget{font-family:inherit;font-size:1.1em}.ui-widget-content{border:1px solid #ccc;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABkCAYAAABHLFpgAAAAH0lEQVQYlWP48/fvfyYGBgaGEUcw4pRlZBwM7qMZAQB3GQS/3cDasAAAAABJRU5ErkJggg==) 50% bottom repeat-x #fcfdfd;color:#222}.ui-state-default{border:1px solid #fff;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAGQCAYAAABvWArbAAAASUlEQVQ4je3PoRGDABQE0b09CqURCkptCBSaKFD4zGS+ebPmxLFun0uAYRj+lv04MYBJUIOtaMClRRusYr1LQRV9Zr8/MwzDG1/rJAi+JDP9OwAAAABJRU5ErkJggg==) 50% 50% repeat-x #4b6c9e;font-weight:700;color:#fff}.ui-corner-all{border-top-left-radius:5px}.ui-corner-all{border-top-right-radius:5px}.ui-corner-all{border-bottom-left-radius:5px}.ui-corner-all{border-bottom-right-radius:5px}body{font-family:Verdana,Geneva,Arial,Helvetica;margin:0 auto}img{border:0px}ul li{list-style:none}ul li a{font-weight:600}h3,h4{color:#666666;text-transform:none;font-weight:200;margin-bottom:0px}h4{font-size:1.1em}.clear{clear:both}.fontBold{font-weight:bold}.red{color:red}.blue{color:blue}.green{color:green}.underline{text-decoration:underline}input[type="text"]{height:14px;border:2px solid #9ecaed;width:279px}input[type="text"]:focus,input[type="password"]:focus{outline:none;border-color:#dadada;box-shadow:0 0 10px #dadada}input[type="checkbox"]:focus,input[type="radio"]:focus{background-color:#dadada}select{border:2px solid #9ecaed}.head-wrapper{width:100%;text-align:center;margin:0 auto;background-color:#4b6c9e;min-height:35px}#header{width:1020px;margin:0 auto}#header-logo{float:left;width:75px;margin-top:2px}#header-logo-text{font-size:15px;margin:3px 0 0 0;color:#ffffff;text-shadow:1px 1px 3px #205d85;float:left;text-align:left;padding-left:10px;padding-top:4px;clear:right}#menubar .ui-button-text-only .ui-button-text{padding:4px 5px}#menubar{float:left;padding-left:15px;text-align:left;max-width:610px}#menubar ul{margin:0;padding:0;margin-top:2px;float:left}#menubar ul li{float:left;padding-right:1px;padding-top:3px;padding-bottom:3px}#menubar ul li a.menuBarLinks{color:white;height:22px;font-size:12px}#menuLinks{float:right;padding-top:5px;padding-left:10px;text-align:right}#menuLinks a{color:white;font-size:7pt;font-weight:bold;float:left;clear:both;text-decoration:none}#menuLinks a:hover{text-decoration:underline}.selectable{cursor:pointer}.selectable:hover{color:#0099ff}a:link,a:visited,a:active{color:#2b599e;text-decoration:none}a:hover{color:#2b599e;text-decoration:underline}.redColour{background-color:#fcefa1}input{padding:0.25em;width:auto;border:1px solid #ddd;background:#f4f9fa}input:hover,input:focus{border-color:#cfe5e9;background:#cef6fe}.dosTable{text-align:left;border-collapse:collapse;border:1px solid #69c;margin:5px 0px 20px 0px;width:99%;font-size:1em}.dosTable th{background:#4b6c9e;font-weight:bold;padding-left:10px;padding-top:2px;padding-bottom:2px;text-align:left;vertical-align:top;color:white;min-height:50px}.dosTable td{padding:7px 7px;vertical-align:top}.dosTable .sortable{background-image:var(--sf-img-2);background-repeat:no-repeat;vertical-align:top;padding-left:20px}.dosTable tr td img{float:left;padding-right:7px}.dosTable tr .headerSortDown{background-image:var(--sf-img-2);background-repeat:no-repeat}ul#saves li{list-style-image:url(data:image/gif;base64,R0lGODlhBgAJAKIAABpVqK/B3F6HwObp7idfrPPz8////wAAACH5BAAAAAAALAAAAAAGAAkAAAMRKGNsQKGBqdx84eJbcatNyCQAOw==)}div#tabs div a:link,a:visited,a:active{color:#2b599e;text-decoration:none}a.ui-button:link,a.ui-button:visited,a.ui-button:active{color:#fff!important}a.ui-button:hover{color:#fff!important}.sicons{text-align:center;white-space:nowrap;width:120px}.sicons img{cursor:pointer;border:none;white-space:nowrap;width:16px;height:16px;display:block}.noWrap{white-space:nowrap}th{border:none}</style>
+
+{% endblock %}
+
+{% block outerContent %}
+{% endblock %}
+
+{% block content %}
+
+<div class="searchwrapper">
+    <div class="search-config" style="height: 601px;">
+        <br>
+        <div>
+            <input type="radio" class="selector" name="selectSearch" value="service" id="serviceSearchSelector"> <label for="serviceSearchSelector">Service Search</label>
+            <input type="radio" class="selector" name="selectSearch" value="clinical" id="clinicalSearchSelector">
+            <label for="clinicalSearchSelector">Clinical Search</label>
+        </div>
+
+        <div class="serviceSearchScreen" style="overflow: hidden; display: block;">
+            <script src="/app/js/search/serviceSearchForm.js" type="text/javascript"></script>
+
+<h3>Service Search</h3>
+<h3>
+    <span class="nameSearchCollapsed"><img src="/app/img/minus.gif" alt="collapse" title="collapse"></span> By
+    Service Name
+</h3>
+<div id="nameSearch">
+    <input type="text" name="serviceName" id="serviceName" value="" maxlength="110" class="ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+    <div id="nameSearchMessages"></div>
+</div>
+<h3>
+    <span class="locationSearchCollapsed"><img src="/app/img/minus.gif" alt="collapse" title="collapse"></span> By
+    Location
+</h3>
+<div id="locationSearch">
+    <h4>Within:</h4>
+    <select id="locationSearchDistance">
+        <option value="0.5" selected="">0.5 Miles</option>
+        <option value="1">1 Miles</option>
+        <option value="2">2 Miles</option>
+        <option value="5">5 Miles</option>
+        <option value="10">10 Miles</option>
+        <option value="20">20 Miles</option>
+        <option value="30">30 Miles</option>
+        <option value="40">40 Miles</option>
+        <option value="50">50 Miles</option>
+        <option value="60">60 Miles</option>
+    </select>
+    of
+    <input type="text" value="Enter Postcode, City or Town" id="locationSearchPostcode" maxlength="50">
+    <div id="locationSearchPostcodeInfo" class="redColour postcode-invalid location-postcode-invalid">Postcode not found. DoS will search for town/city instead.</div>
+
+    <p>(or)</p>
+    <div id="populateActiveRegionsViaJquery" class="redWhite"></div>
+    <select class="locationSearchRegion" id="locationSearchRegionViaJquery" title="Select Region" disabled="">
+        <option value="" selected="selected">Select Region</option>
+        <option value="allRegions">All regions</option>
+                        <option value="100000005">East Midlands</option>
+                            <option value="100000003">East of England</option>
+                            <option value="100000018">Isle of Wight</option>
+                            <option value="100000011">London Region</option>
+                            <option value="100000019">National Critical Care &amp; Burns</option>
+                            <option value="100000020">National Services</option>
+                            <option value="100000008">North East</option>
+                            <option value="100000009">North West Region</option>
+                            <option value="100000004">Other</option>
+                            <option value="100000014">Scotland</option>
+                            <option value="100000002">South Central</option>
+                            <option value="100000001">South East Coast</option>
+                            <option value="100000012">South West (GW)</option>
+                            <option value="100000017">South West (SW)</option>
+                            <option value="110000001">Starter Templates</option>
+                            <option value="100000013">Wales</option>
+                            <option value="100000006">West Midlands</option>
+                            <option value="100000010">Yorkshire And The Humber</option>
+                </select>
+
+    <div class="subRegionCheckboxes" style="display: none;">
+        <h4 class="subRegionCheckboxesHeader" style="display: none;">Select a Subregion</h4>
+                        <div id="subRegionCheckboxes_100000005" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000003" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000018" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000011" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000019" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000020" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000008" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000009" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000004" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000014" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000002" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000001" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000012" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000017" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_110000001" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000013" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000006" class="subRegionCheckboxesList"></div>
+                            <div id="subRegionCheckboxes_100000010" class="subRegionCheckboxesList"></div>
+                </div>
+
+    <h4 id="locationSearchServiceTypesHeader" style="display: block;">For service type(s):</h4>
+    <table id="locationSearchServiceTypes" style="display: table;">
+        <tbody>
+        <tr>
+            <td>
+                <input type="checkbox" name="serviceTypes[]" id="selectAllServiceTypes" value="all">
+                <label for="selectAllServiceTypes">Select All</label>
+            </td>
+        </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="41" value="41">
+                    <label for="41">Acute Assessment unit</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="114" value="114">
+                    <label for="114">Acute Hospital (Capacity)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="5" value="5">
+                    <label for="5">Ambulance Service</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="109" value="109">
+                    <label for="109">Burns (B)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="24" value="24">
+                    <label for="24">Care Home</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="17" value="17">
+                    <label for="17">Clinics</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="22" value="22">
+                    <label for="22">Commissioning Organisation</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="20" value="20">
+                    <label for="20">Community Based Services</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="28" value="28">
+                    <label for="28">Community Hospital</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="3" value="3">
+                    <label for="3">Council</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="107" value="107">
+                    <label for="107">Critical Care (CC)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="47" value="47">
+                    <label for="47">Dental Emergency</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="12" value="12">
+                    <label for="12">Dental Services</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="134" value="134">
+                    <label for="134">Distance Selling Pharmacy (DSP)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="38" value="38">
+                    <label for="38">District/Community Nurse</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="124" value="124">
+                    <label for="124">Domiciliary Dentist</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="125" value="125">
+                    <label for="125">Domiciliary Optician</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="31" value="31">
+                    <label for="31">Emergency Care Practitioner (ECP)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="40" value="40">
+                    <label for="40">Emergency Department</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="120" value="120">
+                    <label for="120">Eye Casualty</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="117" value="117">
+                    <label for="117">GP Choice</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="123" value="123">
+                    <label for="123">GP Extended Hours </label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="100" value="100">
+                    <label for="100">GP in hours</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="106" value="106">
+                    <label for="106">GP-Led UCC with ED</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="25" value="25">
+                    <label for="25">GP Out of Hours Provider (OOH)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="113" value="113">
+                    <label for="113">Health Information</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="18" value="18">
+                    <label for="18">Health Visitor</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="122" value="122">
+                    <label for="122">Hyper-Acute Stroke Unit (HASU)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="42" value="42">
+                    <label for="42">Inpatient General Ward</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="133" value="133">
+                    <label for="133">Integrated Urgent Care (IUC) Clinical Assessment Service (CAS)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="27" value="27">
+                    <label for="27">Intermediate Care</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="-2" value="-2">
+                    <label for="-2">Local Templates</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="110" value="110">
+                    <label for="110">Maternity &amp; Neonate (M&amp;N)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="7" value="7">
+                    <label for="7">Mental Health</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="19" value="19">
+                    <label for="19">Midwifery</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="112" value="112">
+                    <label for="112">Minor Eye Condition service (MECS)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="35" value="35">
+                    <label for="35">MIU</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="49" value="49">
+                    <label for="49">Multi-Disciplinary Services</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="130" value="130">
+                    <label for="130">NHS111 Provider</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="15" value="15">
+                    <label for="15">NHS Trust</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="14" value="14">
+                    <label for="14">Optician</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="6" value="6">
+                    <label for="6">Organisational Cluster</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="108" value="108">
+                    <label for="108">Paediatrics Intensive Care Unit (PICU)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="111" value="111">
+                    <label for="111">Paediatrics (PDR)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="50" value="50">
+                    <label for="50">Palliative Care</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="13" value="13">
+                    <label for="13">Pharmacist</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="132" value="132">
+                    <label for="132">Pharmacist Enhanced Service</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="116" value="116">
+                    <label for="116">Pharmacist - Extended Hours</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="131" value="131">
+                    <label for="131">Pharmacist Urgent Prescription</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="32" value="32">
+                    <label for="32">Primary Care Practitioner (PCP)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="121" value="121">
+                    <label for="121">Primary Percutaneous Coronary Intervention (PPCI)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="115" value="115">
+                    <label for="115">Provider Escalation/RAG (Capacity)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="21" value="21">
+                    <label for="21">Retired Services</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="129" value="129">
+                    <label for="129">Safeguarding</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="29" value="29">
+                    <label for="29">Sexual Health</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="30" value="30">
+                    <label for="30">Single Point of Access (SPoA)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="8" value="8">
+                    <label for="8">Social Care</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="102" value="102">
+                    <label for="102">Spare 1</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="9" value="9">
+                    <label for="9">Spare 2</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="48" value="48">
+                    <label for="48">Specialist Service</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="105" value="105">
+                    <label for="105">Speciality Emergency Department (Spec ED)</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="4" value="4">
+                    <label for="4">Therapist</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="46" value="46">
+                    <label for="46">UCC</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="11" value="11">
+                    <label for="11">Voluntary agency</label>
+                </td>
+            </tr>
+                    <tr>
+                <td>
+                    <input type="checkbox" name="serviceTypes[]" id="45" value="45">
+                    <label for="45">WIC</label>
+                </td>
+            </tr>
+                </tbody>
+    </table>
+    <h4>Which are open:</h4>
+    <select name="locationSearchOpeningTimes" id="locationSearchOpeningTimes">
+        <option value="0">Now</option>
+        <option value="1">Within 1 hour</option>
+        <option value="2">Within 2 hours</option>
+        <option value="3">Within 3 hours</option>
+        <option value="4">Within 4 hours</option>
+        <option value="5">Within 5 hours</option>
+        <option value="6">Within 6 hours</option>
+        <option value="7">Within 7 hours</option>
+        <option value="8">Within 8 hours</option>
+        <option value="9">Within 9 hours</option>
+        <option value="10">Within 10 hours</option>
+        <option value="11">Within 11 hours</option>
+        <option value="12">Within 12 hours</option>
+        <option value="13">Within 13 hours</option>
+        <option value="14">Within 14 hours</option>
+        <option value="15">Within 15 hours</option>
+        <option value="16">Within 16 hours</option>
+        <option value="17">Within 17 hours</option>
+        <option value="18">Within 18 hours</option>
+        <option value="19">Within 19 hours</option>
+        <option value="20">Within 20 hours</option>
+        <option value="21">Within 21 hours</option>
+        <option value="22">Within 22 hours</option>
+        <option value="23">Within 23 hours</option>
+        <option value="24">Within 24 hours</option>
+        <option selected="selected" value="ignore">Ignore opening times</option>
+    </select>
+
+    <p>
+        <button id="saveLocationSearch" class="saveSearchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false" style="display: inline-block;"><span class="ui-button-text">Save search</span></button>
+        <button id="loadServiceSearch" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Search</span></button>
+    </p>
+</div>
+        </div>
+        <div class="clinicalSearchScreen">
+            <script type="text/javascript" src="/app/js/search/clinicalSearchForm.js"></script>
+<h3>Clinical Search</h3>
+<h4>Search Role</h4>
+<table>
+    <tbody><tr>
+        <td>Role:</td>
+        <td>
+            <select name="clinicalSearchRole" id="clinicalSearchRole">
+                <option value="133">111 Telephony Referral DHU</option><option value="134">111 Telephony Referral IOW</option><option value="135">111 Telephony Referral LAS</option><option value="136">111 Telephony Referral NWAS</option><option value="138">111 Telephony Referral SCAS</option><option value="137">111 Telephony Referral WMAS</option><option value="129">Digital Referral</option><option value="127">HCP GP</option><option value="2">HCP Registered</option><option value="126">HCP Unregistered</option><option value="128">Non HCP</option><option value="23" selected="">Pathways Referral</option><option value="1">Public Facing</option><option value="999">R44 Test</option>            </select>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <h4>Demographic Criteria</h4>
+        </td>
+    </tr>
+    <tr>
+        <td>Age Format:</td>
+        <td>
+            <select name="demographicCriteriaAgeFormat" id="demographicCriteriaAgeFormat">
+                                    <option value="AgeGroup">Age Group</option>
+                            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Age:</td>
+        <td>
+            <select name="demographicCriteria" id="demographicCriteria">
+                                    <option value="1">Adult (16+)</option>
+                                    <option value="2">Child (5-15)</option>
+                                    <option value="3">Toddler (1-4)</option>
+                                    <option value="4">Neonate &amp; Infant (0)</option>
+                                    <option value="8">Older People (65+)</option>
+                            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Gender:</td>
+        <td>
+            <select name="clinicalSearchGender" id="clinicalSearchGender">
+                <option value="Male" selected="selected">Male</option>
+                <option value="Female">Female</option>
+                <option value="Indeterminate">Indeterminate</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Postcode:</td>
+        <td><input type="text" name="clinicalSearchPostcode" id="clinicalSearchPostcode" maxlength="50">
+            <div id="clinicalSearchPostcodeInfo"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>GP Surgery:</td>
+        <td>
+            <input type="text" name="patientSurgery" id="patientSurgery" value="UNK" disabled="disabled" maxlength="150" class="ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+            <span id="ajaxloader"></span>
+            <br>
+            <input type="checkbox" id="gpUnknown" checked="checked"> <label for="gpUnknown">Unknown</label><br>
+            <span id="patientSurgeryName"></span><span style="color: red" id="surgeryError"></span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><h4>Clinical Criteria</h4></td>
+    </tr>
+    <tr>
+        <td>SG/SD:</td>
+        <td id="sgSdTd">
+            <input type="text" name="symptomGroup" id="SGD" maxlength="200" class="ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><span id="SGajaxloader"></span>
+            <input type="hidden" name="selectedSymptomGroup" id="selectedSymptomGroup">
+            <div id="clearClinicalSearch" class="clearClinicalSearch" style="display: none;">Start again</div>
+            <div id="selectedGroupNameViaJquery"></div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <h4 id="selectedSgSdsHead"></h4>
+            <div id="selectedSgSds"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Select Disposition</td>
+        <td>
+            <select name="dispositionGroup" id="dispositionGroup">
+                                                            <option value="9000">Primary Care - Within 1 Hour</option>
+                                                                <option value="9001">Primary Care - Within 2 Hours</option>
+                                                                <option value="9002">Primary Care - Within 6 Hours</option>
+                                                                <option value="9003">Primary Care - Within 12 Hours</option>
+                                                                <option value="9004">Primary Care - Within 24 Hours</option>
+                                                                <option value="9005">Primary Care - Within 3 Days</option>
+                                                                <option value="9006">Primary Care - Any</option>
+                                                                <option value="9100">Secondary Care - Any</option>
+                                                                <option value="9101">Secondary Care - Within 1 Hour</option>
+                                                                <option value="9102">Secondary Care - Within 2 Hours</option>
+                                                                <option value="9103">Secondary Care - Within 4 Hours</option>
+                                                                <option value="9200">Dentist - Any</option>
+                                                                <option value="9300">Optician - Any</option>
+                                                                <option value="9400">Available for Z Code</option>
+                                                                <option value="10021">Attend Emergency Treatment Centre within 1 hour possible Viral Haemorrhagic Fever</option>
+                                                                <option value="11111">Speak to a Primary Care Service within 1 hour possible Viral Haemorrhagic Fever</option>
+                                                                <option value="11325">Speak to a Clinician from our service Immediately-Toxic Ingestion/Inhalation</option>
+                                                                <option value="11327">Speak to a Clinician from our service Immediately-Chemical Eye Splash </option>
+                                                                <option value="11329">Speak to a Clinician from our service Immediately-Failed Contraception</option>
+                                    <option value="more" title="show advanced disposition Selector">Advanced...</option>
+            </select>
+        </td>
+    </tr>
+</tbody></table>
+<p id="dispositionHolder" style="display: none;">Filter:
+    <select name="dispositionTime" id="dispositionTime">
+        <option value="none" selected="">All</option>
+        <option value="none">Non-time</option>
+        <option value="none">Intermediate</option>
+        <option value="60">Time: 1 hour</option>
+        <option value="120">Time: 2 hours</option>
+        <option value="240">Time: 4 hours</option>
+        <option value="360">Time: 6 hours</option>
+        <option value="720">Time: 12 hours</option>
+        <option value="1440">Time: 24 hours</option>
+        <option value="4320">Time: 72 hours</option>
+        <option value="7200">Time: 120 hours</option>
+    </select>
+</p>
+
+<div id="selectedAdvancedDispositions"></div>
+
+<div class="red small-font" style="padding: 10px 10px 10px 5px">
+    NOTE: You are carrying out a <span class="fontItalic">Clinician Search</span>. This must only be carried out by,
+    or under the direction of a qualified Clinician, and only using DoS Z-Code clinical terms, not NHS Pathways clinical
+    terms.
+    <br><br>
+    If you are not a clinician, or you are not being supported by a clinician to select the search criteria,
+    it is not clinically safe to proceed.
+</div>
+
+<button id="saveClinicalSearch" class="saveSearchButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false" style="display: none;"><span class="ui-button-text">Save search</span></button>
+<button id="loadClinicalSearch" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Search</span></button>
+        </div>
+        <div class="searchSaver" style="display: none;">
+            <p class="red">
+                <label for="saveName"><b>Please enter a name for this search:</b> </label> <br>
+                <input type="text" name="saveName" id="saveName" maxlength="50" title="Name for the saved search" class="w200w"><br>
+                <button id="cancelSave" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Cancel</span></button>
+                <button id="addToSaves" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Save</span></button>
+        </p></div>
+        <h3>
+            <span class="saveSearchCollapsed"><img src="/app/img/minus.gif" alt="collapse" title="collapse"></span>
+            Saved Searches
+        </h3>
+        <div id="savedSearches">
+            <ul id="saves">
+                                        <li>
+                            <span id="587127463034998512" class="openSaveDetailsCollapsed"><img src="/app/img/plus.gif" alt="expand" title="expand"></span>
+                            <b><a href="#org/1384257804&amp;searchName=1&amp;v=&amp;t=" title="run search">1</a></b>
+                            <img class="del-save selectable" id="5951" src="/app/img/search/icons/trash.png" alt="delete saved search" title="delete saved search">
+                            <img class="share-save selectable" id="5951" src="/app/img/search/icons/share.png" alt="share search with other users" title="share search with other users">
+                            <div id="searchDetails587127463034998512" class="searchDetails">
+                                <b>Type:</b> Name Search<br><b>Organisation:</b> SE KM William Harvey Hospital - General ICU<br><br><br>                            </div>
+                        </li>
+                                            <li>
+                            <span id="802326354633767626" class="openSaveDetailsCollapsed"><img src="/app/img/plus.gif" alt="expand" title="expand"></span>
+                            <b><a href="#org/1384257804&amp;searchName=Test 1&amp;v=&amp;t=" title="run search">Test 1</a></b>
+                            <img class="del-save selectable" id="5954" src="/app/img/search/icons/trash.png" alt="delete saved search" title="delete saved search">
+                            <img class="share-save selectable" id="5954" src="/app/img/search/icons/share.png" alt="share search with other users" title="share search with other users">
+                            <div id="searchDetails802326354633767626" class="searchDetails">
+                                <b>Type:</b> Name Search<br><b>Organisation:</b> SE KM William Harvey Hospital - General ICU<br><br><br>                            </div>
+                        </li>
+                                            <li>
+                            <span id="508687336485711495" class="openSaveDetailsCollapsed"><img src="/app/img/plus.gif" alt="expand" title="expand"></span>
+                            <b><a href="#org/1405506183&amp;searchName=Test 2&amp;v=&amp;t=" title="run search">Test 2</a></b>
+                            <img class="del-save selectable" id="5955" src="/app/img/search/icons/trash.png" alt="delete saved search" title="delete saved search">
+                            <img class="share-save selectable" id="5955" src="/app/img/search/icons/share.png" alt="share search with other users" title="share search with other users">
+                            <div id="searchDetails508687336485711495" class="searchDetails">
+                                <b>Type:</b> Name Search<br><b>Organisation:</b> (BBCCCN) Alexandra Hospital<br><br><br>                            </div>
+                        </li>
+                                            <li>
+                            <span id="27920224669674859" class="openSaveDetailsCollapsed"><img src="/app/img/plus.gif" alt="expand" title="expand"></span>
+                            <b><a href="#org/1405506183&amp;searchName=Test 4&amp;v=&amp;t=" title="run search">Test 4</a></b>
+                            <img class="del-save selectable" id="5956" src="/app/img/search/icons/trash.png" alt="delete saved search" title="delete saved search">
+                            <img class="share-save selectable" id="5956" src="/app/img/search/icons/share.png" alt="share search with other users" title="share search with other users">
+                            <div id="searchDetails27920224669674859" class="searchDetails">
+                                <b>Type:</b> Name Search<br><b>Organisation:</b> (BBCCCN) Alexandra Hospital<br><br><br>                            </div>
+                        </li>
+                                            <li>
+                            <span id="777904497465883899" class="openSaveDetailsCollapsed"><img src="/app/img/plus.gif" alt="expand" title="expand"></span>
+                            <b><a href="#org/1405506183&amp;searchName=test5&amp;v=&amp;t=" title="run search">test5</a></b>
+                            <img class="del-save selectable" id="5958" src="/app/img/search/icons/trash.png" alt="delete saved search" title="delete saved search">
+                            <img class="share-save selectable" id="5958" src="/app/img/search/icons/share.png" alt="share search with other users" title="share search with other users">
+                            <div id="searchDetails777904497465883899" class="searchDetails">
+                                <b>Type:</b> Name Search<br><b>Organisation:</b> (BBCCCN) Alexandra Hospital<br><br><br>                            </div>
+                        </li>
+                                </ul>
+
+            <h4 title="Searches shared with you">Shared Searches</h4>
+            <ul id="sharedSaves">
+                                        <li>
+                            <span id="64060485464226034" class="openSaveDetailsCollapsed"><img src="/app/img/plus.gif" alt="expand"></span>
+                            <b><a href="#locSearch/postcode=&amp;postcodeValid=1&amp;region=100000019&amp;orgType=114,109,107&amp;distance=0.5&amp;locationSearchTime=ignore&amp;subRegions=100000019:1376486013&amp;searchName=test 5&amp;v=s&amp;t=1614594250737" title="run search">test 5</a></b>
+                            <img class="del-save-share selectable" id="5957" src="/app/img/search/icons/trash.png" alt="delete shared search" title="delete shared search">
+                            <img class="share-save selectable" id="5957" src="/app/img/search/icons/share.png" alt="share search with other users" title="share search with other users">
+                            <div id="searchDetails64060485464226034" class="searchDetails">
+                                <b>Type:</b> Location Search<br><b>Postcode:</b> <br><b>PostcodeValid:</b> 1<br><b>Region:</b> National Critical Care &amp; Burns<br><b>OrgType:</b> Acute Hospital (Capacity), Burns (B), Critical Care (CC)<br><b>Distance:</b> 0.5 miles<br><b>LocationSearchTime:</b> ignore<br><b>SubRegions:</b> Essex CCN<br><b>Default view:</b> Service View<br><br>                            </div>
+                        </li>
+                                </ul>
+        </div>
+    </div>
+
+    <div id="loader">
+        <img src="/app/img/search/ajax-loader1.gif" alt="Loading results..." width="220" height="19"><br>
+        Loading...
+    </div>
+    <div id="paneToggle"><span class="paneToggle" title="Show/Hide Map">&lt;&lt;</span></div>
+    <div id="serviceDialog"></div>
+    
+
+    <div id="resizeMapsViaJquery" class="rightCanvas" style="height: 601px;">
+        <div id="nameSearchResult" style="display: none;"></div>
+        <div class="allSearchResults" style="overflow-x: hidden; display: block;">
+
+
+<div class="gridToggle">
+        <span id="serviceViewLink"><input type="radio" id="serviceView" name="viewToggle" checked="checked"></span>
+    <label for="serviceView">Service View</label>
+    <span id="gridViewToggle"><input type="radio" id="gridView" name="viewToggle"></span>
+    <label for="gridView">Grid View</label>
+    <span class="slide-button"></span>
+</div>
+
+<p>&nbsp;
+    <img width="25" src="/app/img/map/googlemaps_icon.png" class="selectable" alt="View results on Map (new window)" title="View results on Map (new window)" id="openMap">&nbsp;
+    <img src="/app/img/search/print.png" title="Print results" id="printButton" alt="print" height="25">
+
+        Total results: 24    | Data at <span class="red fontBold">05-03-2021 13:15:24</span> (<span class="blue underline selectable" id="refreshData" title="Reload latest data">REFRESH</span>)
+</p>
+
+<div id="toggleServiceViewViaJquery" class="locationResults">
+    
+<table class="dosTable" id="sortResultsViaTableSorter" style="font-size: 0.9em; table-layout: auto; min-width: 2151px;"><thead>
+    <tr>
+        <th class="sortable header">Service Name</th>
+        <th class="sortable header">Type</th>
+        <th class="{sorter: false}">Address</th>
+        <th class="{sorter: false}">Postcode</th>
+        <th class="{sorter: false}">Telephone</th>
+        <th class="sortable header">Capacity</th>
+        <th class="sortable header headerSortDown">Distance</th>
+        <th class="header"></th>
+    </tr>
+    </thead><colgroup><col style="width: 561px;"><col style="width: 198px;"><col style="width: 759px;"><col style="width: 83px;"><col style="width: 235px;"><col style="width: 88px;"><col style="width: 89px;"><col style="width: 152px;"></colgroup>
+    
+    <tbody>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        <tr class="result">
+            <td>Clinics - Interserve Healthcare - Leeds, West Yorkshire</td>
+            <td class="noWrap">Clinics</td>
+            <td>2ND FLOOR,, 15, ST PAULS STREET, , LEEDS</td>
+            <td class="noWrap">LS1 2JG</td>
+            <td>0113 243 5995</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Clinics - Interserve Healthcare - Leeds, West Yorkshire" title="Demographic Details" id="1439393491" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Clinics - Interserve Healthcare - Leeds, West Yorkshire" title="Capacity Status" id="1439393491" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Clinics - Interserve Healthcare - Leeds, West Yorkshire" title="Clinical Details" id="1439393491" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Clinics - Interserve Healthcare - Leeds, West Yorkshire" title="Search Ranking
+Details" id="1439393491" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1439393491" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1439393491" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Clinics - Leeds City Donor Centre (Blood) - Leeds, West Yorkshire</td>
+            <td class="noWrap">Clinics</td>
+            <td>117, THE HEADROW, , LEEDS</td>
+            <td class="noWrap">LS1 5JW</td>
+            <td>0300 123 23 23</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Clinics - Leeds City Donor Centre (Blood) - Leeds, West Yorkshire" title="Demographic Details" id="1439376455" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Clinics - Leeds City Donor Centre (Blood) - Leeds, West Yorkshire" title="Capacity Status" id="1439376455" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Clinics - Leeds City Donor Centre (Blood) - Leeds, West Yorkshire" title="Clinical Details" id="1439376455" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Clinics - Leeds City Donor Centre (Blood) - Leeds, West Yorkshire" title="Search Ranking
+Details" id="1439376455" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1439376455" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1439376455" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Clinics - MYA Cosmetic Surgery (Leeds) - Leeds, West Yorkshire</td>
+            <td class="noWrap">Clinics</td>
+            <td>4, LISBON SQUARE,, LISBON STREET,, LEEDS</td>
+            <td class="noWrap">LS1 4LY</td>
+            <td>0333 0141014</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Clinics - MYA Cosmetic Surgery (Leeds) - Leeds, West Yorkshire" title="Demographic Details" id="1439220731" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Clinics - MYA Cosmetic Surgery (Leeds) - Leeds, West Yorkshire" title="Capacity Status" id="1439220731" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Clinics - MYA Cosmetic Surgery (Leeds) - Leeds, West Yorkshire" title="Clinical Details" id="1439220731" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Clinics - MYA Cosmetic Surgery (Leeds) - Leeds, West Yorkshire" title="Search Ranking
+Details" id="1439220731" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1439220731" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1439220731" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Clinics - Marie Stopes Leeds Centre (North) - Leeds, West Yorkshire</td>
+            <td class="noWrap">Clinics</td>
+            <td>45, BARRACK ROAD, , LEEDS</td>
+            <td class="noWrap">LS7 4AB</td>
+            <td>0345 300 8090 (24 Hrs)</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Clinics - Marie Stopes Leeds Centre (North) - Leeds, West Yorkshire" title="Demographic Details" id="1439460900" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Clinics - Marie Stopes Leeds Centre (North) - Leeds, West Yorkshire" title="Capacity Status" id="1439460900" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Clinics - Marie Stopes Leeds Centre (North) - Leeds, West Yorkshire" title="Clinical Details" id="1439460900" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Clinics - Marie Stopes Leeds Centre (North) - Leeds, West Yorkshire" title="Search Ranking
+Details" id="1439460900" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1439460900" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1439460900" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Clinics - Optimax Eye Clinic - Leeds, West Yorkshire</td>
+            <td class="noWrap">Clinics</td>
+            <td>147, THE HEADROW, , LEEDS</td>
+            <td class="noWrap">LS1 5RB</td>
+            <td>0800 093 1110</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Clinics - Optimax Eye Clinic - Leeds, West Yorkshire" title="Demographic Details" id="1439309179" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Clinics - Optimax Eye Clinic - Leeds, West Yorkshire" title="Capacity Status" id="1439309179" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Clinics - Optimax Eye Clinic - Leeds, West Yorkshire" title="Clinical Details" id="1439309179" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Clinics - Optimax Eye Clinic - Leeds, West Yorkshire" title="Search Ranking
+Details" id="1439309179" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1439309179" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1439309179" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Clinics - Seacroft Leeds Donor Centre (Blood) - Leeds, Yorkshire</td>
+            <td class="noWrap">Clinics</td>
+            <td>BRIDLE PATH, LEEDS</td>
+            <td class="noWrap">LS15 7TW</td>
+            <td>0113 8208686</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Clinics - Seacroft Leeds Donor Centre (Blood) - Leeds, Yorkshire" title="Demographic Details" id="1438335515" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Clinics - Seacroft Leeds Donor Centre (Blood) - Leeds, Yorkshire" title="Capacity Status" id="1438335515" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Clinics - Seacroft Leeds Donor Centre (Blood) - Leeds, Yorkshire" title="Clinical Details" id="1438335515" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Clinics - Seacroft Leeds Donor Centre (Blood) - Leeds, Yorkshire" title="Search Ranking
+Details" id="1438335515" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1438335515" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1438335515" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Clinics - The Private Clinic - Leeds, West Yorkshire</td>
+            <td class="noWrap">Clinics</td>
+            <td>45, PARK SQUARE NORTH, , LEEDS</td>
+            <td class="noWrap">LS1 2NP</td>
+            <td>0113 246 7216 / 0800 599 9911</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Clinics - The Private Clinic - Leeds, West Yorkshire" title="Demographic Details" id="1438961366" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Clinics - The Private Clinic - Leeds, West Yorkshire" title="Capacity Status" id="1438961366" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Clinics - The Private Clinic - Leeds, West Yorkshire" title="Clinical Details" id="1438961366" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Clinics - The Private Clinic - Leeds, West Yorkshire" title="Search Ranking
+Details" id="1438961366" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1438961366" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1438961366" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Clinics - Thorpe Park Clinic (Living Care) - Leeds, West Yorkshire</td>
+            <td class="noWrap">Clinics</td>
+            <td>CENTRUM 5,, 4600, PARK APPROACH, , LEEDS</td>
+            <td class="noWrap">LS15 8GB</td>
+            <td>0113 232 8277</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Clinics - Thorpe Park Clinic (Living Care) - Leeds, West Yorkshire" title="Demographic Details" id="1439302174" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Clinics - Thorpe Park Clinic (Living Care) - Leeds, West Yorkshire" title="Capacity Status" id="1439302174" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Clinics - Thorpe Park Clinic (Living Care) - Leeds, West Yorkshire" title="Clinical Details" id="1439302174" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Clinics - Thorpe Park Clinic (Living Care) - Leeds, West Yorkshire" title="Search Ranking
+Details" id="1439302174" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1439302174" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1439302174" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Clinics - Transform - Leeds, Yorkshire</td>
+            <td class="noWrap">Clinics</td>
+            <td>414-418, HARROGATE ROAD, , LEEDS</td>
+            <td class="noWrap">LS17 6DN</td>
+            <td>0113 393 1950</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Clinics - Transform - Leeds, Yorkshire" title="Demographic Details" id="1438612557" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Clinics - Transform - Leeds, Yorkshire" title="Capacity Status" id="1438612557" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Clinics - Transform - Leeds, Yorkshire" title="Clinical Details" id="1438612557" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Clinics - Transform - Leeds, Yorkshire" title="Search Ranking
+Details" id="1438612557" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1438612557" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1438612557" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Clinics - Yorkshire Health Solutions - Leeds, West Yorkshire</td>
+            <td class="noWrap">Clinics</td>
+            <td>UNIT 5, CARRWOOD PARK, , SWILLINGTON COMMON FARM,, SELBY ROAD, , SWILLINGTON COMMON, , LEEDS</td>
+            <td class="noWrap">LS15 4LG</td>
+            <td>0113 3854665</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Clinics - Yorkshire Health Solutions - Leeds, West Yorkshire" title="Demographic Details" id="1439223522" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Clinics - Yorkshire Health Solutions - Leeds, West Yorkshire" title="Capacity Status" id="1439223522" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Clinics - Yorkshire Health Solutions - Leeds, West Yorkshire" title="Clinical Details" id="1439223522" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Clinics - Yorkshire Health Solutions - Leeds, West Yorkshire" title="Search Ranking
+Details" id="1439223522" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1439223522" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1439223522" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Community Services - Guiseley, West Yorkshire (Good Skin Days)</td>
+            <td class="noWrap">Community Based Services</td>
+            <td>78 BACK LANE, GUISELEY, LEEDS</td>
+            <td class="noWrap">LS20 8EB</td>
+            <td>01943 882010</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Community Services - Guiseley, West Yorkshire (Good Skin Days)" title="Demographic Details" id="1436892047" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Community Services - Guiseley, West Yorkshire (Good Skin Days)" title="Capacity Status" id="1436892047" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Community Services - Guiseley, West Yorkshire (Good Skin Days)" title="Clinical Details" id="1436892047" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Community Services - Guiseley, West Yorkshire (Good Skin Days)" title="Search Ranking
+Details" id="1436892047" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1436892047" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1436892047" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Community Services - Leeds, West Yorkshire (Adult Weight Management Service)</td>
+            <td class="noWrap">Community Based Services</td>
+            <td>Weight Management Service , Weight Ahead, Thornton Medical Centre, Green Lane, Leeds</td>
+            <td class="noWrap">LS12 1JE</td>
+            <td>0113 843 2395</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Community Services - Leeds, West Yorkshire (Adult Weight Management Service)" title="Demographic Details" id="1351168157" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Community Services - Leeds, West Yorkshire (Adult Weight Management Service)" title="Capacity Status" id="1351168157" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Community Services - Leeds, West Yorkshire (Adult Weight Management Service)" title="Clinical Details" id="1351168157" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Community Services - Leeds, West Yorkshire (Adult Weight Management Service)" title="Search Ranking
+Details" id="1351168157" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1351168157" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1351168157" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Community Services - Leeds, West Yorkshire (Cardiac Rehabilitation Service)</td>
+            <td class="noWrap">Community Based Services</td>
+            <td>Harehills Lane, Leeds</td>
+            <td class="noWrap">LS9 6NG</td>
+            <td>0113 8434200</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Community Services - Leeds, West Yorkshire (Cardiac Rehabilitation Service)" title="Demographic Details" id="1330092080" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Community Services - Leeds, West Yorkshire (Cardiac Rehabilitation Service)" title="Capacity Status" id="1330092080" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Community Services - Leeds, West Yorkshire (Cardiac Rehabilitation Service)" title="Clinical Details" id="1330092080" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Community Services - Leeds, West Yorkshire (Cardiac Rehabilitation Service)" title="Search Ranking
+Details" id="1330092080" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1330092080" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1330092080" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Community Services - Leeds, West Yorkshire (Diabetes Service)</td>
+            <td class="noWrap">Community Based Services</td>
+            <td>Shaftesbury House, 480 Harehills Lane, Leeds</td>
+            <td class="noWrap">LS9 6NG</td>
+            <td>0113 8434200</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Community Services - Leeds, West Yorkshire (Diabetes Service)" title="Demographic Details" id="146789" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Community Services - Leeds, West Yorkshire (Diabetes Service)" title="Capacity Status" id="146789" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Community Services - Leeds, West Yorkshire (Diabetes Service)" title="Clinical Details" id="146789" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Community Services - Leeds, West Yorkshire (Diabetes Service)" title="Search Ranking
+Details" id="146789" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="146789" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="146789" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Community Services - Leeds, West Yorkshire (Leeds Addiction Unit)</td>
+            <td class="noWrap">Community Based Services</td>
+            <td>19 Springfield Mount, Leeds</td>
+            <td class="noWrap">LS2 9NG</td>
+            <td>0113 295 1318</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Community Services - Leeds, West Yorkshire (Leeds Addiction Unit)" title="Demographic Details" id="1326713972" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Community Services - Leeds, West Yorkshire (Leeds Addiction Unit)" title="Capacity Status" id="1326713972" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Community Services - Leeds, West Yorkshire (Leeds Addiction Unit)" title="Clinical Details" id="1326713972" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Community Services - Leeds, West Yorkshire (Leeds Addiction Unit)" title="Search Ranking
+Details" id="1326713972" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1326713972" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1326713972" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Community Services - Leeds, West Yorkshire (Podiatry Service)</td>
+            <td class="noWrap">Community Based Services</td>
+            <td>St. Mary's Hospital, Green Hill Road, Leeds</td>
+            <td class="noWrap">LS12 3QE</td>
+            <td>0113 3055137</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Community Services - Leeds, West Yorkshire (Podiatry Service)" title="Demographic Details" id="1358430420" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Community Services - Leeds, West Yorkshire (Podiatry Service)" title="Capacity Status" id="1358430420" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Community Services - Leeds, West Yorkshire (Podiatry Service)" title="Clinical Details" id="1358430420" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Community Services - Leeds, West Yorkshire (Podiatry Service)" title="Search Ranking
+Details" id="1358430420" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1358430420" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1358430420" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Community Services - Leeds, West Yorkshire (Respiratory Team)</td>
+            <td class="noWrap">Community Based Services</td>
+            <td>Shaftesbury House, 480 Harehills Lane, Leeds</td>
+            <td class="noWrap">LS9 6NG</td>
+            <td>0113 8434200</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Community Services - Leeds, West Yorkshire (Respiratory Team)" title="Demographic Details" id="1331300994" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Community Services - Leeds, West Yorkshire (Respiratory Team)" title="Capacity Status" id="1331300994" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Community Services - Leeds, West Yorkshire (Respiratory Team)" title="Clinical Details" id="1331300994" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Community Services - Leeds, West Yorkshire (Respiratory Team)" title="Search Ranking
+Details" id="1331300994" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1331300994" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1331300994" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Community Services - Leeds, West Yorkshire Stop Smoking Service)</td>
+            <td class="noWrap">Community Based Services</td>
+            <td>Leeds NHS Stop Smoking Service, Chapeltown Health Centre, Spencer Place, Leeds</td>
+            <td class="noWrap">LS7 4BB</td>
+            <td>08001694219</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Community Services - Leeds, West Yorkshire Stop Smoking Service)" title="Demographic Details" id="1321454587" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Community Services - Leeds, West Yorkshire Stop Smoking Service)" title="Capacity Status" id="1321454587" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Community Services - Leeds, West Yorkshire Stop Smoking Service)" title="Clinical Details" id="1321454587" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Community Services - Leeds, West Yorkshire Stop Smoking Service)" title="Search Ranking
+Details" id="1321454587" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1321454587" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1321454587" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Safeguarding Vulnerable Adults - Leeds, West Yorkshire</td>
+            <td class="noWrap">Council</td>
+            <td>Merrion House, Merrion Centre, Leeds</td>
+            <td class="noWrap">LS2 8QB</td>
+            <td>0113 2224401</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Safeguarding Vulnerable Adults - Leeds, West Yorkshire" title="Demographic Details" id="1339593451" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Safeguarding Vulnerable Adults - Leeds, West Yorkshire" title="Capacity Status" id="1339593451" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Safeguarding Vulnerable Adults - Leeds, West Yorkshire" title="Clinical Details" id="1339593451" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Safeguarding Vulnerable Adults - Leeds, West Yorkshire" title="Search Ranking
+Details" id="1339593451" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1339593451" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1339593451" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Safeguarding Vulnerable Adults - Leeds, West Yorkshire (Advice Line)</td>
+            <td class="noWrap">Council</td>
+            <td>Merrion House, Merrion Centre, Leeds</td>
+            <td class="noWrap">LS2 8QB</td>
+            <td>0113 2243511</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Safeguarding Vulnerable Adults - Leeds, West Yorkshire (Advice Line)" title="Demographic Details" id="1340729776" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Safeguarding Vulnerable Adults - Leeds, West Yorkshire (Advice Line)" title="Capacity Status" id="1340729776" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Safeguarding Vulnerable Adults - Leeds, West Yorkshire (Advice Line)" title="Clinical Details" id="1340729776" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Safeguarding Vulnerable Adults - Leeds, West Yorkshire (Advice Line)" title="Search Ranking
+Details" id="1340729776" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1340729776" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1340729776" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Safeguarding Vulnerable Adults - Leeds, West Yorkshire (OOH)</td>
+            <td class="noWrap">Council</td>
+            <td>Merrion House, Merrion Centre, Leeds</td>
+            <td class="noWrap">LS2 8QB</td>
+            <td>0113 2409536</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Safeguarding Vulnerable Adults - Leeds, West Yorkshire (OOH)" title="Demographic Details" id="1340729587" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Safeguarding Vulnerable Adults - Leeds, West Yorkshire (OOH)" title="Capacity Status" id="1340729587" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Safeguarding Vulnerable Adults - Leeds, West Yorkshire (OOH)" title="Clinical Details" id="1340729587" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Safeguarding Vulnerable Adults - Leeds, West Yorkshire (OOH)" title="Search Ranking
+Details" id="1340729587" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1340729587" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1340729587" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Safeguarding Vulnerable Children - Leeds, West Yorkshire</td>
+            <td class="noWrap">Council</td>
+            <td>Merrion House, Merrion Centre, Leeds</td>
+            <td class="noWrap">LS2 8QB</td>
+            <td>0113 2224403</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Safeguarding Vulnerable Children - Leeds, West Yorkshire" title="Demographic Details" id="1340718182" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Safeguarding Vulnerable Children - Leeds, West Yorkshire" title="Capacity Status" id="1340718182" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Safeguarding Vulnerable Children - Leeds, West Yorkshire" title="Clinical Details" id="1340718182" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Safeguarding Vulnerable Children - Leeds, West Yorkshire" title="Search Ranking
+Details" id="1340718182" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1340718182" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1340718182" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>Safeguarding Vulnerable Children - Leeds, West Yorkshire (OOH)</td>
+            <td class="noWrap">Council</td>
+            <td>Merrion House, Merrion Centre, Leeds</td>
+            <td class="noWrap">LS2 8QB</td>
+            <td>0113 2409539</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="Safeguarding Vulnerable Children - Leeds, West Yorkshire (OOH)" title="Demographic Details" id="1340730002" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="Safeguarding Vulnerable Children - Leeds, West Yorkshire (OOH)" title="Capacity Status" id="1340730002" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="Safeguarding Vulnerable Children - Leeds, West Yorkshire (OOH)" title="Clinical Details" id="1340730002" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="Safeguarding Vulnerable Children - Leeds, West Yorkshire (OOH)" title="Search Ranking
+Details" id="1340730002" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1340730002" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1340730002" class="servIconDelete">
+</span>
+</td>
+        </tr><tr class="result">
+            <td>York Street Health Practice</td>
+            <td class="noWrap">Community Based Services</td>
+            <td>68 York Street, Leeds</td>
+            <td class="noWrap">LS9 8AA</td>
+            <td>0113 2954840</td>
+            <td class="green">GREEN</td>
+            <td>
+                            </td>
+            <td class="sicons">
+<span style="white-space:nowrap;display:block;width:138px">
+<img src="/app/img/search/icons/demographic_details.png" alt="York Street Health Practice" title="Demographic Details" id="1347874680" class="servIconDemographicDetails">
+<img src="/app/img/search/icons/capacity_status.png" alt="York Street Health Practice" title="Capacity Status" id="1347874680" class="servIconCapacityStatus">
+<img src="/app/img/search/icons/clinical_details.png" alt="York Street Health Practice" title="Clinical Details" id="1347874680" class="servIconClinicalDetails">
+<img src="/app/img/search/icons/search_ranking_details.png" alt="York Street Health Practice" title="Search Ranking
+Details" id="1347874680" class="servIconSearchRanking">
+<img src="/app/img/search/icons/view.png" alt="Go to service" title="Go to service" id="1347874680" class="servIconBrowseToService">
+<img src="/app/img/search/icons/trash.png" alt="Hide from search" title="Hide from search" id="1347874680" class="servIconDelete">
+</span>
+</td>
+        </tr></tbody>
+<fthfoot style="display:table-footer-group;border-spacing:0;height:0;border-collapse:collapse;"><fthtr style="display:table-row;border-spacing:0;height:0;border-collapse:collapse"><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd></fthtr></fthfoot></table><div style="overflow: hidden; position: fixed; margin-top: 0px; top: 88.5938px; z-index: 1001; left: 370px; width: 2175px;" aria-hidden="true" class="floatThead-floatContainer floatThead-container"><table class="dosTable floatThead-table" style="border-collapse: collapse; border-width: 1px 1px 0px; border-style: solid; border-color: rgb(102, 153, 204); border-image: initial; display: table; margin: 0px; table-layout: auto; width: 98.9885%;"><colgroup><col style="width: 561px;"><col style="width: 198px;"><col style="width: 759px;"><col style="width: 83px;"><col style="width: 235px;"><col style="width: 88px;"><col style="width: 89px;"><col style="width: 152px;"></colgroup></table></div>
+
+
+    <div id="orgDetailLoaderCanvas"></div>
+    
+</div>
+
+<div id="toggleGridViewViaJquery" style="display:none;">
+    
+        
+        
+        </div></div>
+    </div>
+    <div class="clear"></div>
+</div>
+{% endblock %}

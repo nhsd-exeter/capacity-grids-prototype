@@ -1,0 +1,95 @@
+
+{% set appPage = true %}
+
+{% extends 'layout.html' %}
+
+{% block beforeContent %}
+<style>:root{--sf-img-6:url("data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///////wAAACH5BAAAAAAALAAAAAALAAsAAAIVnI8my6zd3hqRujpRjvg6C21hliQFADs=")}.ui-helper-reset{outline:0;list-style:none}.ui-button{vertical-align:middle}.ui-helper-reset{line-height:1.3;text-decoration:none;font-size:100%}.ui-helper-clearfix:after,.ui-helper-clearfix:before{content:"";display:table}.ui-helper-clearfix:after{clear:both}.ui-helper-clearfix{min-height:0}.ui-button{display:inline-block;position:relative;padding:0;line-height:normal;margin-right:.1em;cursor:pointer;text-align:center;overflow:visible}.ui-button,.ui-button:active,.ui-button:hover,.ui-button:link,.ui-button:visited{text-decoration:none}.ui-button .ui-button-text{display:block;line-height:normal}.ui-dialog{top:0;left:0;padding:.2em}.ui-tabs{position:relative;padding:.2em}.ui-tabs .ui-tabs-nav{margin:0;padding:.2em .2em 0}.ui-tabs .ui-tabs-nav li{list-style:none;float:left;position:relative;top:0;margin:1px .2em 0 0;border-bottom:0;padding:0;white-space:nowrap}.ui-tabs .ui-tabs-nav li a{float:left;padding:.5em 1em;text-decoration:none}.ui-tabs .ui-tabs-nav li.ui-tabs-active{margin-bottom:-1px;padding-bottom:1px}.ui-tabs .ui-tabs-nav li.ui-tabs-active a{cursor:text}.ui-tabs .ui-tabs-nav li a{cursor:pointer}.ui-tabs .ui-tabs-panel{display:block;border-width:0;padding:1em 1.4em;background:0 0}.ui-widget{font-family:inherit;font-size:1.1em}.ui-widget-content{border:1px solid #ccc;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABkCAYAAABHLFpgAAAAH0lEQVQYlWP48/fvfyYGBgaGEUcw4pRlZBwM7qMZAQB3GQS/3cDasAAAAABJRU5ErkJggg==) 50% bottom repeat-x #fcfdfd;color:#222}.ui-widget-content a{color:#222}.ui-widget-header{border:1px solid #ccc;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAD0ZHJ6AAAAfUlEQVRoge3OMQGAIAAAQaQeVcxkVYnAcIMOfwnuWvfzjh+bXwdOCqqCqqAqqAqqgqqgKqgKqoKqoCqoCqqCqqAqqAqqgqqgKqgKqoKqoCqoCqqCqqAqqAqqgqqgKqgKqoKqoCqoCqqCqqAqqAqqgqqgKqgKqoKqoCqoCqoNPdADHApeJRAAAAAASUVORK5CYII=) 50% 50% repeat-x #4b6c9e;color:#fff;font-weight:700}.ui-state-default,.ui-widget-header .ui-state-default{border:1px solid #fff;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAGQCAYAAABvWArbAAAASUlEQVQ4je3PoRGDABQE0b09CqURCkptCBSaKFD4zGS+ebPmxLFun0uAYRj+lv04MYBJUIOtaMClRRusYr1LQRV9Zr8/MwzDG1/rJAi+JDP9OwAAAABJRU5ErkJggg==) 50% 50% repeat-x #4b6c9e;font-weight:700;color:#fff}.ui-state-default a,.ui-state-default a:link,.ui-state-default a:visited{color:#fff;text-decoration:none}.ui-state-active,.ui-widget-header .ui-state-active{border:1px solid #fff;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAGDY0LsAAAAnElEQVRoge3XsQ2DQBTA0JA12JuNmCupgyiQ/FMgnsvTx/gOCcSybvvndeB9XHjQ4uJAfjk9kMtXG7zToGdt0OCDBy+/AMbvTEhISEhISPh3oQ89ISEhISEhISEhISEhIeEdheN/9NOM73gagRWBFYEVgRWBFYEVgRWBFYEVgRWBFYEVgRWBFYEVgRWBFYEVgRWBFYEVgRWBFYGVL5maEqUgoxIWAAAAAElFTkSuQmCC) 50% 50% repeat-x #1b96c5;font-weight:700;color:#fff}.ui-state-active a,.ui-state-active a:link,.ui-state-active a:visited{color:#fff;text-decoration:none}.ui-corner-all,.ui-corner-top{border-top-left-radius:5px}.ui-corner-all,.ui-corner-top{border-top-right-radius:5px}.ui-corner-all,.ui-corner-bottom{border-bottom-left-radius:5px}.ui-corner-all,.ui-corner-bottom{border-bottom-right-radius:5px}body{font-size:0.8em;font-family:Verdana,Geneva,Arial,Helvetica;margin:0 auto}img{border:0px}ul li{list-style:none}ul li a{font-weight:600}h2{color:#666666;text-transform:none;margin-bottom:0px}h2{font-size:1.5em;font-weight:600}.head-wrapper{width:100%;text-align:center;margin:0 auto;background-color:#4b6c9e;min-height:35px}#header{width:1020px;margin:0 auto}#header-logo{float:left;width:75px;margin-top:2px}#header-logo-text{font-size:15px;margin:3px 0 0 0;color:#ffffff;text-shadow:1px 1px 3px #205d85;float:left;text-align:left;padding-left:10px;padding-top:4px;clear:right}#menubar .ui-button-text-only .ui-button-text{padding:4px 5px}#menubar{float:left;padding-left:15px;text-align:left;max-width:610px}#menubar ul{margin:0;padding:0;margin-top:2px;float:left}#menubar ul li{float:left;padding-right:1px;padding-top:3px;padding-bottom:3px}#menubar ul li a.menuBarLinks{color:white;height:22px;font-size:12px}#menuLinks{float:right;padding-top:5px;padding-left:10px;text-align:right}#menuLinks a{color:white;font-size:7pt;font-weight:bold;float:left;clear:both;text-decoration:none}#menuLinks a:hover{text-decoration:underline}#tabs{min-width:680px}#main{padding:5px 12px;background-color:#fff;width:1000px;margin:0 auto}#footer{color:#4e5766;margin:50px auto;text-align:center;line-height:normal;width:100%;font-size:0.7em}a:link,a:visited,a:active{color:#2b599e;text-decoration:none}a:hover{color:#2b599e;text-decoration:underline}.expandOrg{cursor:pointer}#myServices{font-size:0.9em}#myServices ul li{margin:5px}#myServices ul li img{margin-right:5px}div.ui-widget-content ul.ui-tabs-nav a:link,div.ui-widget-content ul.ui-tabs-nav a:visited,div.ui-widget-content ul.ui-tabs-nav a:active{color:#fff;text-decoration:none;font-size:12px}div.ui-widget-content ul.ui-tabs-nav a:hover{color:#fff;text-decoration:underline}div#tabs div a:link,a:visited,a:active{color:#2b599e;text-decoration:none}div#tabs div a:hover{color:#2b599e;text-decoration:underline}a.ui-button:link,a.ui-button:visited,a.ui-button:active{color:#fff!important}a.ui-button:hover{color:#fff!important}</style>
+
+{% endblock %}
+
+{% block outerContent %}
+{% endblock %}
+
+{% block content %}
+
+<div id="main">
+
+    <h2 style="background: none; padding: 0;">Welcome Capacity User</h2>
+    <br>
+    <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+        <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+            <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="myServices" aria-labelledby="ui-id-2" aria-selected="true"><a href="#myServices" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">My Services</a></li>
+            <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="mySavedSearches" aria-labelledby="ui-id-3" aria-selected="false"><a href="#mySavedSearches" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">My Saved Searches</a></li>
+                        <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="outstandingUserRequests" aria-labelledby="ui-id-4" aria-selected="false"><a href="#outstandingUserRequests" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-4">Outstanding User Requests (0)</a></li>
+        </ul>
+
+        <div id="myServices" aria-labelledby="ui-id-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false">
+                            <ul>
+                    <li id="list_1384256819"><span id="1384256819" class="expandOrg"><img src="images/plus.gif" alt="expand"></span><a id="1384256819" href="/app/controllers/search/search.php#org/1384256819">SE KM Darent Valley Hospital - General ICU</a></li><li id="list_1384257309"><span id="1384257309" class="expandOrg"><img src="images/plus.gif" alt="expand"></span><a id="1384257309" href="/app/controllers/search/search.php#org/1384257309">SE KM Kent and Canterbury Hospital ICU - General ICU</a></li><li id="list_1384257804"><span id="1384257804" class="expandOrg"><img src="images/plus.gif" alt="expand"></span><a id="1384257804" href="/app/controllers/search/search.php#org/1384257804">SE KM William Harvey Hospital - General ICU</a></li>                </ul>
+                    </div>
+
+        <div id="mySavedSearches" aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+            <table>
+                <tbody><tr>
+                    <td width="500" valign="top">
+                        <strong>My Saved Searches</strong><br>
+                        <ul id="saves">
+                                                                <li>
+                                        <b><a href="/app/controllers/search/search.php#org/1384257804&amp;searchName=1&amp;v=&amp;t=">1</a></b>
+                                    </li>
+                                                                    <li>
+                                        <b><a href="/app/controllers/search/search.php#org/1384257804&amp;searchName=Test 1&amp;v=&amp;t=">Test 1</a></b>
+                                    </li>
+                                                                    <li>
+                                        <b><a href="/app/controllers/search/search.php#org/1405506183&amp;searchName=Test 2&amp;v=&amp;t=">Test 2</a></b>
+                                    </li>
+                                                                    <li>
+                                        <b><a href="/app/controllers/search/search.php#org/1405506183&amp;searchName=Test 4&amp;v=&amp;t=">Test 4</a></b>
+                                    </li>
+                                                                    <li>
+                                        <b><a href="/app/controllers/search/search.php#org/1405506183&amp;searchName=test5&amp;v=&amp;t=">Test5</a></b>
+                                    </li>
+                                                        </ul>
+                    </td>
+                    <td width="500" valign="top">
+                        <strong>Shared Saved Searches</strong><br>
+                        <ul id="sharedSaves">
+                                                                <li>
+                                        <b><a href="/app/controllers/search/search.php#locSearch/postcode=&amp;postcodeValid=1&amp;region=100000019&amp;orgType=114,109,107&amp;distance=0.5&amp;locationSearchTime=ignore&amp;subRegions=100000019:1376486013&amp;searchName=test 5&amp;v=s&amp;t=1614594250737">Test 5</a></b>
+                                    </li>
+                                                        </ul>
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+
+        
+                <div id="outstandingUserRequests" aria-labelledby="ui-id-4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                            <div id="userRequestsStatusFilter">
+                    <select id="statusFilter">
+                        <option value="all" selected="selected">All</option>
+                        <option value="validated">Validated</option>
+                        <option value="unvalidated">Unvalidated</option>
+                    </select>
+                </div>
+                <div id="userRequests">
+                    <table id="resultstable">
+                        <tbody><tr>
+                            <th style="width:120px;">Request Date</th>
+                            <th style="width:200px;">Name</th>
+                            <th style="width:200px;">Service Name</th>
+                            <th style="width:200px;">Email</th>
+                            <th style="width:80px;">&nbsp;</th>
+                        </tr>
+                                            </tbody></table>
+                </div>
+                                </div>
+    </div>
+</div>
+<div id="footer">
+        <div style="padding-top: 3px; color: red"></div>
+        <div style="padding-top: 3px">v6.7.0.RC4 (7c69b838) - Build Date: 2021/02/26 13:33:08 </div>
+    <div style="padding-top: 3px">Environment name: test4</div>
+</div>
+{% endblock %}

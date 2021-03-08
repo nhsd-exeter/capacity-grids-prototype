@@ -35,11 +35,10 @@
             <div class="searchResults">
                 <div id="serviceBasicDetails" class="orgDetails">
                     <div class="orgName">
-                        <h2>
-                            SE KM Darent Valley Hospital - General ICU</h2>
+                        <h2>SE KM Darent Valley Hospital - General ICU</h2>
                     </div>
                     <!-- TODO, in nhs grid -->
-                    <!-- <table>
+                    <table>
                         <tbody>
                             <tr>
                                 <td class="orgTopLabel">Public Name</td>
@@ -65,13 +64,14 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table> -->
+                    </table>
                 </div>
                 <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
                     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
 
                         <li id="demographicDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="demographicDetailsView" aria-labelledby="ui-id-9" aria-selected="false"><a href="#demographicDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-9">Demographic Details</a></li>
                         <li id="capacityStatus" class="ui-state-default ui-corner-top ui-state-focus ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="capacityStatusView" aria-labelledby="ui-id-10" aria-selected="true"><a href="#capacityStatusView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-10">Capacity Status</a></li>
+                        <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-11">Capacity Grids</a></li>
                         <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-11">Service Attributes</a></li>
                         <li id="endPointDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="endPointDetailsView" aria-labelledby="ui-id-12" aria-selected="false"><a href="#endPointDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-12">Endpoint Details</a></li>
                         <li id="alignedServices" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="alignedServicesView" aria-labelledby="ui-id-13" aria-selected="false"><a href="#alignedServicesView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-13">Search Rankings</a></li>
@@ -84,111 +84,76 @@
                     </div>
                     <div id="capacityStatusView" aria-labelledby="ui-id-10" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display:block">
                         <div id="capactityRAG">
-                        <!--
-                            <div class="formRow">
-                                <div class="orgLabelLeft">Status</div>
-                                <div class="orgText" id="statusPicker">
-                                    <label for="green" class="green">
-                                        <input type="radio" name="currentCapacityStatus" id="green" title="GREEN" value="GREEN" checked="">
-                                        Green
-                                    </label>
-                                    <label for="amber" class="amber">
-                                        <input type="radio" name="currentCapacityStatus" id="amber" title="AMBER" value="AMBER">
-                                        Amber
-                                    </label>
-                                    <label for="red" class="red">
-                                        <input type="radio" name="currentCapacityStatus" id="red" title="RED" value="RED">
-                                        Red
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="formRow">
-                                <div class="orgLabelLeft">&nbsp;</div>
-                                <div class="orgText">
-                                    Reset Time must be within the next 120 hours (5 days)
-                                </div>
-                            </div>
-                            <div class="formRow" id="capacity-status-reset-row">
-                                <div class="orgLabelLeft">Reset Time</div>
-                                <div class="orgText">
-                                    <input id="resetDate" name="resetDate" class="capacityStatusDatepicker" type="text" size="10" value="" readonly="" disabled="">
-                                    <br>
-                                    <div class="orgLabelLeft">At</div>
-                                    <div class="orgText" id="cmsCapacityResetTimeViaJquery_time">
-                                        <select class="input-time input-time-hour reset-input-disabled-select" name="reset-time-hours" id="reset-time-hours" disabled="">
-                                            <option value="--" selected="">--</option>
-                                            <option value="00">00
-                                            </option><option value="01">01
-                                            </option><option value="02">02
-                                            </option><option value="03">03
-                                            </option><option value="04">04
-                                            </option><option value="05">05
-                                            </option><option value="06">06
-                                            </option><option value="07">07
-                                            </option><option value="08">08
-                                            </option><option value="09">09
-                                            </option><option value="10">10
-                                            </option><option value="11">11
-                                            </option><option value="12">12
-                                            </option><option value="13">13
-                                            </option><option value="14">14
-                                            </option><option value="15">15
-                                            </option><option value="16">16
-                                            </option><option value="17">17
-                                            </option><option value="18">18
-                                            </option><option value="19">19
-                                            </option><option value="20">20
-                                            </option><option value="21">21
-                                            </option><option value="22">22
-                                            </option><option value="23">23</option>
-                                        </select>
-                                        <select class="input-time input-time-minutes reset-input-disabled-select" name="reset-time-minutes" id="reset-time-minutes" disabled="">
-                                            <option value="--" selected="">--</option>
-                                            <option value="00">00
-                                            </option><option value="15">15
-                                            </option><option value="30">30
-                                            </option><option value="45">45</option>
-                                        </select>
-                                    </div>
-                                    <div class="orgLabelLeft">&nbsp;</div>
-                                    <div class="orgText" id="cmsCapacityResetTimeViaJquery_error">
-                                        <span id="timePickerWarnings"></span>
+                        
+                            <div class="">
+                                <div class="nhsuk-design">
+                                    <main class="nhsuk-main-wrapper">
+                                        <div class="nhsuk-grid-row">
+                                            <div class="nhsuk-grid-column-three-quarters">
+                                                <div class="nhsuk-form-group">
+                                                    <label for="" class="nhsuk-label">Status</label>
+                                                    <fieldset class="nhsuk-fieldset">
+                                                        <div class="nhsuk-radios nhsuk-radios--inline">
+                                                            <div style="background-color: green; padding: 10px; display:inline-block">
+                                                                <div class="nhsuk-radios__item" style="margin-right: 0;">
+                                                                    <input class="nhsuk-radios__input" id="green" name="status" type="radio" value="green">
+                                                                    <label class="nhsuk-label nhsuk-radios__label" for="green" style="padding: 5px; color: white">
+                                                                    Green
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div style="background-color: orange; padding: 10px; display:inline-block">
+                                                                <div class="nhsuk-radios__item" style="background-color: orange; margin-right: 0;">
+                                                                    <input class="nhsuk-radios__input" id="amber" name="status" type="radio" value="amber">
+                                                                    <label class="nhsuk-label nhsuk-radios__label" for="amber" style="padding: 5px; color: white">
+                                                                    Amber
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div style="background-color: red; padding: 10px; display:inline-block">
+                                                                <div class="nhsuk-radios__item" style="background-color: red; margin-right: 0;">
+                                                                    <input class="nhsuk-radios__input" id="red" name="status" type="radio" value="red">
+                                                                    <label class="nhsuk-label nhsuk-radios__label" for="red" style="padding: 5px; color: white">
+                                                                    Red
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
 
-                                    </div>
-                                    <div class="formRow" id="capacityResetNotice">
-                                        <div class="orgLabelLeft">&nbsp;</div>
-                                        <div class="orgText capacity-reset-notice">
+                                                <div class="nhsuk-form-group">
+                                                    <label for="" class="nhsuk-label">Reset Time At</label>
+                                                    <div class="nhsuk-hint">Reset Time must be within the next 120 hours (5 days)</div>
+                                                    
+                                                   
+                                                    <input class="nhsuk-input nhsuk-input--width-4" id="example" name="example" type="text" readonly>
+                                                    <select class="nhsuk-select nhsuk-input--width-4" id="select-1" name="select-1" disabled>
+                                                        <option value="1">--</option>
+                                                        <option value="2">23</option>
+                                                    </select>
+                                                    <select class="nhsuk-select nhsuk-input--width-4" id="select-2" name="select-2" disabled>
+                                                        <option value="1">--</option>
+                                                        <option value="1">45</option>
+                                                    </select>
+                                                </div>
 
-                                            <span id="capacityResetNoticeContent"></span>
+                                                <div class="nhsuk-form-group">
+                                                    <label for="" class="nhsuk-label">Last Updated By Notes</label>
+                                                    <textarea class="nhsuk-textarea" id="example" name="example" rows="5" aria-describedby="example-hint"></textarea>
+                                                    <button id="updateCapacityStatusViaJquery" style="margin-top: 20px;" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-disabled ui-state-disabled" role="button" aria-disabled="true" disabled=""><span class="ui-button-text">Save</span></button>
+
+                                                </div>
+
+                                            </div>
                                         </div>
-                                    </div>
+                                    </main>
+                                    
                                 </div>
-                                <div class="formRow">
-                                    <div class="orgLabelLeft">Last Updated</div>
-                                    <div class="orgText" id="cmsCapacityUpdateTimeViaJquery">
-                                    </div>
-                                </div>
-                                <div class="formRow">
-                                    <div class="orgLabelLeft">By</div>
-                                    <div class="orgText" id="cmsCapacityUpdatedByViaJquery">
-                                    </div>
-                                </div>
-                                <div class="formRow">
-                                    <div class="orgLabelLeft">Notes</div>
-                                    <div class="orgText">
-                                        <textarea maxlength="1000" name="cap007" class="capacityStatusNotes" id="capacityStatusNotes"></textarea>
-                                    </div>
-                                </div>
-                                <div class="formRow">
-                                    <div class="orgLabelLeft">&nbsp;</div>
-                                    <div class="orgText">
-                                        <button id="updateCapacityStatusViaJquery" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-disabled ui-state-disabled" role="button" aria-disabled="true" disabled=""><span class="ui-button-text">Save</span></button>
-                                    </div>
-                                </div>
-                                <div id="capacityStatusErrors" class="capacityStatusErrors"></div>
-                            </div>-->
-                            <br class="clear">
-                            <!--
+                            </div>
+
+                            
+                            
                             <h4 class="underline" title="Service Capacity Grids">Capacity Grids:</h4>
                             <div id="saveAllSection" data-initial-count="1">
                                 <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveAllCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save all changed
@@ -205,17 +170,15 @@
                                         <span class="small-font" title="Date/Time grid was last updated or verified">(last updated: <span id="lastUpdated1761">02 Mar 2021 08:05:33</span>)</span>
                                     </div>
                                 </div>
-                                -->
-                                <div class="sheetData" id="sheetData1761" data-id="1761" data-name="Critical Care">
+                                
+                                <div data-name="Critical Care">
                                     <div class="nhsuk-design">
-
-                                        
 
                                         <!--<div class="nhsuk-width-container">-->
                                         <div class="">
-                                            <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+                                            <main class="nhsuk-main-wrapper">
                                                 <div class="nhsuk-grid-row">
-                                                    <div class="nhsuk-grid-column-one-third
+                                                    <div class="nhsuk-grid-column-two-thirds
                                                     ">
                                                         {% for key, value in critical %}
                                                             <div class="nhsuk-form-group">
@@ -232,28 +195,11 @@
                                                                 </div>
                                                             </div>
                                                         {% endfor %}
-
-                                                         <div class="nhsuk-form-group">
-                                                        <label class="nhsuk-label" for="example">
-                                                            Need to provide more detail?
-                                                        </label>
-                                                        <div class="nhsuk-hint" id="example-hint">
-                                                            Do not include personal or financial information, for example, National Insurance number or credit card details.
-                                                        </div>
-                                                        <textarea class="nhsuk-textarea" id="example" name="example" rows="5" aria-describedby="example-hint"></textarea>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </main>
                                         </div>
-
-                                        
-                                                
-                                                
-                                            
-
-
-                                       
+  
                                     </div>
                                 </div>
                                 <br class="clear">
