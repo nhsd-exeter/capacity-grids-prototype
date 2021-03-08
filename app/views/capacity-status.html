@@ -14,6 +14,16 @@
     }
 %}
 
+{% set public = {
+    'Type': 'Critical Care (CC)',
+    'Service ID': '1384256819',
+    'ODS Code': '',
+    'Created by': 'ROBOT on 12-11-2013 11:46',
+    'Status': 'Active',
+    'Modified by': 'capacityuser on 02-03-2021 08:05'
+    }
+%}
+
 {% extends 'layout.html' %}
 
 {% block beforeContent %}
@@ -37,34 +47,37 @@
                     <div class="orgName">
                         <h2>SE KM Darent Valley Hospital - General ICU</h2>
                     </div>
-                    <!-- TODO, in nhs grid -->
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td class="orgTopLabel">Public Name</td>
-                                <td colspan="7" class="orgTopText"></td>
-                            </tr>
-                            <tr>
-                                <td class="orgTopLabel">Type</td>
-                                <td class="orgTopText">Critical Care (CC)</td>
-                                <td class="orgTopLabel">Service ID</td>
-                                <td class="orgTopText">1384256819</td>
-                                <td class="orgTopLabel">ODS Code</td>
-                                <td class="orgTopText"></td>
-                                <td class="orgTopLabel">Created by</td>
-                                <td class="orgTopText">ROBOT on 12-11-2013 11:46</td>
-                            </tr>
-                            <tr>
-                                <td class="orgTopLabel" style="width:80px">Status</td>
-                                <td class="orgTopText">Active</td>
-                                <td colspan="4"></td>
-                                <td class="orgTopLabel">Modified by</td>
-                                <td class="orgTopText">
-                                    capacityuser on 02-03-2021 08:05
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    
+                    <div class="nhsuk-design">
+                        <h3 style="background: none; color: black">Public Name</h3>
+                        <div class="nhsuk-grid-row">
+                            {% for key, value in public %}
+                                <div class="nhsuk-grid-column-one-third">
+                                    <div class="nhsuk-grid-row nhsuk-u-margin-bottom-3">
+                                        <div class="nhsuk-grid-column-one-third">
+                                            <strong class="orgTopLabel">{{ key }}</strong>
+                                        </div>
+                                        <div class="nhsuk-grid-column-two-thirds">
+                                            <span class="orgTopText">{{ value }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {# <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
+                            {% for key, value in public %}
+                                <div class="nhsuk-summary-list__row">
+                                    <dt class="nhsuk-summary-list__key">
+                                        {{ key }}
+                                    </dt>
+                                    <dd class="nhsuk-summary-list__value">
+                                        {{ value }}
+                                    </dd>
+                                </div>
+                            {% endfor %}
+                        </dl> #}
+                    </div>
                 </div>
                 <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
                     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">

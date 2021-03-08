@@ -1832,9 +1832,16 @@
 .searchwrapper .search-config {
     width: 100%;
 }
-body {
-    display: inline-grid;
+
+/* Tablet overrides */
+@media only screen and (max-width: 641px) {
+  #header {
+    width: 100%;
+  }
 }
+
+/* Mobile overrides */
+@media only screen and (max-width: 320px) {}
 </style>
 {% endblock %}
 
