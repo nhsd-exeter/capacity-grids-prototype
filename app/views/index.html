@@ -115,6 +115,25 @@
             margin: auto;
             display: inline-block;
         }
+
+        .launch {
+            text-align: center;
+            display: block;
+            margin: 10px;
+        }
+
+        /* Tablet overrides */
+        @media only screen and (max-width: 641px) {
+            .launch {
+                display: none;
+            }
+        }
+        /* Mobile overrides */
+        @media only screen and (max-width: 320px) {
+            .launch {
+                display: none;
+            }
+        }
     </style>
 
     <div class="nhsuk-width-container ">
@@ -160,6 +179,7 @@
                         In this section you will find direct access to various flows and design variants of the
                         Prototype.
                     </p>
+                    <h3 style="margin-top: 30px">End To End Prototype</h3>
                     <div class="nhsuk-grid-row">
                         <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
                             <div class="thumb">
@@ -168,8 +188,11 @@
                                     <span>E2E Flow</span>
                                 </a>
                             </div>
+                            <a class="launch" href="capacity-status-e2e-mobile" target="_blank">View Mobile</a>
+                            <a class="launch" href="capacity-status-e2e-tablet" target="_blank">View Tablet</a>
                         </div>
                     </div>
+                    <h3 style="margin-top: 30px">Single Views - Capacity Status Versions</h3>
                     <div class="nhsuk-grid-row">
                         <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
                             <div class="thumb">
@@ -178,6 +201,8 @@
                                     <span>Capacity Status <br> *ORIGINAL*</span>
                                 </a>
                             </div>
+                            <a class="launch" href="capacity-status-original-mobile" target="_blank">View Mobile</a>
+                            <a class="launch" href="capacity-status-original-tablet" target="_blank">View Tablet</a>
                         </div>
 
                         <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
@@ -187,6 +212,8 @@
                                     <span>Capacity Status <br> *Version 1*</span>
                                 </a>
                             </div>
+                            <a class="launch" href="capacity-status-v1-mobile" target="_blank">View Mobile</a>
+                            <a class="launch" href="capacity-status-v1-tablet" target="_blank">View Tablet</a>
                         </div>
                         <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
                             <div class="thumb">
@@ -195,6 +222,8 @@
                                     <span>Capacity Status <br> *Version 2*</span>
                                 </a>
                             </div>
+                            <a class="launch" href="capacity-status-v2-mobile" target="_blank">View Mobile</a>
+                            <a class="launch" href="capacity-status-v2-tablet" target="_blank">View Tablet</a>
                         </div>
 
 
