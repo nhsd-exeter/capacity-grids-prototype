@@ -82,6 +82,7 @@
             /* border: 2px grey solid; */
             border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 5px 14px rgb(0 0 0 / 5%), 0 5px 5px rgb(0 0 0 / 3%);
         }
 
         .thumb img {
@@ -92,14 +93,21 @@
             padding: 20px 10px;
             text-align: center;
             display: block;
-            background: white
+            color: white;
+            background: rgb(54, 54, 54);
+            font-weight: bold;
+        }
+
+        .thumb span:hover,
+        .thumb:hover span {
+            background: black;
         }
 
         .thumb:hover {
             transform: translateY(-6px);
             box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 10%);
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
 
         .center {
@@ -115,20 +123,28 @@
 
             <!-- Hero Section -->
             <div class="nhsuk-grid-row">
-                <div class="nhsuk-grid-column-three-quarters">
-                    <form action="/docs/install" method="post">
-
-                        <h1>
-                            Capacity Grids Prototypes
-                        </h1>
-
-                        <!-- <img src="images/apple-devices.png" alt=""> -->
+                <div class="nhsuk-grid-column-full">
 
 
-                        <a class="nhsuk-button" href="login">
-                            View End to End Prototype
-                        </a>
-                    </form>
+                    <h1>
+                        Capacity Grids Prototypes
+                    </h1>
+
+                    <img src="images/apple-devices.png" alt="" style="width: 100%;">
+
+
+                    <a class="nhsuk-button" href="login">
+                        View End to End Prototype
+                    </a>
+
+                    <div class="nhsuk-warning-callout">
+                        <h3 class="nhsuk-warning-callout__label">
+                            Information<span class="nhsuk-u-visually-hidden">:</span>
+                        </h3>
+                        <p>If you wish to see a true reflection of how the prototype appears on Tablet/Mobile, access
+                            the prototype link on the portable device of your preference</p>
+                    </div>
+
                 </div>
             </div>
             <hr>
@@ -145,57 +161,39 @@
                         Prototype.
                     </p>
                     <div class="nhsuk-grid-row">
-                        <div class="nhsuk-grid-column-one-third">
+                        <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
                             <div class="thumb">
-                                <!-- <a href="login">
-                                    <img src="images/1.png" alt="">
-                                </a> -->
-
                                 <a href="login">
+                                    <img src="images/1.png" alt="">
                                     <span>E2E Flow</span>
                                 </a>
-
                             </div>
                         </div>
-
-
-
-
                     </div>
-                    <div class="nhsuk-grid-row" style="margin-top: 35px">
-                        <div class="nhsuk-grid-column-one-third">
+                    <div class="nhsuk-grid-row">
+                        <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
                             <div class="thumb">
-                                <!-- <a href="capacity-status">
-                                    <img src="images/2.png" alt="">
-                                </a> -->
                                 <a href="capacity-status-original">
+                                    <img src="images/cs0.png" alt="">
                                     <span>Capacity Status <br> *ORIGINAL*</span>
                                 </a>
-                                <!-- <span>Capacity Status V1</span> -->
                             </div>
                         </div>
 
-                        <div class="nhsuk-grid-column-one-third">
+                        <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
                             <div class="thumb">
-                                <!-- <a href="capacity-status">
-                                    <img src="images/2.png" alt="">
-                                </a> -->
                                 <a href="capacity-status">
+                                    <img src="images/cs1.png" alt="">
                                     <span>Capacity Status <br> *Version 1*</span>
                                 </a>
-                                <!-- <span>Capacity Status V1</span> -->
                             </div>
                         </div>
-                        <div class="nhsuk-grid-column-one-third">
+                        <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
                             <div class="thumb">
-                                <!-- <a href="login">
-                                    <img src="images/1.png" alt="">
-                                </a> -->
-
                                 <a href="capacity-status-v2">
+                                    <img src="images/cs2.png" alt="">
                                     <span>Capacity Status <br> *Version 2*</span>
                                 </a>
-
                             </div>
                         </div>
 
@@ -212,6 +210,20 @@
                     </h2>
 
                     <dl class="nhsuk-summary-list">
+
+                        <div class="nhsuk-summary-list__row">
+                            <dt class="nhsuk-summary-list__key">
+                                10/3/21
+                            </dt>
+                            <dd class="nhsuk-summary-list__value">
+                                E2E flow for Initial User Review feedback completed
+                            </dd>
+                            <dd class="nhsuk-summary-list__actions">
+                                <a href="#">
+                                    <!-- Change -->
+                                </a>
+                            </dd>
+                        </div>
 
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">
