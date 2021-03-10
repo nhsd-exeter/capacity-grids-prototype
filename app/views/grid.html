@@ -1,5 +1,6 @@
 {% set appPage = true %}
 {% set navSearch = true %}
+{% set gridView = true %}
 
 <!-- Use this page as the index for your project -->
 
@@ -402,14 +403,8 @@
             <div class="allSearchResults" style="overflow-x: hidden; display: block;">
 
 
-                <div class="gridToggle">
-                    <span id="serviceViewLink"><input type="radio" id="serviceView" name="viewToggle"
-                            checked="checked"></span>
-                    <label for="serviceView">Service View</label>
-                    <span id="gridViewToggle"><input type="radio" id="gridView" name="viewToggle"></span>
-                    <label for="gridView">Grid View</label>
-                    <span class="slide-button"></span>
-                </div>
+                {% include "includes/gridToggle.html" %}
+
 
                 <p>&nbsp;
                     {# <img width="25" src="/app/img/map/googlemaps_icon.png" class="selectable"

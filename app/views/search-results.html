@@ -1,5 +1,6 @@
 {% set appPage = true %}
 {% set navSearch = true %}
+{% set serviceView = true %}
 
 {% set critical = {
     'L3 beds empty and available': '0',
@@ -435,13 +436,7 @@ th {
         <div class="allSearchResults" style="overflow-x: hidden; display: block;">
 
 
-<div class="gridToggle">
-        <span id="serviceViewLink"><input type="radio" id="serviceView" name="viewToggle" checked="checked"></span>
-    <label for="serviceView">Service View</label>
-    <span id="gridViewToggle"><input type="radio" id="gridView" name="viewToggle"></span>
-    <label for="gridView"><a href="grid">Grid View</a></label>
-    <span class="slide-button"></span>
-</div>
+{% include "includes/gridToggle.html" %}
 
 <p>
 
