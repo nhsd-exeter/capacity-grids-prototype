@@ -230,20 +230,317 @@
                 <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
                     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
 
-                        <li id="demographicDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="demographicDetailsView" aria-labelledby="ui-id-9" aria-selected="false"><a href="demographic-details" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-9">Demographic Details</a></li>
-                        <li id="capacityStatus" class="ui-state-default ui-corner-top ui-state-focus ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="capacityStatusView" aria-labelledby="ui-id-10" aria-selected="true"><a href="capacity-status" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-10">Capacity Status</a></li>
+                        <li id="demographicDetails" class="ui-state-default ui-corner-top ui-state-focus ui-tabs-active ui-state-active" role="tab" tabindex="-1" aria-controls="demographicDetailsView" aria-labelledby="ui-id-9" aria-selected="false"><a href="demographic-details" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-9">Demographic Details</a></li>
+                        <li id="capacityStatus" class="ui-state-default ui-corner-top" role="tab" tabindex="0" aria-controls="capacityStatusView" aria-labelledby="ui-id-10" aria-selected="true"><a href="capacity-status" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-10">Capacity Status</a></li>
                         {# <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-11">Capacity Grids</a></li> #}
                         <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-11">Service Attributes</a></li>
                         <li id="endPointDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="endPointDetailsView" aria-labelledby="ui-id-12" aria-selected="false"><a href="#endPointDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-12">Endpoint Details</a></li>
                         <li id="alignedServices" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="alignedServicesView" aria-labelledby="ui-id-13" aria-selected="false"><a href="#alignedServicesView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-13">Search Rankings</a></li>
                         <li id="changeHistory" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="changeHistoryView" aria-labelledby="ui-id-14" aria-selected="false"><a href="#changeHistoryView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-14">Change History</a></li>
                     </ul>
-                    <div id="demographicDetailsView" aria-labelledby="ui-id-9" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
+                    <div id="demographicDetailsView" aria-labelledby="ui-id-9" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false">
+            <style>
+            .searchResults {
+  margin: 0 auto;
+  padding-left: 10px;
+  text-align: left;
+  background-color: #fff;
+}
+.searchResults h2 {
+  color: black;
+  margin-bottom: 3px;
+  background-color: #fff;
+}
+#demographicDetailsView table {
+  width: 100%;
+}
+#demographicDetailsView table thead td {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0px;
+  padding: 0px;
+}
+#demographicDetailsView table tbody td {
+  font-size: 14px;
+  text-align: left;
+}
+#demographicDetailsView table tbody tr {
+  height: 30px;
+}
+#demographicDetailsView table tbody tr td {
+  padding: 3px;
+}
+            </style>
+            <table>
+    <tbody>
+    <tr>
+        <td style="width: 50%;" class="alignTop">
+            <table id="tableContactDetails">
+                <thead>
+                <tr>
+                    <td colspan="2" class="uppercase"><span class="fontBold">Contact Details </span>
+                                        </td></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="orgLabelLeft">Address</td>
+                    <td class="orgText">
+                        Darenth Wood Road, Dartford<br>                        DA2 8DA                        <br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="orgLabelLeft">
+                        Postal Locality
+                    </td>
+                    <td class="orgText">
+                        DARENTH                    </td>
+                </tr>
+                <tr>
+                    <td class="orgLabelLeft">
+                        Public Phone
+                    </td>
+                    <td class="orgText">
+                        01322 428100 x 8404                    </td>
+                </tr>
+                <tr>
+                    <td class="orgLabelLeft">
+                        Non-Public Phone
+                    </td>
+                    <td class="orgText">
+                                            </td>
+                </tr>
+                <tr>
+                    <td class="orgLabelLeft">
+                        Fax
+                    </td>
+                    <td class="orgText">
+                                            </td>
+                </tr>
+                <tr>
+                    <td class="orgLabelLeft">
+                        Non-Public Email
+                    </td>
+                    <td class="orgText" style="word-break:break-all;">
+                                            </td>
+                </tr>
+                <tr>
+                    <td class="orgLabelLeft">
+                        Website
+                    </td>
+                    <td class="orgText" style="word-break:break-all;">
+                        <a href="" target="_blank" title="">
+                                                    </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
-                    </div>
-                    <div id="serviceAdminView">
-                    </div>
-                    <div id="capacityStatusView" aria-labelledby="ui-id-10" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display:block">
+            <br class="clear">
+            <br class="clear">
+
+            <table id="tableReferralInstructions">
+                <thead>
+                <tr>
+                    <td colspan="2" class="uppercase">
+                        <span class="fontBold">Public Facing Information</span>
+                                            </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="2">
+                                                    No instructions specified
+                                            </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <br class="clear">
+
+        </td>
+        <td class="alignTop">
+
+            <table id="tableOpeningTimes" width="100%">
+                <thead>
+                <tr>
+                    <td colspan="2" class="uppercase"><span class="fontBold">Opening Times </span>
+                                        </td></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="2">
+
+                        <!-- sort opening times display (note: temporary as the whole table needs redoing to use modern day Div tags (CSS)!!!) -->
+                        <div class="openingTimes">
+
+                                                            <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">Monday</div>
+                                    <div class="openingTimeDetail">OPEN 24 HOURS 
+
+                                    </div>
+                                </div>
+                                <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">Tuesday</div>
+                                    <div class="openingTimeDetail">OPEN 24 HOURS 
+
+                                    </div>
+                                </div>
+                                <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">Wednesday</div>
+                                    <div class="openingTimeDetail">OPEN 24 HOURS 
+
+                                    </div>
+                                </div>
+                                <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">Thursday</div>
+                                    <div class="openingTimeDetail">OPEN 24 HOURS 
+
+                                    </div>
+                                </div>
+                                <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">Friday</div>
+                                    <div class="openingTimeDetail">OPEN 24 HOURS 
+
+                                    </div>
+                                </div>
+                                <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">Saturday</div>
+                                    <div class="openingTimeDetail">OPEN 24 HOURS 
+
+                                    </div>
+                                </div>
+                                <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">Sunday</div>
+                                    <div class="openingTimeDetail">OPEN 24 HOURS 
+
+                                    </div>
+                                </div>
+
+                            
+                            <br class="clear">
+                            <br class="clear">
+
+                                                    </div>
+
+                        <br class="clear">
+                        <br class="clear">
+
+                        <div class="fontItalic uppercase">PUBLIC HOLIDAY DATES</div>
+                        <br class="clear">
+
+                                                        <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">
+                                        02-04-2021                                    </div>
+                                    <div class="openingTimeDetail">
+                                        Closed<br>                                    </div>
+                                </div>
+                                <br class="clear">
+                                                            <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">
+                                        04-04-2021                                    </div>
+                                    <div class="openingTimeDetail">
+                                        Closed<br>                                    </div>
+                                </div>
+                                <br class="clear">
+                                                            <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">
+                                        05-04-2021                                    </div>
+                                    <div class="openingTimeDetail">
+                                        Closed<br>                                    </div>
+                                </div>
+                                <br class="clear">
+                                                            <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">
+                                        03-05-2021                                    </div>
+                                    <div class="openingTimeDetail">
+                                        Closed<br>                                    </div>
+                                </div>
+                                <br class="clear">
+                                                            <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">
+                                        31-05-2021                                    </div>
+                                    <div class="openingTimeDetail">
+                                        Closed<br>                                    </div>
+                                </div>
+                                <br class="clear">
+                                                            <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">
+                                        30-08-2021                                    </div>
+                                    <div class="openingTimeDetail">
+                                        Closed<br>                                    </div>
+                                </div>
+                                <br class="clear">
+                                                            <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">
+                                        27-12-2021                                    </div>
+                                    <div class="openingTimeDetail">
+                                        Closed<br>                                    </div>
+                                </div>
+                                <br class="clear">
+                                                            <div class="openingTimeRow">
+                                    <div class="openingTimeLabel">
+                                        28-12-2021                                    </div>
+                                    <div class="openingTimeDetail">
+                                        Closed<br>                                    </div>
+                                </div>
+                                <br class="clear">
+                                                                        </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="alignTop">
+            <table id="tableParentServices">
+                                    <tbody><tr>
+                        <td class="uppercase fontBold">Parent Services</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+
+                                                        <ul>
+                                <li class="arrow">
+                                    <a title="View National Critical Care &amp; Burns" href="/app/controllers/search/search.php#org/100000019">National Critical Care &amp; Burns</a>
+                                </li>
+                                                            <ul>
+                                <li class="arrow">
+                                    <a title="View Kent and Medway Area Network" href="/app/controllers/search/search.php#org/1384256612">Kent and Medway Area Network</a>
+                                </li>
+                                  </ul>   </ul>                         </td>
+                    </tr>
+                                                            </tbody></table>
+        </td>
+        <td class="alignTop">
+            <table id="tableDispoInstructions">
+                <thead>
+                <tr>
+                    <td colspan="2" class="uppercase">
+                        <span class="fontBold">Referral Information</span>
+                                            </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="2">
+                        No instructions specified                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+        </div>
+                    
+                    <div id="capacityStatusView" aria-labelledby="ui-id-10" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display:none">
                         <div id="capactityRAG">
                         
                             <div class="">

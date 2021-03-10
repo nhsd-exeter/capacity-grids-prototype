@@ -1834,11 +1834,11 @@
 }
 
 /* Tablet overrides */
-@media only screen and (max-width: 641px) {
+/* @media only screen and (max-width: 641px) {
   #header {
     width: 100%;
   }
-}
+} */
 
 /* Mobile overrides */
 @media only screen and (max-width: 320px) {}
@@ -1865,7 +1865,7 @@
     <div class=head-wrapper>
         <div id=header>
             <div id=header-logo>
-                <a href=#><img
+                <a href=welcome-my-services><img
                         src="data:image/gif;base64,R0lGODlhSAAcAMZ8AD1gnz1joT5koj5moj5npD9qpUJrpENtpUZvpkdwp0pwqExwpk1xp0pyqFBzqE50qFB2qlF2qVR2qlR4qld7q1x7qll8q118q2B+qmB/qmJ/qmV/qWKAqmSAqmaDqmiEqmuGq26Gqm2Hq26HqnGIq3KLrHWMq3aNrHqOrHmPrXqQrnySsH2Sr36SsH+UsYGUsYGVs4SXtISYtIaYtIWZtYibtombt42fuY6huo+hu5Giu5OkvZSmvpamvpiowJmpwZqpwJuqwZyqwp2sw6CtxKCuxKGvxaGwx6SzyKWzx6e1yai2yqy5zK26zbC8zrK90LG+z7S/0LXA0bbB0rfC07vF1b3H177J2MHL2cLM2sXO28bP3MjR3srS3svT38/X4dDX4tHY49HZ49Xb5dbc5tfe59nf59rf6Nvg6d3i6d/k6+Dl7OHm7eTo7uXp7+jr8Ons8ert8uzv8u7w9O/x9fP09/b3+vb4+vj5+vr7/Pz8/P7+/v///////////////yH5BAEKAH8ALAAAAABIABwAAAf+gAWCg4SFhoeIiYqGBI2Ni4IDkpOSiJSVBQSXA5aXhQMCBAwVGhoYFQ4HoIgwWlmvr1pLhw9TsFlWFgQ3rrBSDYYyva9UEZEEJ0pfbnR1znRvaFhDGYxWe9jZe3gXhiXae3QRBGDgaAaFBFngbgkFAyRdeuD0e0cChQdm9Xs4BIQEdIDrQuCBG3BO/hFCgAacFU037PADh0cEJ0IX6PC7olAQgSjglAgQgQecv0IZwQURkCLPRHBk0BVyMfHNg0JhwMkQcANcHhGGaIJLQYAMPTxoumjhMuYNtiT4ABZ5uYKQhDja6nAY4ASczXRTtc2JUGKetjAhDEwq4ECFExD+HQetm9ikowmz2NIgKCAGnBdGc7OVIeDD54iohFYZasDm5Zm9mXaAuzIgAhxwTOIWSKAG3BQBTHymQAzJg0TBRrPdAeFRCrghAkq41NYCgIDbAgJMqAOOB2h6a1AoVkSgBsIh4H78MzAG3AoBkrXpcTKEiHUiQqaA02NiQI56ebTMUECaUWhtOkDg3dNF0AQ52uhQGKD9Jb84EgpIgM9PDRAFFx3yhXQnHLBGfBQgs14ZBhiQmn30hIEOATasR48ZJARISAROZSPHBAO4pg0NAvDg2QAUzAFhPQlFEkNjE9EBlDezYUPGAQTEAA4VAtSXzQ4sHXWHHUQSeQc9J0X+wsAQaUw0BmSDEBBdNlT8EwFW2bCxQHPZ5FGCAD+AU0cLHpRZ5gbIafOTIQIgEEMWFmKjQjo+YtPDP+qoOUOH2LwRwQDXaJPGO44QEMASXt10iAADtHCZSnEd8OAeepzgkUDaeHEaNl8UcEBD2nBkSDmZLhKAceAkERcFGnmYnyAY8EbXAClpM4RmlmGmWTrqvdbRACuAM4ZMBRiQ00Q2CCCUNizQCE4NBEAQwW0dEcAoSODAQIgAaWYzRbVHTGTHBwOElY186UyJzbgCKPFGEzN4EMECo7wQWDZxGDPIAFj0Fpds/LDRQJ7alHFAOiJm2YABZWRjBxxtvNEqPUefxIVAZ9lUWsjF/GhBAMfaVFkIc+BsMcAHR67I3sFRdrDpHh+mAwU/RgzAgazZ3FnIe6kGgITKe1ShQCE8mUPsIMtmW/RQQdEjwwBLYCmuFzFoOMgJRhShtRExHNIAEFqHXcQQEBRgQtZhAwFMISCgrTXZgkiwwhBUeGHGGmqQ0cUTO3igSSK43Wb1IIEHTnjhiBROGiihGIDAXozvOkggADs="
                         alt="nhs logo" border=0></a>
             </div>
@@ -1878,14 +1878,14 @@
                 <ul>
                     <li>
                         <a href=welcome-my-services
-                            class="menuBarLinks ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                            class="menuBarLinks ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only {% if navHome %} ui-state-active {% endif %}"
                             role=button aria-disabled=false><span class=ui-button-text>
                                 Home
                             </span></a>
                     </li>
                     <li>
                         <a href=search-results
-                            class="menuBarLinks ui-state-active ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                            class="menuBarLinks ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only {% if navSearch %} ui-state-active {% endif %}"
                             role=button aria-disabled=false><span class=ui-button-text>
                                 Search
                             </span></a>
