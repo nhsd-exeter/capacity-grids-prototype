@@ -25,7 +25,7 @@
 %}
 
 {% set public = {
-    'Type': 'Trauma Unit (CC)',
+    'Type': 'Critical Care (CC)',
     'Service ID': '1384256819',
     'ODS Code': '',
     'Created by': 'ROBOT on 12-11-2013 11:46',
@@ -37,14 +37,6 @@
 {% extends 'layout.html' %}
 
 {% block beforeContent %}
-<style>
-/* Tablet overrides */
-@media only screen and (max-width: 641px) {
-  #header {
-    width: 100%;
-  }
-} 
-</style>
 {% endblock %}
 
 {% block outerContent %}
@@ -97,7 +89,153 @@
                         </dl> #}
                     </div>
                 </div>
-            </div>
+                {# <div class="govuk-tabs" data-module="govuk-tabs">
+  <h2 class="govuk-tabs__title">
+    Contents
+  </h2>
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+      <a class="govuk-tabs__tab" href="#past-day">
+        Past day
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#past-week">
+        Past week
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#past-month">
+        Past month
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#past-year">
+        Past year
+      </a>
+    </li>
+  </ul>
+  <div class="govuk-tabs__panel" id="past-day">
+    <h2 class="govuk-heading-l">Past day</h2>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Case manager</th>
+          <th scope="col" class="govuk-table__header">Cases opened</th>
+          <th scope="col" class="govuk-table__header">Cases closed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">David Francis</td>
+          <td class="govuk-table__cell">3</td>
+          <td class="govuk-table__cell">0</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Paul Farmer</td>
+          <td class="govuk-table__cell">1</td>
+          <td class="govuk-table__cell">0</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Rita Patel</td>
+          <td class="govuk-table__cell">2</td>
+          <td class="govuk-table__cell">0</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
+    <h2 class="govuk-heading-l">Past week</h2>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Case manager</th>
+          <th scope="col" class="govuk-table__header">Cases opened</th>
+          <th scope="col" class="govuk-table__header">Cases closed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">David Francis</td>
+          <td class="govuk-table__cell">24</td>
+          <td class="govuk-table__cell">18</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Paul Farmer</td>
+          <td class="govuk-table__cell">16</td>
+          <td class="govuk-table__cell">20</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Rita Patel</td>
+          <td class="govuk-table__cell">24</td>
+          <td class="govuk-table__cell">27</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-month">
+    <h2 class="govuk-heading-l">Past month</h2>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Case manager</th>
+          <th scope="col" class="govuk-table__header">Cases opened</th>
+          <th scope="col" class="govuk-table__header">Cases closed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">David Francis</td>
+          <td class="govuk-table__cell">98</td>
+          <td class="govuk-table__cell">95</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Paul Farmer</td>
+          <td class="govuk-table__cell">122</td>
+          <td class="govuk-table__cell">131</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Rita Patel</td>
+          <td class="govuk-table__cell">126</td>
+          <td class="govuk-table__cell">142</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-year">
+    <h2 class="govuk-heading-l">Past year</h2>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Case manager</th>
+          <th scope="col" class="govuk-table__header">Cases opened</th>
+          <th scope="col" class="govuk-table__header">Cases closed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">David Francis</td>
+          <td class="govuk-table__cell">1380</td>
+          <td class="govuk-table__cell">1472</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Paul Farmer</td>
+          <td class="govuk-table__cell">1129</td>
+          <td class="govuk-table__cell">1083</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Rita Patel</td>
+          <td class="govuk-table__cell">1539</td>
+          <td class="govuk-table__cell">1265</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div> #}
+</div>
                 <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
                     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
 
@@ -116,6 +254,7 @@
                     </div>
                     <div id="capacityStatusView" aria-labelledby="ui-id-10" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display:block">
                         <div id="capactityRAG">
+                        
                             <div class="">
                                 <div class="nhsuk-design">
                                     <main class="nhsuk-main-wrapper">
@@ -172,8 +311,10 @@
                                                 <div class="nhsuk-form-group">
                                                     <label for="" class="nhsuk-label">Last Updated By Notes</label>
                                                     <textarea class="nhsuk-textarea" id="example" name="example" rows="5" aria-describedby="example-hint"></textarea>
-                                                    <button id="updateCapacityStatusViaJquery" style="margin-top: 20px;" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-disabled ui-state-disabled" role="button" aria-disabled="true" disabled=""><span class="ui-button-text">Save</span></button>
-                                                    
+                                                    {# <button id="updateCapacityStatusViaJquery" style="margin-top: 20px;" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-disabled ui-state-disabled" role="button" aria-disabled="true" disabled=""><span class="ui-button-text">Save</span></button> #}
+                                                    <a class="nhsuk-button" href="#" disabled style="margin-top: 15px">
+                                                        Save
+                                                    </a>
                                                 </div>
 
                                             </div>
@@ -186,76 +327,42 @@
                             
                             
                             <h4 class="underline" title="Service Capacity Grids">Capacity Grids:</h4>
-                            <div id="saveAllSection" data-initial-count="1">
-                                <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveAllCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save all changed
-                                        grids</span></button>&nbsp;
+                            <div id="saveAllSection" data-initial-count="1" class="nhsuk-design">
+                                {# <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveAllCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save all changed
+                                        grids</span></button>&nbsp; #}
 
+                                <a class="nhsuk-button" href="#" style="margin-top: 15px">
+                                    Save all changed grids
+                                </a>
                                 
-                                <style>
-                                    ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
-                                        border: 1px solid #fad42e;
-                                        background: url(images/ui-bg_flat_55_fbec88_40x100.png) 50% 50% repeat-x #fbec88;
-                                        color: #363636;
-                                    }
-                                    .ui-state-highlight .ui-icon {
-                                        background-image: url(images/ui-icons_2e83ff_256x240.png);
-                                    }
-                                    .ui-icon, .ui-widget-content .ui-icon {
-                                        background-image: url(images/ui-icons_4b6c9e_256x240.png);
-                                    }
-                                    .jqueryUiIconFloater {
-                                        float: left;
-                                        margin-right: 0.3em;
-                                    }
-                                    .ui-icon-info {
-                                        background-position: -16px -144px;
-                                    }
-                                    .ui-icon {
-                                        width: 16px;
-                                        height: 16px;
-                                        background-position: 16px 16px;
-                                    }
-                                    .ui-icon {
-                                        display: block;
-                                        text-indent: -99999px;
-                                        overflow: hidden;
-                                        background-repeat: no-repeat;
-                                    }
-                                </style>
-                                <div class="lblGridSaveAllStatus" style="display: none;"><div class="ui-state-highlight ui-corner-all"><span class="ui-icon ui-icon-info jqueryUiIconFloater"><img src="images/ui-icons_2e83ff_256x240.png" alt=""></span>Saved Trauma Unit</div></div>
+                                <div id="lblGridSaveAllStatus"><div class="ui-state-highlight ui-corner-all"><span class="ui-icon ui-icon-info jqueryUiIconFloater"></span>Saved Critical Care</div></div>
                             </div>
                             <div id="populateGridContainersViaJquery">
 
                                 <div id="gridLoadError" class="red small-font"></div>
                                 <div class="capacityInputterGrid">
                                     <div class="capacityGridName">
-                                        <span class="fontBold" title="Grid ID 1761 : Trauma Unit">Trauma Unit</span>
+                                        <span class="fontBold" title="Grid ID 1761 : Critical Care">Critical
+                                            Care</span>
                                         <span class="small-font" title="Date/Time grid was last updated or verified">(last updated: <span id="lastUpdated1761">02 Mar 2021 08:05:33</span>)</span>
                                     </div>
                                 </div>
                                 
-                                <div data-name="Trauma Unit">
+                                <div data-name="Critical Care">
                                     <div class="nhsuk-design">
 
                                         <!--<div class="nhsuk-width-container">-->
                                         <div class="">
                                             <main class="nhsuk-main-wrapper">
                                                 <div class="nhsuk-grid-row">
-                                                    <div class="nhsuk-grid-column-two-thirds
+                                                    <div class="nhsuk-grid-column-three-quarters
                                                     ">
                                                         {% for key, value in critical %}
                                                             <div class="nhsuk-form-group">
-                                                                <div class="nhsuk-grid-row">
-                                                                    <div class="nhsuk-grid-column-three-quarters">
-                                                                        <label class="nhsuk-label" for={{key}}>
-                                                                            {{ key }} 
-                                                                        </label>
-                                                                    </div>
-
-                                                                    <div class="nhsuk-grid-column-one-quarter">
-                                                                        <input class="nhsuk-input" id={{key}} name={{key}} type="text" value={{value}}>
-                                                                    </div>
-                                                                </div>
+                                                                <label class="nhsuk-label" for={{key}}>
+                                                                    {{ key }} 
+                                                                </label>
+                                                                <input class="nhsuk-input" id={{key}} name={{key}} type="text" value={{value}}>
                                                             </div>
                                                         {% endfor %}
                                                     </div>
@@ -266,10 +373,14 @@
                                     </div>
                                 </div>
                                 <br class="clear">
-                                <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save grid
-                                    </span></button>
-                         
-                                <div class="lblGridSaveAllStatus" style="display: none;"><div class="ui-state-highlight ui-corner-all"><span class="ui-icon ui-icon-info jqueryUiIconFloater"></span>Saved Trauma Unit</div></div>
+                                {# <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save grid
+                                    </span></button>&nbsp; #}
+                                    <div class="nhsuk-design">
+                                <a class="nhsuk-button nhsuk-design" id="saveGrid" href="#">
+                                    Save Grid
+                                </a>    
+                                <div id="lblGridSaveStatus1761"></div>
+                                </div>
                                 <br>
                                 <hr class="clear">
                                 <br>

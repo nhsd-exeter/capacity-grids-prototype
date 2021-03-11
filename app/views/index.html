@@ -110,6 +110,10 @@
             transition: 0.3s ease;
         }
 
+        .thumb.disabled, .thumb.disabled:hover {
+            cursor: default !important;
+        }
+
         .center {
             text-align: center;
             margin: auto;
@@ -230,6 +234,48 @@
                     </div>
                 </div>
             </div>
+
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-full">
+
+                    <div class="nhsuk-grid-row">
+                        <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
+                            <div class="thumb disabled">
+                                <span disabled>
+                                    <img src="images/cs0.png" alt="">
+                                    <span>Capacity Status <br> *Version 3* <br> WIP: Coming Soon</span>
+                                </span>
+                            </div>
+                            {# <a class="launch" href="capacity-status-original-mobile" target="_blank">View Mobile</a>
+                            <a class="launch" href="capacity-status-original-tablet" target="_blank">View Tablet</a> #}
+                        </div>
+
+                        <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
+                            <div class="thumb">
+                                <a href="capacity-status-v4">
+                                    <img src="images/cs2.png" alt="">
+                                    <span>Capacity Status <br> *Version 4*</span>
+                                </a>
+                            </div>
+                            <a class="launch" href="capacity-status-v4-mobile" target="_blank">View Mobile</a>
+                            <a class="launch" href="capacity-status-v4-tablet" target="_blank">View Tablet</a>
+                        </div>
+                        {# <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
+                            <div class="thumb">
+                                <a href="capacity-status-v2">
+                                    <img src="images/cs2.png" alt="">
+                                    <span>Capacity Status <br> *Version 2*</span>
+                                </a>
+                            </div>
+                            <a class="launch" href="capacity-status-v2-mobile" target="_blank">View Mobile</a>
+                            <a class="launch" href="capacity-status-v2-tablet" target="_blank">View Tablet</a>
+                        </div> #}
+
+
+                    </div>
+                </div>
+            </div>
+
             <hr>
             <!-- Change Log -->
             <div class="nhsuk-grid-row">
@@ -239,6 +285,22 @@
                     </h2>
 
                     <dl class="nhsuk-summary-list">
+
+                        <div class="nhsuk-summary-list__row">
+                            <dt class="nhsuk-summary-list__key">
+                                11/3/21
+                            </dt>
+                            <dd class="nhsuk-summary-list__value">
+                                Increased sample data in V1 and V4 
+                                Added Capcity Status V4 - Stacked Inputs <br/>
+                                Added Capacity Status V3 - WIP<br/>
+                            </dd>
+                            <dd class="nhsuk-summary-list__actions">
+                                <a href="#">
+                                    <!-- Change -->
+                                </a>
+                            </dd>
+                        </div>
 
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">
