@@ -1,0 +1,307 @@
+
+{% set appPage = true %}
+{% set navSearch = true %}
+
+{% set critical = {
+    'Are you currently accepting primary triage candidate positive major trauma patients?': 'Yes',
+    'TU OPEL status': '0',
+    'Number of Major Trauma Inpatients': '2',
+    'Number of Major Trauma Inpatients on the Intensive Care Unit (ICU)': '1',
+    'Number of Patients waiting for specialist rehabilitation': '',
+    'Is it planned that your site can accept Primary triaged candidate positive major trauma Patients for the next 24 hours (Yes/No)': '',
+    'Is it planned that your site will have staff to support critical secondary transfers for the next 24 hours (Yes/No)': 'Yes',
+    'Number of trauma Inpatients awaiting transfer to Major Trauma Centre': 'Yes',
+    'Comments regarding trauma': '',
+    'L3 beds empty and available': '0',
+    'L2 beds empty and available': '0',
+    'Total L3/L2 Mix': '6',
+    'L3 patients on unit': '3',
+    'L2 patients on unit': '2',
+    'L1/0 patients in unit': '1',
+    'L3 patients outside unit': '0',
+    'L2 patients outside unit': '0',
+    'Beds committed': '0'
+    }
+%}
+
+{% set public = {
+    'Type': 'Trauma Unit (CC)',
+    'Service ID': '1384256819',
+    'ODS Code': '',
+    'Created by': 'ROBOT on 12-11-2013 11:46',
+    'Status': 'Active',
+    'Modified by': 'capacityuser on 02-03-2021 08:05'
+    }
+%}
+
+{% extends 'layout.html' %}
+
+{% block beforeContent %}
+<style>
+/* Tablet overrides */
+@media only screen and (max-width: 641px) {
+  #header {
+    width: 100%;
+  }
+} 
+</style>
+{% endblock %}
+
+{% block outerContent %}
+{% endblock %}
+
+{% block content %}
+
+<div class=searchwrapper>
+    <!-- LEFT SIDEBAR -->
+    {% include "includes/left.html" %}
+    <div id="paneToggle"><span class="paneToggle" title="Show/Hide Map"><<</span></div>
+    <!-- CONTENT -->
+    <div id="resizeMapsViaJquery" class="rightCanvas" style="height:1286px">
+        <div id="nameSearchResult" style="display:block">
+            <div class="errorMessages sf-hidden"></div>
+            <div class="searchResults">
+                <div id="serviceBasicDetails" class="orgDetails">
+                    <div class="orgName">
+                        <h2>SE KM Darent Valley Hospital - General ICU</h2>
+                    </div>
+
+                    
+                    <div class="nhsuk-design">
+                        <h3 style="background: none; color: black">Public Name</h3>
+                        <div class="nhsuk-grid-row">
+                            {% for key, value in public %}
+                                <div class="nhsuk-grid-column-one-third">
+                                    <div class="nhsuk-grid-row nhsuk-u-margin-bottom-3">
+                                        <div class="nhsuk-grid-column-one-third">
+                                            <strong class="orgTopLabel">{{ key }}</strong>
+                                        </div>
+                                        <div class="nhsuk-grid-column-two-thirds">
+                                            <span class="orgTopText">{{ value }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {# <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
+                            {% for key, value in public %}
+                                <div class="nhsuk-summary-list__row">
+                                    <dt class="nhsuk-summary-list__key">
+                                        {{ key }}
+                                    </dt>
+                                    <dd class="nhsuk-summary-list__value">
+                                        {{ value }}
+                                    </dd>
+                                </div>
+                            {% endfor %}
+                        </dl> #}
+                    </div>
+                </div>
+            </div>
+                <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+                    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+
+                        <li id="demographicDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="demographicDetailsView" aria-labelledby="ui-id-9" aria-selected="false"><a href="demographic-details" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-9">Demographic Details</a></li>
+                        <li id="capacityStatus" class="ui-state-default ui-corner-top ui-state-focus ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="capacityStatusView" aria-labelledby="ui-id-10" aria-selected="true"><a href="capacity-status" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-10">Capacity Status</a></li>
+                        {# <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-11">Capacity Grids</a></li> #}
+                        <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-11">Service Attributes</a></li>
+                        <li id="endPointDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="endPointDetailsView" aria-labelledby="ui-id-12" aria-selected="false"><a href="#endPointDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-12">Endpoint Details</a></li>
+                        <li id="alignedServices" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="alignedServicesView" aria-labelledby="ui-id-13" aria-selected="false"><a href="#alignedServicesView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-13">Search Rankings</a></li>
+                        <li id="changeHistory" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="changeHistoryView" aria-labelledby="ui-id-14" aria-selected="false"><a href="#changeHistoryView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-14">Change History</a></li>
+                    </ul>
+                    <div id="demographicDetailsView" aria-labelledby="ui-id-9" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
+
+                    </div>
+                    <div id="serviceAdminView">
+                    </div>
+                    <div id="capacityStatusView" aria-labelledby="ui-id-10" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display:block">
+                        <div id="capactityRAG">
+                            <div class="">
+                                <div class="nhsuk-design">
+                                    <main class="nhsuk-main-wrapper">
+                                        <div class="nhsuk-grid-row">
+                                            <div class="nhsuk-grid-column-three-quarters">
+                                                <div class="nhsuk-form-group">
+                                                    <label for="" class="nhsuk-label">Status</label>
+                                                    <fieldset class="nhsuk-fieldset">
+                                                        <div class="nhsuk-radios nhsuk-radios--inline">
+                                                            <div style="background-color: green; padding: 10px; display:inline-block">
+                                                                <div class="nhsuk-radios__item" style="margin-right: 0;">
+                                                                    <input class="nhsuk-radios__input" id="green" name="status" type="radio" value="green">
+                                                                    <label class="nhsuk-label nhsuk-radios__label" for="green" style="padding: 5px; color: white">
+                                                                    Green
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div style="background-color: orange; padding: 10px; display:inline-block">
+                                                                <div class="nhsuk-radios__item" style="background-color: orange; margin-right: 0;">
+                                                                    <input class="nhsuk-radios__input" id="amber" name="status" type="radio" value="amber">
+                                                                    <label class="nhsuk-label nhsuk-radios__label" for="amber" style="padding: 5px; color: white">
+                                                                    Amber
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div style="background-color: red; padding: 10px; display:inline-block">
+                                                                <div class="nhsuk-radios__item" style="background-color: red; margin-right: 0;">
+                                                                    <input class="nhsuk-radios__input" id="red" name="status" type="radio" value="red">
+                                                                    <label class="nhsuk-label nhsuk-radios__label" for="red" style="padding: 5px; color: white">
+                                                                    Red
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+
+                                                <div class="nhsuk-form-group">
+                                                    <label for="" class="nhsuk-label">Reset Time At</label>
+                                                    <div class="nhsuk-hint">Reset Time must be within the next 120 hours (5 days)</div>
+                                                    
+                                                   
+                                                    <input class="nhsuk-input nhsuk-input--width-4" id="example" name="example" type="text" readonly>
+                                                    <select class="nhsuk-select nhsuk-input--width-4" id="select-1" name="select-1" disabled>
+                                                        <option value="1">--</option>
+                                                        <option value="2">23</option>
+                                                    </select>
+                                                    <select class="nhsuk-select nhsuk-input--width-4" id="select-2" name="select-2" disabled>
+                                                        <option value="1">--</option>
+                                                        <option value="1">45</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="nhsuk-form-group">
+                                                    <label for="" class="nhsuk-label">Last Updated By Notes</label>
+                                                    <textarea class="nhsuk-textarea" id="example" name="example" rows="5" aria-describedby="example-hint"></textarea>
+                                                    <button id="updateCapacityStatusViaJquery" style="margin-top: 20px;" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-disabled ui-state-disabled" role="button" aria-disabled="true" disabled=""><span class="ui-button-text">Save</span></button>
+                                                    
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </main>
+                                    
+                                </div>
+                            </div>
+
+                            
+                            
+                            <h4 class="underline" title="Service Capacity Grids">Capacity Grids:</h4>
+                            <div id="saveAllSection" data-initial-count="1">
+                                <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveAllCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save all changed
+                                        grids</span></button>&nbsp;
+
+                                
+                                <style>
+                                    ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+                                        border: 1px solid #fad42e;
+                                        background: url(images/ui-bg_flat_55_fbec88_40x100.png) 50% 50% repeat-x #fbec88;
+                                        color: #363636;
+                                    }
+                                    .ui-state-highlight .ui-icon {
+                                        background-image: url(images/ui-icons_2e83ff_256x240.png);
+                                    }
+                                    .ui-icon, .ui-widget-content .ui-icon {
+                                        background-image: url(images/ui-icons_4b6c9e_256x240.png);
+                                    }
+                                    .jqueryUiIconFloater {
+                                        float: left;
+                                        margin-right: 0.3em;
+                                    }
+                                    .ui-icon-info {
+                                        background-position: -16px -144px;
+                                    }
+                                    .ui-icon {
+                                        width: 16px;
+                                        height: 16px;
+                                        background-position: 16px 16px;
+                                    }
+                                    .ui-icon {
+                                        display: block;
+                                        text-indent: -99999px;
+                                        overflow: hidden;
+                                        background-repeat: no-repeat;
+                                    }
+                                </style>
+                                <div class="lblGridSaveAllStatus" style="display: none;"><div class="ui-state-highlight ui-corner-all"><span class="ui-icon ui-icon-info jqueryUiIconFloater"><img src="images/ui-icons_2e83ff_256x240.png" alt=""></span>Saved Trauma Unit</div></div>
+                            </div>
+                            <div id="populateGridContainersViaJquery">
+
+                                <div id="gridLoadError" class="red small-font"></div>
+                                <div class="capacityInputterGrid">
+                                    <div class="capacityGridName">
+                                        <span class="fontBold" title="Grid ID 1761 : Trauma Unit">Trauma Unit</span>
+                                        <span class="small-font" title="Date/Time grid was last updated or verified">(last updated: <span id="lastUpdated1761">02 Mar 2021 08:05:33</span>)</span>
+                                    </div>
+                                </div>
+                                
+                                <div data-name="Trauma Unit">
+                                    <div class="nhsuk-design">
+
+                                        <!--<div class="nhsuk-width-container">-->
+                                        <div class="">
+                                            <main class="nhsuk-main-wrapper">
+                                                <div class="nhsuk-grid-row">
+                                                    <div class="nhsuk-grid-column-two-thirds
+                                                    ">
+                                                        {% for key, value in critical %}
+                                                            <div class="nhsuk-form-group">
+                                                                <div class="nhsuk-grid-row">
+                                                                    <div class="nhsuk-grid-column-three-quarters">
+                                                                        <label class="nhsuk-label" for={{key}}>
+                                                                            {{ key }} 
+                                                                        </label>
+                                                                    </div>
+
+                                                                    <div class="nhsuk-grid-column-one-quarter">
+                                                                        <input class="nhsuk-input" id={{key}} name={{key}} type="text" value={{value}}>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </main>
+                                        </div>
+  
+                                    </div>
+                                </div>
+                                <br class="clear">
+                                <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save grid
+                                    </span></button>
+                         
+                                <div class="lblGridSaveAllStatus" style="display: none;"><div class="ui-state-highlight ui-corner-all"><span class="ui-icon ui-icon-info jqueryUiIconFloater"></span>Saved Trauma Unit</div></div>
+                                <br>
+                                <hr class="clear">
+                                <br>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div id="endPointDetailsView" aria-labelledby="ui-id-12" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
+
+
+
+
+                    </div>
+                    <div id="alignedServicesView" aria-labelledby="ui-id-13" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
+                    </div>
+                    <div id="attributeDetailsView" aria-labelledby="ui-id-11" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
+
+
+
+
+                    </div>
+                    <div id="changeHistoryView" aria-labelledby="ui-id-14" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="allSearchResults" style="overflow-x:hidden;display:none"></div>
+    </div>
+
+</div>
+{% endblock %}
