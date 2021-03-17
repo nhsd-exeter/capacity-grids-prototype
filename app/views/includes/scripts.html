@@ -28,4 +28,14 @@
         $('.lblGridSaveAllStatus').fadeIn('fast').delay(5000).fadeOut('fast');
     });
 
+    // GDS Tabs (TODO: Not working using gds js!!)
+    $('li.govuk-tabs__list-item').click(function(){
+        $('li.govuk-tabs__list-item').removeClass('govuk-tabs__list-item--selected');         
+        $(this).addClass('govuk-tabs__list-item--selected');
+
+        $('div.govuk-tabs__panel').addClass('govuk-tabs__panel--hidden');
+        let tab = $(this).find('a').attr('href').substring(1);
+        $("[id='" + tab + "']").removeClass('govuk-tabs__panel--hidden');
+    });
+
 </script>

@@ -57,7 +57,7 @@
     {% include "includes/left.html" %}
     <div id="paneToggle"><span class="paneToggle" title="Show/Hide Map"><<</span></div>
     <!-- CONTENT -->
-    <div id="resizeMapsViaJquery" class="rightCanvas" style="height:1286px">
+    <div id="resizeMapsViaJquery" class="rightCanvas" style="height:auto">
         <div id="nameSearchResult" style="display:block">
             <div class="errorMessages sf-hidden"></div>
             <div class="searchResults">
@@ -65,10 +65,10 @@
                     <div class="orgName">
                         <h2>SE KM Darent Valley Hospital - General ICU</h2>
                     </div>
-
-                    
+<h2 style="background: none; color: black">Public Name</h2>
+                    <!-- Control Details -->
                     <div class="nhsuk-design">
-                        <h3 style="background: none; color: black">Public Name</h3>
+                        
                         <div class="nhsuk-grid-row">
                             {% for key, value in public %}
                                 <div class="nhsuk-grid-column-one-third">

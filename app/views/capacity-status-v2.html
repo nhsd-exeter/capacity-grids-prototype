@@ -1,5 +1,6 @@
 {% set appPage = true %}
 {% set navSearch = true %}
+{% set m111 = true %}
 
 {% set critical = {
 'L3 beds empty and available': '0',
@@ -24,6 +25,48 @@
 }
 %}
 
+{% set contact = {
+'Address': 'Darenth Wood Road, Dartford, DA2 8DA',
+'Postal Locality': 'DARENTH',
+'Public Phone': '01322 428100 x 8404',
+'Non-Public Phone': '-',
+'Fax': '-',
+'Non-Public Email': '-',
+'Website': '-'
+}
+%}
+
+
+
+
+
+
+
+
+
+{% set openHours = {
+'Monday': 'OPEN 24 HOURS',
+'Tuesday': 'OPEN 24 HOURS',
+'Wednesday': 'OPEN 24 HOURS',
+'Thursday': 'OPEN 24 HOURS',
+'Friday': 'OPEN 24 HOURS',
+'Saturday': 'OPEN 24 HOURS',
+'Sunday': 'OPEN 24 HOURS'
+}
+%}
+
+{% set publicHols = {
+'02-04-2021': 'Closed',
+'04-04-2021': 'Closed',
+'05-04-2021': 'Closed',
+'03-05-2021': 'Closed',
+'31-05-2021': 'Closed',
+'30-08-2021': 'Closed',
+'27-12-2021': 'Closed',
+'28-12-2021': 'Closed'
+}
+%}
+
 {% extends 'layout.html' %}
 
 {% block beforeContent %}
@@ -33,15 +76,34 @@
 <!--[if IE 8]>
       <link rel="stylesheet" href="govuk-frontend-ie8-3.11.0.min.css">
     <![endif]-->
-    <script src="govuk-frontend-3.11.0.min.js"></script>
+
 {% endblock %}
 
 {% block outerContent %}
-    
+
 {% endblock %}
 
 {% block content %}
 
+<style>
+    .nhsuk-form-group:nth-child(even) {
+        background: #ececec
+    }
+
+    .nhsuk-form-group {
+        padding: 10px
+    }
+
+    .panel {
+        padding: 10px;
+        background: #ececec
+    }
+
+    #paneToggle {
+        display: none;
+    }
+</style>
+<script src="govuk-frontend-3.11.0.min.js"></script>
 <div class=searchwrapper>
     <!-- LEFT SIDEBAR -->
     {% include "includes/left-nhsuk.html" %}
@@ -58,15 +120,17 @@
                         <h2>SE KM Darent Valley Hospital - General ICU</h2>
                     </div>
 
-
                     <div class="nhsuk-design">
                         <h3 style="background: none; color: black">Public Name</h3>
+
+                        <!-- Control Details -->
                         <div class="nhsuk-grid-row">
                             {% for key, value in public %}
                             <div class="nhsuk-grid-column-one-third">
                                 <div class="nhsuk-grid-row nhsuk-u-margin-bottom-3">
                                     <div class="nhsuk-grid-column-one-third">
-                                        <strong class="orgTopLabel">{{ key }}</strong>
+                                        <strong class="orgTopLabel" style="font-weight: bolder !important">{{ key
+                                            }}</strong>
                                     </div>
                                     <div class="nhsuk-grid-column-two-thirds">
                                         <span class="orgTopText">{{ value }}</span>
@@ -75,425 +139,718 @@
                             </div>
                             {% endfor %}
                         </div>
-                        {# <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
-                            {% for key, value in public %}
-                            <div class="nhsuk-summary-list__row">
-                                <dt class="nhsuk-summary-list__key">
-                                    {{ key }}
-                                </dt>
-                                <dd class="nhsuk-summary-list__value">
-                                    {{ value }}
-                                </dd>
-                            </div>
-                            {% endfor %}
-                        </dl> #}
+
                     </div>
                 </div>
-
                 <!-- GDS Tabs -->
-                <div class="govuk-tabs" data-module="govuk-tabs">
-                    <h2 class="govuk-tabs__title">
-                        Contents
-                    </h2>
-                    <ul class="govuk-tabs__list">
-                        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-                            <a class="govuk-tabs__tab" href="#past-day">
-                                Demographic Details
-                            </a>
-                        </li>
-                        <li class="govuk-tabs__list-item">
-                            <a class="govuk-tabs__tab" href="#past-week">
-                                Capacity Status
-                            </a>
-                        </li>
-                        <li class="govuk-tabs__list-item">
-                            <a class="govuk-tabs__tab" href="#past-month">
-                                Change History
-                            </a>
-                        </li>
-                        {# <li class="govuk-tabs__list-item">
-                            <a class="govuk-tabs__tab" href="#past-year">
-                                Past year
-                            </a>
-                        </li> #}
-                    </ul>
-                    <div class="govuk-tabs__panel" id="past-day">
-                        <h2 class="govuk-heading-l">Demographic Details</h2>
-                        <table class="govuk-table">
-                            <thead class="govuk-table__head">
-                                <tr class="govuk-table__row">
-                                    <th scope="col" class="govuk-table__header">Case manager</th>
-                                    <th scope="col" class="govuk-table__header">Cases opened</th>
-                                    <th scope="col" class="govuk-table__header">Cases closed</th>
-                                </tr>
-                            </thead>
-                            <tbody class="govuk-table__body">
-                                <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell">David Francis</td>
-                                    <td class="govuk-table__cell">3</td>
-                                    <td class="govuk-table__cell">0</td>
-                                </tr>
-                                <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell">Paul Farmer</td>
-                                    <td class="govuk-table__cell">1</td>
-                                    <td class="govuk-table__cell">0</td>
-                                </tr>
-                                <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell">Rita Patel</td>
-                                    <td class="govuk-table__cell">2</td>
-                                    <td class="govuk-table__cell">0</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="">
+                    <main class="">
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-full">
+                                <div class="govuk-tabs" data-module="govuk-tabs">
+                                    <h2 class="govuk-tabs__title">
+                                        Contents
+                                    </h2>
+                                    <ul class="govuk-tabs__list">
+                                        <li class="govuk-tabs__list-item">
+                                            <a class="govuk-tabs__tab" href="#past-day">
+                                                Demographic Details
+                                            </a>
+                                        </li>
+                                        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                                            <a class="govuk-tabs__tab" href="#past-week">
+                                                Capacity Status
+                                            </a>
+                                        </li>
+                                        <li class="govuk-tabs__list-item">
+                                            <a class="govuk-tabs__tab" href="#past-month">
+                                                Capacity Grids
+                                            </a>
+                                        </li>
+                                        <li class="govuk-tabs__list-item">
+                                            <a class="govuk-tabs__tab" href="#past-year">
+                                                Change History
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-day">
+                                        <h2 class="govuk-heading-l">Demographic Details</h2>
 
-                    </div>
-                    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
-                        <h2 class="govuk-heading-l">Capacity Status</h2>
-                        <table class="govuk-table">
-                            <thead class="govuk-table__head">
-                                <tr class="govuk-table__row">
-                                    <th scope="col" class="govuk-table__header">Case manager</th>
-                                    <th scope="col" class="govuk-table__header">Cases opened</th>
-                                    <th scope="col" class="govuk-table__header">Cases closed</th>
-                                </tr>
-                            </thead>
-                            <tbody class="govuk-table__body">
-                                <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell">David Francis</td>
-                                    <td class="govuk-table__cell">24</td>
-                                    <td class="govuk-table__cell">18</td>
-                                </tr>
-                                <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell">Paul Farmer</td>
-                                    <td class="govuk-table__cell">16</td>
-                                    <td class="govuk-table__cell">20</td>
-                                </tr>
-                                <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell">Rita Patel</td>
-                                    <td class="govuk-table__cell">24</td>
-                                    <td class="govuk-table__cell">27</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        <div class="nhsuk-design">
+                                            <div class="nhsuk-grid-row">
+                                                <div class="nhsuk-grid-column-two-thirds">
+                                                    <div class="nhsuk-grid-row">
+                                                        <div class="nhsuk-grid-column-one-half">
 
-                    </div>
-                    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-month">
-                        <h2 class="govuk-heading-l">Change History</h2>
-                        <table class="govuk-table">
-                            <thead class="govuk-table__head">
-                                <tr class="govuk-table__row">
-                                    <th scope="col" class="govuk-table__header">Case manager</th>
-                                    <th scope="col" class="govuk-table__header">Cases opened</th>
-                                    <th scope="col" class="govuk-table__header">Cases closed</th>
-                                </tr>
-                            </thead>
-                            <tbody class="govuk-table__body">
-                                <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell">David Francis</td>
-                                    <td class="govuk-table__cell">98</td>
-                                    <td class="govuk-table__cell">95</td>
-                                </tr>
-                                <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell">Paul Farmer</td>
-                                    <td class="govuk-table__cell">122</td>
-                                    <td class="govuk-table__cell">131</td>
-                                </tr>
-                                <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell">Rita Patel</td>
-                                    <td class="govuk-table__cell">126</td>
-                                    <td class="govuk-table__cell">142</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-                    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-year">
-                        <h2 class="govuk-heading-l">Past year</h2>
-                        <table class="govuk-table">
-                            <thead class="govuk-table__head">
-                                <tr class="govuk-table__row">
-                                    <th scope="col" class="govuk-table__header">Case manager</th>
-                                    <th scope="col" class="govuk-table__header">Cases opened</th>
-                                    <th scope="col" class="govuk-table__header">Cases closed</th>
-                                </tr>
-                            </thead>
-                            <tbody class="govuk-table__body">
-                                <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell">David Francis</td>
-                                    <td class="govuk-table__cell">1380</td>
-                                    <td class="govuk-table__cell">1472</td>
-                                </tr>
-                                <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell">Paul Farmer</td>
-                                    <td class="govuk-table__cell">1129</td>
-                                    <td class="govuk-table__cell">1083</td>
-                                </tr>
-                                <tr class="govuk-table__row">
-                                    <td class="govuk-table__cell">Rita Patel</td>
-                                    <td class="govuk-table__cell">1539</td>
-                                    <td class="govuk-table__cell">1265</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-
-                </div>
-
-
-                <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-                    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"
-                        role="tablist">
-
-                        <li id="demographicDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1"
-                            aria-controls="demographicDetailsView" aria-labelledby="ui-id-9" aria-selected="false"><a
-                                href="demographic-details" class="ui-tabs-anchor" role="presentation" tabindex="-1"
-                                id="ui-id-9">Demographic Details</a></li>
-                        <li id="capacityStatus"
-                            class="ui-state-default ui-corner-top ui-state-focus ui-tabs-active ui-state-active"
-                            role="tab" tabindex="0" aria-controls="capacityStatusView" aria-labelledby="ui-id-10"
-                            aria-selected="true"><a href="capacity-status" class="ui-tabs-anchor" role="presentation"
-                                tabindex="-1" id="ui-id-10">Capacity Status</a></li>
-                        {# <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1"
-                            aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a
-                                href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1"
-                                id="ui-id-11">Capacity Grids</a></li> #}
-                        <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1"
-                            aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a
-                                href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1"
-                                id="ui-id-11">Service Attributes</a></li>
-                        <li id="endPointDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1"
-                            aria-controls="endPointDetailsView" aria-labelledby="ui-id-12" aria-selected="false"><a
-                                href="#endPointDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1"
-                                id="ui-id-12">Endpoint Details</a></li>
-                        <li id="alignedServices" class="ui-state-default ui-corner-top" role="tab" tabindex="-1"
-                            aria-controls="alignedServicesView" aria-labelledby="ui-id-13" aria-selected="false"><a
-                                href="#alignedServicesView" class="ui-tabs-anchor" role="presentation" tabindex="-1"
-                                id="ui-id-13">Search Rankings</a></li>
-                        <li id="changeHistory" class="ui-state-default ui-corner-top" role="tab" tabindex="-1"
-                            aria-controls="changeHistoryView" aria-labelledby="ui-id-14" aria-selected="false"><a
-                                href="#changeHistoryView" class="ui-tabs-anchor" role="presentation" tabindex="-1"
-                                id="ui-id-14">Change History</a></li>
-                    </ul>
-                    <div id="demographicDetailsView" aria-labelledby="ui-id-9"
-                        class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false"
-                        aria-hidden="true" style="display:none">
-
-                    </div>
-                    <div id="serviceAdminView">
-                    </div>
-                    <div id="capacityStatusView" aria-labelledby="ui-id-10"
-                        class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true"
-                        aria-hidden="false" style="display:block">
-                        <div id="capactityRAG">
-
-                            <div class="">
-                                <div class="nhsuk-design">
-                                    <main class="nhsuk-main-wrapper">
-                                        <div class="nhsuk-grid-row">
-                                            <div class="nhsuk-grid-column-three-quarters">
-                                                <div class="nhsuk-form-group">
-                                                    <label for="" class="nhsuk-label">Status</label>
-                                                    <fieldset class="nhsuk-fieldset">
-                                                        <div class="nhsuk-radios nhsuk-radios--inline">
-                                                            <div
-                                                                style="background-color: green; padding: 10px; display:inline-block">
-                                                                <div class="nhsuk-radios__item"
-                                                                    style="margin-right: 0;">
-                                                                    <input class="nhsuk-radios__input" id="green"
-                                                                        name="status" type="radio" value="green">
-                                                                    <label class="nhsuk-label nhsuk-radios__label"
-                                                                        for="green" style="padding: 5px; color: white">
-                                                                        Green
-                                                                    </label>
+                                                            <h3>Contact Details</h3>
+                                                            {% for key, value in contact %}
+                                                            <div class="nhsuk-grid-row">
+                                                                <div class="nhsuk-grid-column-one-half">
+                                                                    <strong>{{ key }}</strong>
+                                                                </div>
+                                                                <div class="nhsuk-grid-column-one-half"
+                                                                    style="text-align: left">
+                                                                    <p>{{ value }}</p>
                                                                 </div>
                                                             </div>
-                                                            <div
-                                                                style="background-color: orange; padding: 10px; display:inline-block">
-                                                                <div class="nhsuk-radios__item"
-                                                                    style="background-color: orange; margin-right: 0;">
-                                                                    <input class="nhsuk-radios__input" id="amber"
-                                                                        name="status" type="radio" value="amber">
-                                                                    <label class="nhsuk-label nhsuk-radios__label"
-                                                                        for="amber" style="padding: 5px; color: white">
-                                                                        Amber
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                style="background-color: red; padding: 10px; display:inline-block">
-                                                                <div class="nhsuk-radios__item"
-                                                                    style="background-color: red; margin-right: 0;">
-                                                                    <input class="nhsuk-radios__input" id="red"
-                                                                        name="status" type="radio" value="red">
-                                                                    <label class="nhsuk-label nhsuk-radios__label"
-                                                                        for="red" style="padding: 5px; color: white">
-                                                                        Red
-                                                                    </label>
-                                                                </div>
-                                                            </div>
+                                                            {% endfor %}
+
+                                                            <h3>Public Facing Information</h3>
+                                                            <p>No instructions specified</p>
+
+                                                            <h3>Parent Services</h3>
+                                                            <ul>
+                                                                <li><a href="">National Critical Care & Burns</a>
+                                                                    <ul>
+                                                                        <li><a href="">Kent and Medway Area Network</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+
                                                         </div>
-                                                    </fieldset>
+                                                        <div class="nhsuk-grid-column-one-half">
+
+                                                            <h3>Opening Times</h3>
+                                                            {% for key, value in openHours %}
+                                                            <div class="nhsuk-grid-row">
+                                                                <div class="nhsuk-grid-column-one-half">
+                                                                    <strong>{{ key }}</strong>
+                                                                </div>
+                                                                <div class="nhsuk-grid-column-one-half"
+                                                                    style="text-align: right">
+                                                                    <p>{{ value }}</p>
+                                                                </div>
+                                                            </div>
+                                                            {% endfor %}
+
+                                                            <h3>Public Holiday Dates</h3>
+                                                            {% for key, value in publicHols %}
+                                                            <div class="nhsuk-grid-row">
+                                                                <div class="nhsuk-grid-column-one-half">
+                                                                    <strong>{{ key }}</strong>
+                                                                </div>
+                                                                <div class="nhsuk-grid-column-one-half"
+                                                                    style="text-align: right">
+                                                                    <p>{{ value }}</p>
+                                                                </div>
+                                                            </div>
+                                                            {% endfor %}
+
+                                                            <h3>Referral Information</h3>
+                                                            <p>No instructions specified</p>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
-
-                                                <div class="nhsuk-form-group">
-                                                    <label for="" class="nhsuk-label">Reset Time At</label>
-                                                    <div class="nhsuk-hint">Reset Time must be within the next 120 hours
-                                                        (5 days)</div>
+                                            </div>
+                                        </div>
 
 
-                                                    <input class="nhsuk-input nhsuk-input--width-4" id="example"
-                                                        name="example" type="text" readonly>
-                                                    <select class="nhsuk-select nhsuk-input--width-4" id="select-1"
-                                                        name="select-1" disabled>
-                                                        <option value="1">--</option>
-                                                        <option value="2">23</option>
-                                                    </select>
-                                                    <select class="nhsuk-select nhsuk-input--width-4" id="select-2"
-                                                        name="select-2" disabled>
-                                                        <option value="1">--</option>
-                                                        <option value="1">45</option>
-                                                    </select>
-                                                </div>
 
-                                                <div class="nhsuk-form-group">
-                                                    <label for="" class="nhsuk-label">Last Updated By Notes</label>
-                                                    <textarea class="nhsuk-textarea" id="example" name="example"
-                                                        rows="5" aria-describedby="example-hint"></textarea>
-                                                    {# <button id="updateCapacityStatusViaJquery"
-                                                        style="margin-top: 20px;"
-                                                        class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-disabled ui-state-disabled"
-                                                        role="button" aria-disabled="true" disabled=""><span
-                                                            class="ui-button-text">Save</span></button> #}
-                                                    <a class="nhsuk-button" href="#" disabled style="margin-top: 15px">
-                                                        Save
-                                                    </a>
-                                                </div>
+
+                                    </div>
+                                    <div class="govuk-tabs__panel" id="past-week">
+                                        <!-- Status Section -->
+                                        <h2 class="govuk-heading-l">Capacity Status</h2>
+                                        <div class="">
+                                            <div class="nhsuk-design">
+                                                <main class="nhsuk-main-wrapper">
+                                                    <div class="nhsuk-grid-row">
+                                                        <div class="nhsuk-grid-column-three-quarters panel">
+                                                            <div class="nhsuk-form-group">
+                                                                <div class="nhsuk-hint">
+                                                                    {{ "You are not able to set the status information
+                                                                    below." if m111 else "You are able to set the status
+                                                                    information below." }}
+                                                                </div>
+                                                                <label for="" class="nhsuk-label">Status</label>
+                                                                <fieldset class="nhsuk-fieldset">
+                                                                    <div class="nhsuk-radios nhsuk-radios--inline">
+                                                                        <div
+                                                                            style="background-color: green; padding: 10px; display:inline-block">
+                                                                            <div class="nhsuk-radios__item"
+                                                                                style="margin-right: 0;">
+                                                                                <input class="nhsuk-radios__input"
+                                                                                    id="green" name="status"
+                                                                                    type="radio" value="green" {% if
+                                                                                    m111%}disabled{% endif %}>
+                                                                                <label
+                                                                                    class="nhsuk-label nhsuk-radios__label"
+                                                                                    for="green"
+                                                                                    style="padding: 5px; color: white">
+                                                                                    Green
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            style="background-color: orange; padding: 10px; display:inline-block">
+                                                                            <div class="nhsuk-radios__item"
+                                                                                style="background-color: orange; margin-right: 0;">
+                                                                                <input class="nhsuk-radios__input"
+                                                                                    id="amber" name="status"
+                                                                                    type="radio" value="amber" {% if
+                                                                                    m111%}disabled{% endif %}>
+                                                                                <label
+                                                                                    class="nhsuk-label nhsuk-radios__label"
+                                                                                    for="amber"
+                                                                                    style="padding: 5px; color: white">
+                                                                                    Amber
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            style="background-color: red; padding: 10px; display:inline-block">
+                                                                            <div class="nhsuk-radios__item"
+                                                                                style="background-color: red; margin-right: 0;">
+                                                                                <input class="nhsuk-radios__input"
+                                                                                    id="red" name="status" type="radio"
+                                                                                    value="red" {% if m111%}disabled{%
+                                                                                    endif %}>
+                                                                                <label
+                                                                                    class="nhsuk-label nhsuk-radios__label"
+                                                                                    for="red"
+                                                                                    style="padding: 5px; color: white">
+                                                                                    Red
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </div>
+
+                                                            <div class="nhsuk-form-group">
+                                                                <label for="" class="nhsuk-label">Reset Time At</label>
+                                                                <div class="nhsuk-hint">Reset Time must be within the
+                                                                    next 120 hours
+                                                                    (5 days)</div>
+
+
+                                                                <input class="nhsuk-input nhsuk-input--width-4"
+                                                                    id="example" name="example" type="text" {% if
+                                                                    m111%}disabled{% endif %}>
+                                                                <select class="nhsuk-select nhsuk-input--width-4"
+                                                                    id="select-1" name="select-1" {% if m111%}disabled{%
+                                                                    endif %}>
+                                                                    <option value="1">--</option>
+                                                                    <option value="2">23</option>
+                                                                </select>
+                                                                <select class="nhsuk-select nhsuk-input--width-4"
+                                                                    id="select-2" name="select-2" {% if m111%}disabled{%
+                                                                    endif %}>
+                                                                    <option value="1">--</option>
+                                                                    <option value="1">45</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="nhsuk-form-group">
+                                                                <label for="" class="nhsuk-label">Last Updated By
+                                                                    Notes</label>
+                                                                <textarea class="nhsuk-textarea" id="example"
+                                                                    name="example" rows="5"
+                                                                    aria-describedby="example-hint" {% if
+                                                                    m111%}disabled{% endif %}></textarea>
+                                                                <a class="nhsuk-button" href="#" {% if m111%}disabled{%
+                                                                    endif %} style="margin-top: 15px">
+                                                                    Save
+                                                                </a>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </main>
 
                                             </div>
                                         </div>
-                                    </main>
 
-                                </div>
-                            </div>
+                                        <h4 class="underline" title="Service Capacity Grids">Capacity Grids:</h4>
+                                        <div id="saveAllSection" data-initial-count="1" class="nhsuk-design">
 
+                                            <a class="nhsuk-button" href="#" style="margin-top: 15px">
+                                                Save all changed grids
+                                            </a>
 
+                                            <div id="lblGridSaveAllStatus">
+                                                <div class="ui-state-highlight ui-corner-all"><span
+                                                        class="ui-icon ui-icon-info jqueryUiIconFloater"></span>Saved
+                                                    Critical Care
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="populateGridContainersViaJquery">
 
-                            <h4 class="underline" title="Service Capacity Grids">Capacity Grids:</h4>
-                            <div id="saveAllSection" data-initial-count="1" class="nhsuk-design">
-                                {# <button
-                                    class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-                                    id="saveAllCapacityGridData" role="button" aria-disabled="false"><span
-                                        class="ui-button-text">Save all changed
-                                        grids</span></button>&nbsp; #}
+                                            <div id="gridLoadError" class="red small-font"></div>
+                                            <div class="capacityInputterGrid">
+                                                <div class="capacityGridName">
+                                                    <span class="fontBold" title="Grid ID 1761 : Critical Care">Critical
+                                                        Care</span>
+                                                    <span class="small-font"
+                                                        title="Date/Time grid was last updated or verified">(last
+                                                        updated: <span id="lastUpdated1761">02 Mar 2021
+                                                            08:05:33</span>)</span>
+                                                </div>
+                                            </div>
 
-                                <a class="nhsuk-button" href="#" style="margin-top: 15px">
-                                    Save all changed grids
-                                </a>
+                                            <div data-name="Critical Care">
+                                                <div class="nhsuk-design">
 
-                                <div id="lblGridSaveAllStatus">
-                                    <div class="ui-state-highlight ui-corner-all"><span
-                                            class="ui-icon ui-icon-info jqueryUiIconFloater"></span>Saved Critical Care
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="populateGridContainersViaJquery">
-
-                                <div id="gridLoadError" class="red small-font"></div>
-                                <div class="capacityInputterGrid">
-                                    <div class="capacityGridName">
-                                        <span class="fontBold" title="Grid ID 1761 : Critical Care">Critical
-                                            Care</span>
-                                        <span class="small-font"
-                                            title="Date/Time grid was last updated or verified">(last updated: <span
-                                                id="lastUpdated1761">02 Mar 2021 08:05:33</span>)</span>
-                                    </div>
-                                </div>
-
-                                <div data-name="Critical Care">
-                                    <div class="nhsuk-design">
-
-                                        <!--<div class="nhsuk-width-container">-->
-                                        <div class="">
-                                            <main class="nhsuk-main-wrapper">
-                                                <div class="nhsuk-grid-row">
-                                                    <div class="nhsuk-grid-column-two-thirds
-                                                    ">
-                                                        {% for key, value in critical %}
-                                                        <div class="nhsuk-form-group">
+                                                    <!--<div class="nhsuk-width-container">-->
+                                                    <div class="">
+                                                        <main class="nhsuk-main-wrapper">
                                                             <div class="nhsuk-grid-row">
-                                                                <div class="nhsuk-grid-column-three-quarters">
-                                                                    <label class="nhsuk-label" for={{key}}>
-                                                                        {{ key }}
-                                                                    </label>
-                                                                </div>
+                                                                <div class="nhsuk-grid-column-two-thirds
+                                                                                            ">
+                                                                    {% for key, value in critical %}
+                                                                    <div class="nhsuk-form-group">
+                                                                        <div class="nhsuk-grid-row">
+                                                                            <div
+                                                                                class="nhsuk-grid-column-three-quarters">
+                                                                                <label class="nhsuk-label" for={{key}}>
+                                                                                    {{ key }}
+                                                                                </label>
+                                                                            </div>
 
-                                                                <div class="nhsuk-grid-column-one-quarter">
-                                                                    <input class="nhsuk-input" id={{key}} name={{key}}
-                                                                        type="text" value={{value}}>
+                                                                            <div class="nhsuk-grid-column-one-quarter">
+                                                                                <input class="nhsuk-input" id={{key}}
+                                                                                    name={{key}} type="text"
+                                                                                    value={{value}}>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    {% endfor %}
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        {% endfor %}
+                                                        </main>
                                                     </div>
+
                                                 </div>
-                                            </main>
+                                            </div>
+                                            <br class="clear">
+                                            <div class="nhsuk-design">
+                                                <a class="nhsuk-button nhsuk-design" id="saveGrid" href="#">
+                                                    Save Grid
+                                                </a>
+                                                <div id="lblGridSaveStatus1761"></div>
+                                            </div>
+                                            <br>
+                                            <hr class="clear">
+                                            <br>
                                         </div>
 
                                     </div>
+                                    <div class="govuk-tabs__panel govuk-tabs__panel--hidden nhsuk-design"
+                                        id="past-month">
+                                        <h2 class="govuk-heading-l">Capacity Grids</h2>
+                                        <p>[CONTENT PLACEHOLDER]</p>
+                                        <!-- Table -->
+                                        {# {{ table({
+                                            responsive: true,
+                                            panel: false,
+                                            caption: "Ibuprofen tablet dosages for children",
+                                            firstCellIsHeader: false,								
+                                            head: [
+                                                {
+                                                    text: "Critical Care"
+                                                },
+                                                {
+                                                    text: "L3 beds empty and available"
+                                                },
+                                                {
+                                                    text: "L2 beds empty and available"
+                                                },
+                                                {
+                                                    text: "Total L3/L2 Mix"
+                                                },
+                                                {
+                                                    text: "L3 patients on unit"
+                                                },
+                                                {
+                                                    text: "L2 patients on unit"
+                                                },
+                                                {
+                                                    text: "L1/0 patients in unit"
+                                                },
+                                                {
+                                                    text: "L3 patients outside unit"
+                                                },
+                                                {
+                                                    text: "L2 patients outside unit"
+                                                },
+                                                {
+                                                    text: "Beds committed"
+                                                },
+                                                {
+                                                    text: "SERVICE NOTES"
+                                                },
+                                                {
+                                                    text: "text"
+                                                }
+                                            ],
+                                            rows: [
+                                                [
+                                                    {
+                                                        header: "Critical Care",
+                                                        text: "EoE E 01. Colchester ITU"
+                                                    },
+                                                    {
+                                                        header: "L3 beds empty and available",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L2 beds empty and available",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "Total L3/L2 Mix",
+                                                        text: "13"
+                                                    },
+                                                    {
+                                                        header: "L3 patients on unit",
+                                                        text: "6"
+                                                    },
+                                                    {
+                                                        header: "L2 patients on unit",
+                                                        text: "5"
+                                                    },
+                                                    {
+                                                        header: "L1/0 patients in unit",
+                                                        text: "1"
+                                                    },
+                                                    {
+                                                        header: "L3 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L2 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "Beds committed",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "SERVICE NOTES",
+                                                        text: "-"
+                                                    },
+                                                    {
+                                                        header: "header",
+                                                        text: "text"
+                                                    }
+                                                ],[
+                                                    {
+                                                        header: "Critical Care",
+                                                        text: "EoE E 02. Princess Alexandra – Harlow ITU"
+                                                    },
+                                                    {
+                                                        header: "L3 beds empty and available",
+                                                        text: "1"
+                                                    },
+                                                    {
+                                                        header: "L2 beds empty and available",
+                                                        text: "1"
+                                                    },
+                                                    {
+                                                        header: "Total L3/L2 Mix",
+                                                        text: "8"
+                                                    },
+                                                    {
+                                                        header: "L3 patients on unit",
+                                                        text: "1"
+                                                    },
+                                                    {
+                                                        header: "L2 patients on unit",
+                                                        text: "6"
+                                                    },
+                                                    {
+                                                        header: "L1/0 patients in unit",
+                                                        text: "1"
+                                                    },
+                                                    {
+                                                        header: "L3 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L2 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "Beds committed",
+                                                        text: "1"
+                                                    },
+                                                    {
+                                                        header: "SERVICE NOTES",
+                                                        text: "text"
+                                                    },
+                                                    {
+                                                        header: "header",
+                                                        text: "text"
+                                                    }
+                                                ],[
+                                                    {
+                                                        header: "Critical Care",
+                                                        text: "EoE E 03. Basildon ITU"
+                                                    },
+                                                    {
+                                                        header: "L3 beds empty and available",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L2 beds empty and available",
+                                                        text: "1"
+                                                    },
+                                                    {
+                                                        header: "Total L3/L2 Mix",
+                                                        text: "11"
+                                                    },
+                                                    {
+                                                        header: "L3 patients on unit",
+                                                        text: "7"
+                                                    },
+                                                    {
+                                                        header: "L2 patients on unit",
+                                                        text: "1"
+                                                    },
+                                                    {
+                                                        header: "L1/0 patients in unit",
+                                                        text: "2"
+                                                    },
+                                                    {
+                                                        header: "L3 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L2 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "Beds committed",
+                                                        text: "1"
+                                                    },
+                                                    {
+                                                        header: "SERVICE NOTES",
+                                                        text: "text"
+                                                    },
+                                                    {
+                                                        header: "header",
+                                                        text: "text"
+                                                    }
+                                                ],[
+                                                    {
+                                                        header: "Critical Care",
+                                                        text: "EoE E 04. Essex CTC Cardio Thoracic - ITU/HDU"
+                                                    },
+                                                    {
+                                                        header: "L3 beds empty and available",
+                                                        text: "1"
+                                                    },
+                                                    {
+                                                        header: "L2 beds empty and available",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "Total L3/L2 Mix",
+                                                        text: "16"
+                                                    },
+                                                    {
+                                                        header: "L3 patients on unit",
+                                                        text: "7"
+                                                    },
+                                                    {
+                                                        header: "L2 patients on unit",
+                                                        text: "2"
+                                                    },
+                                                    {
+                                                        header: "L1/0 patients in unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L3 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L2 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "Beds committed",
+                                                        text: "3"
+                                                    },
+                                                    {
+                                                        header: "SERVICE NOTES",
+                                                        text: "text"
+                                                    },
+                                                    {
+                                                        header: "header",
+                                                        text: "text"
+                                                    }
+                                                ],[
+                                                    {
+                                                        header: "Critical Care",
+                                                        text: "EoE E 05. Southend ITU"
+                                                    },
+                                                    {
+                                                        header: "L3 beds empty and available",
+                                                        text: "1"
+                                                    },
+                                                    {
+                                                        header: "L2 beds empty and available",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "Total L3/L2 Mix",
+                                                        text: "10"
+                                                    },
+                                                    {
+                                                        header: "L3 patients on unit",
+                                                        text: "3"
+                                                    },
+                                                    {
+                                                        header: "L2 patients on unit",
+                                                        text: "3"
+                                                    },
+                                                    {
+                                                        header: "L1/0 patients in unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L3 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L2 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "Beds committed",
+                                                        text: "3"
+                                                    },
+                                                    {
+                                                        header: "SERVICE NOTES",
+                                                        text: "text"
+                                                    },
+                                                    {
+                                                        header: "header",
+                                                        text: "text"
+                                                    }
+                                                ],[
+                                                    {
+                                                        header: "Critical Care",
+                                                        text: "EoE E 06. Broomfield - Chelmsford ICU"
+                                                    },
+                                                    {
+                                                        header: "L3 beds empty and available",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L2 beds empty and available",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "Total L3/L2 Mix",
+                                                        text: "10"
+                                                    },
+                                                    {
+                                                        header: "L3 patients on unit",
+                                                        text: "4"
+                                                    },
+                                                    {
+                                                        header: "L2 patients on unit",
+                                                        text: "6"
+                                                    },
+                                                    {
+                                                        header: "L1/0 patients in unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L3 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L2 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "Beds committed",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "SERVICE NOTES",
+                                                        text: "text"
+                                                    },
+                                                    {
+                                                        header: "header",
+                                                        text: "text"
+                                                    }
+                                                ],[
+                                                    {
+                                                        header: "Critical Care",
+                                                        text: "EoE E 08. Queens Neuro ICU"
+                                                    },
+                                                    {
+                                                        header: "L3 beds empty and available",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L2 beds empty and available",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "Total L3/L2 Mix",
+                                                        text: "12"
+                                                    },
+                                                    {
+                                                        header: "L3 patients on unit",
+                                                        text: "7"
+                                                    },
+                                                    {
+                                                        header: "L2 patients on unit",
+                                                        text: "5"
+                                                    },
+                                                    {
+                                                        header: "L1/0 patients in unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L3 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "L2 patients outside unit",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "Beds committed",
+                                                        text: "0"
+                                                    },
+                                                    {
+                                                        header: "SERVICE NOTES",
+                                                        text: "text"
+                                                    },
+                                                    {
+                                                        header: "header",
+                                                        text: "text"
+                                                    }
+                                                ]
+                                            ]
+                                        }) }} #}
+
+                                    </div>
+                                    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-year">
+                                        <h2 class="govuk-heading-l">Change History</h2>
+                                        <p>[CONTENT PLACEHOLDER]</p>
+
+                                    </div>
+
                                 </div>
-                                <br class="clear">
-                                {# <button
-                                    class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-                                    id="saveCapacityGridData" role="button" aria-disabled="false"><span
-                                        class="ui-button-text">Save grid
-                                    </span></button>&nbsp; #}
-                                <div class="nhsuk-design">
-                                    <a class="nhsuk-button nhsuk-design" id="saveGrid" href="#">
-                                        Save Grid
-                                    </a>
-                                    <div id="lblGridSaveStatus1761"></div>
-                                </div>
-                                <br>
-                                <hr class="clear">
-                                <br>
+
                             </div>
-
-
-
-
                         </div>
-                    </div>
-
-                    <div id="endPointDetailsView" aria-labelledby="ui-id-12"
-                        class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false"
-                        aria-hidden="true" style="display:none">
-
-
-
-
-                    </div>
-                    <div id="alignedServicesView" aria-labelledby="ui-id-13"
-                        class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false"
-                        aria-hidden="true" style="display:none">
-                    </div>
-                    <div id="attributeDetailsView" aria-labelledby="ui-id-11"
-                        class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false"
-                        aria-hidden="true" style="display:none">
-
-
-
-
-                    </div>
-                    <div id="changeHistoryView" aria-labelledby="ui-id-14"
-                        class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false"
-                        aria-hidden="true" style="display:none">
-                    </div>
+                    </main>
                 </div>
             </div>
         </div>
-        <div class="allSearchResults" style="overflow-x:hidden;display:none"></div>
     </div>
 
 </div>
+
 {% endblock %}
