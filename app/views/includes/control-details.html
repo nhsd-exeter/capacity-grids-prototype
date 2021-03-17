@@ -1,0 +1,30 @@
+{% set public = {
+'Type': 'Critical Care (CC)',
+'Service ID': '1384256819',
+'ODS Code': '',
+'Created by': 'ROBOT on 12-11-2013 11:46',
+'Status': 'Active',
+'Modified by': 'capacityuser on 02-03-2021 08:05'
+}
+%}
+
+<h2 style="background: none; color: black">Public Name</h2>
+
+<div class="nhsuk-design" style="padding-left: 5px">
+
+    <div class="nhsuk-grid-row">
+        {% for key, value in public %}
+        <div class="nhsuk-grid-column-one-third">
+            <div class="nhsuk-grid-row nhsuk-u-margin-bottom-3">
+                <div class="nhsuk-grid-column-one-third">
+                    <strong class="orgTopLabel">{{ key }}</strong>
+                </div>
+                <div class="nhsuk-grid-column-two-thirds">
+                    <span class="orgTopText">{{ value }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>

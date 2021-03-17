@@ -15,16 +15,6 @@
 }
 %}
 
-{% set public = {
-'Type': 'Critical Care (CC)',
-'Service ID': '1384256819',
-'ODS Code': '',
-'Created by': 'ROBOT on 12-11-2013 11:46',
-'Status': 'Active',
-'Modified by': 'capacityuser on 02-03-2021 08:05'
-}
-%}
-
 {% set contact = {
 'Address': 'Darenth Wood Road, Dartford, DA2 8DA',
 'Postal Locality': 'DARENTH',
@@ -35,14 +25,6 @@
 'Website': '-'
 }
 %}
-
-
-
-
-
-
-
-
 
 {% set openHours = {
 'Monday': 'OPEN 24 HOURS',
@@ -119,28 +101,8 @@
                     <div class="orgName">
                         <h2>SE KM Darent Valley Hospital - General ICU</h2>
                     </div>
-
-                    <div class="nhsuk-design">
-                        <h3 style="background: none; color: black">Public Name</h3>
-
-                        <!-- Control Details -->
-                        <div class="nhsuk-grid-row">
-                            {% for key, value in public %}
-                            <div class="nhsuk-grid-column-one-third">
-                                <div class="nhsuk-grid-row nhsuk-u-margin-bottom-3">
-                                    <div class="nhsuk-grid-column-one-third">
-                                        <strong class="orgTopLabel" style="font-weight: bolder !important">{{ key
-                                            }}</strong>
-                                    </div>
-                                    <div class="nhsuk-grid-column-two-thirds">
-                                        <span class="orgTopText">{{ value }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-
-                    </div>
+                    <!-- Control Details -->
+                    {% include "includes/control-details.html" %}
                 </div>
                 <!-- GDS Tabs -->
                 <div class="">

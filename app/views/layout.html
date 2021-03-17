@@ -1827,9 +1827,9 @@
 <!-- DoS CSS changes -->
 <style>
 #tabs {
-    min-width: 100%;
+    min-width: 99%;
 }
-.searchwrapper .search-config {
+#header, .searchwrapper .search-config {
     width: 100%;
 }
 
@@ -1840,6 +1840,13 @@ div#tabs div a.nhsuk-button {
 body {
     overflow:auto; 
 } 
+
+/* Override NHSUK Frontend - causing issues in prototype with existing styles */
+.nhsuk-design .nhsuk-grid-row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 
 /* Tablet overrides */
 /* @media only screen and (max-width: 641px) {

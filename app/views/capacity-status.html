@@ -65,37 +65,8 @@
                     <div class="orgName">
                         <h2>SE KM Darent Valley Hospital - General ICU</h2>
                     </div>
-<h2 style="background: none; color: black">Public Name</h2>
                     <!-- Control Details -->
-                    <div class="nhsuk-design">
-                        
-                        <div class="nhsuk-grid-row">
-                            {% for key, value in public %}
-                                <div class="nhsuk-grid-column-one-third">
-                                    <div class="nhsuk-grid-row nhsuk-u-margin-bottom-3">
-                                        <div class="nhsuk-grid-column-one-third">
-                                            <strong class="orgTopLabel">{{ key }}</strong>
-                                        </div>
-                                        <div class="nhsuk-grid-column-two-thirds">
-                                            <span class="orgTopText">{{ value }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                        {# <dl class="nhsuk-summary-list nhsuk-summary-list--no-border">
-                            {% for key, value in public %}
-                                <div class="nhsuk-summary-list__row">
-                                    <dt class="nhsuk-summary-list__key">
-                                        {{ key }}
-                                    </dt>
-                                    <dd class="nhsuk-summary-list__value">
-                                        {{ value }}
-                                    </dd>
-                                </div>
-                            {% endfor %}
-                        </dl> #}
-                    </div>
+                    {% include "includes/control-details.html" %}
                 </div>
             </div>
                 <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
@@ -103,7 +74,6 @@
 
                         <li id="demographicDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="demographicDetailsView" aria-labelledby="ui-id-9" aria-selected="false"><a href="demographic-details" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-9">Demographic Details</a></li>
                         <li id="capacityStatus" class="ui-state-default ui-corner-top ui-state-focus ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="capacityStatusView" aria-labelledby="ui-id-10" aria-selected="true"><a href="capacity-status" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-10">Capacity Status</a></li>
-                        {# <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-11">Capacity Grids</a></li> #}
                         <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-11">Service Attributes</a></li>
                         <li id="endPointDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="endPointDetailsView" aria-labelledby="ui-id-12" aria-selected="false"><a href="#endPointDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-12">Endpoint Details</a></li>
                         <li id="alignedServices" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="alignedServicesView" aria-labelledby="ui-id-13" aria-selected="false"><a href="#alignedServicesView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-13">Search Rankings</a></li>
