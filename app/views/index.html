@@ -110,7 +110,8 @@
             transition: 0.3s ease;
         }
 
-        .thumb.disabled, .thumb.disabled:hover {
+        .thumb.disabled,
+        .thumb.disabled:hover {
             cursor: default !important;
         }
 
@@ -132,6 +133,7 @@
                 display: none;
             }
         }
+
         /* Mobile overrides */
         @media only screen and (max-width: 320px) {
             .launch {
@@ -156,9 +158,9 @@
                     <img src="images/apple-devices.png" alt="" style="width: 100%;">
 
 
-                    <a class="nhsuk-button" href="login">
+                    <!-- <a class="nhsuk-button" href="login">
                         View End to End Prototype
-                    </a>
+                    </a> -->
 
                     <div class="nhsuk-warning-callout">
                         <h3 class="nhsuk-warning-callout__label">
@@ -173,7 +175,7 @@
             <hr>
 
             <!-- Prototype Links -->
-            <div class="nhsuk-grid-row">
+            {# <div class="nhsuk-grid-row">
                 <div class="nhsuk-grid-column-full">
                     <h2>
                         Prototypes
@@ -223,9 +225,9 @@
 
                     </div>
                 </div>
-            </div>
+            </div> #}
 
-            <div class="nhsuk-grid-row">
+            {# <div class="nhsuk-grid-row">
                 <div class="nhsuk-grid-column-full">
 
                     <div class="nhsuk-grid-row">
@@ -236,8 +238,8 @@
                                     <span>Capacity Status <br> *Version 3* <br> WIP: Coming Soon</span>
                                 </span>
                             </div>
-                            {# <a class="launch" href="capacity-status-original-mobile" target="_blank">View Mobile</a>
-                            <a class="launch" href="capacity-status-original-tablet" target="_blank">View Tablet</a> #}
+                            <a class="launch" href="capacity-status-original-mobile" target="_blank">View Mobile</a>
+                            <a class="launch" href="capacity-status-original-tablet" target="_blank">View Tablet</a>
                         </div>
 
                         <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
@@ -250,7 +252,7 @@
                             <a class="launch" href="capacity-status-v4-mobile" target="_blank">View Mobile</a>
                             <a class="launch" href="capacity-status-v4-tablet" target="_blank">View Tablet</a>
                         </div>
-                        {# <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
+                        <div class="nhsuk-grid-column-one-third" style="margin-bottom: 35px">
                             <div class="thumb">
                                 <a href="capacity-status-v2">
                                     <img src="images/cs2.png" alt="">
@@ -259,12 +261,97 @@
                             </div>
                             <a class="launch" href="capacity-status-v2-mobile" target="_blank">View Mobile</a>
                             <a class="launch" href="capacity-status-v2-tablet" target="_blank">View Tablet</a>
-                        </div> #}
+                        </div>
 
 
                     </div>
                 </div>
-            </div>
+            </div> #}
+            <style>
+                .nhsuk-button {
+                    margin-bottom: 0;
+                }
+            </style>
+            <h2>Prototypes</h2>
+            <table role="table" class="nhsuk-table-responsive">
+                <caption class="nhsuk-table__caption">Capacity Status variants and details</caption>
+                <thead role="rowgroup" class="nhsuk-table__head">
+                    <tr role="row">
+                        <th role="columnheader" class="" scope="col">
+                            Variant #
+                        </th>
+                        <th role="columnheader" class="" scope="col">
+                            Description
+                        </th>
+                        <th role="columnheader" class="" scope="col">
+                            Last Updated
+                        </th>
+                        <th role="columnheader" class="" scope="col">
+                            Link
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="nhsuk-table__body">
+
+                    <tr role="row" class="nhsuk-table__row">
+                        <td role="cell" class="nhsuk-table__cell">
+                            <span class="nhsuk-table-responsive__heading">Variant # </span>1
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <span class="nhsuk-table-responsive__heading">Description </span>First design put forward to
+                            users,
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <span class="nhsuk-table-responsive__heading">Last Updated </span>17/3/2021
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <span class="nhsuk-table-responsive__heading">Link </span>
+                            <a href="capacity-status" target="_blank" class="nhsuk-button">View</a>
+                        </td>
+                    </tr>
+
+                    <tr role="row" class="nhsuk-table__row">
+                        <td role="cell" class="nhsuk-table__cell">
+                            <span class="nhsuk-table-responsive__heading">Variant # </span>2
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <span class="nhsuk-table-responsive__heading">Description </span>Based on the first variant
+                            but has stacked label on input fields (in all viewport widths)
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <span class="nhsuk-table-responsive__heading">Last Updated </span>15/3/2021
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <span class="nhsuk-table-responsive__heading">Link </span>
+                            <a href="capacity-status-v4" target="_blank" class="nhsuk-button">View</a>
+                        </td>
+                    </tr>
+
+                    <tr role="row" class="nhsuk-table__row">
+                        <td role="cell" class="nhsuk-table__cell">
+                            <span class="nhsuk-table-responsive__heading">Variant # </span>3
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <span class="nhsuk-table-responsive__heading">Description </span>A design concept with Tabs
+                            used from <a href="https://design-system.service.gov.uk/components/tabs/"
+                                target="_blank">GDS</a>.<br />
+                            Also includes a reworked sidebar menu system.<br />(Idea referenced from a previous <a
+                                href="" target="_blank">CG Prototype
+                                by Sarah H</a>)
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <span class="nhsuk-table-responsive__heading">Last Updated </span>18/3/2021
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <span class="nhsuk-table-responsive__heading">Link </span>
+                            <a href="capacity-status-v2" target="_blank" class="nhsuk-button">View</a>
+                        </td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
 
             <hr>
             <!-- Change Log -->
@@ -276,14 +363,14 @@
 
                     <dl class="nhsuk-summary-list">
 
-                        
+
 
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">
                                 17/3/21
                             </dt>
                             <dd class="nhsuk-summary-list__value">
-                                Added a design concept that: 
+                                Added a design concept that:
                                 <ul>
                                     <li>Uses GDS Tabs instead of the default DoS tabs</li>
                                     <li>Has an additional Capcity Grids tab idea (DEVELOP MORE)</li>
@@ -328,8 +415,8 @@
                                 11/3/21
                             </dt>
                             <dd class="nhsuk-summary-list__value">
-                                Increased sample data in V1 and V4 <br/>
-                                Added Capacity Status V4 - Stacked Inputs <br/>
+                                Increased sample data in V1 and V4 <br />
+                                Added Capacity Status V4 - Stacked Inputs <br />
                                 Added Capacity Status V3 - WIP
                             </dd>
                             <dd class="nhsuk-summary-list__actions">
