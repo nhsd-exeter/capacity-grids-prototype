@@ -86,9 +86,8 @@
     }
 
     .nhsuk-form-group:nth-child(even) {
-        background: #ececec;
-        /* background: none; */
-    }
+        background: none !important;
+    } 
 </style>
 <script src="govuk-frontend-3.11.0.min.js"></script>
 <div class=searchwrapper>
@@ -224,7 +223,7 @@
                                             <div class="nhsuk-design">
                                                 <main class="nhsuk-main-wrapper">
                                                     <div class="nhsuk-grid-row">
-                                                        <div class="nhsuk-grid-column-full panel">
+                                                        <div class="nhsuk-grid-column-two-thirds panel">
                                                             <div class="nhsuk-form-group">
                                                                 <div class="nhsuk-hint">
                                                                     {{ "You are not able to set the status information
@@ -374,23 +373,20 @@
                                                     <div class="">
                                                         <main class="nhsuk-main-wrapper">
                                                             <div class="nhsuk-grid-row">
-                                                                <div class="nhsuk-grid-column-full
+                                                                <div class="nhsuk-grid-column-two-thirds
                                                                                             ">
                                                                     {% for key, value in critical %}
                                                                     <div class="nhsuk-form-group">
                                                                         <div class="nhsuk-grid-row">
-                                                                            <div
-                                                                                class="nhsuk-grid-column-three-quarters">
-                                                                                <label class="nhsuk-label" for={{key}}>
-                                                                                    {{ key }}
-                                                                                </label>
-                                                                            </div>
-
-                                                                            <div class="nhsuk-grid-column-one-quarter">
-                                                                                <input class="nhsuk-input" id={{key}}
-                                                                                    name={{key}} type="text"
-                                                                                    value={{value}}>
-                                                                            </div>
+                                                                            
+                                                                            <label class="nhsuk-label" for={{key}}>
+                                                                                {{ key }}
+                                                                            </label>
+                                                                        
+                                                                            <input class="nhsuk-input" id={{key}}
+                                                                                name={{key}} type="text"
+                                                                                value={{value}}>
+                                                                            
                                                                         </div>
                                                                     </div>
                                                                     {% endfor %}
