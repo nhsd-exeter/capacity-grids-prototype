@@ -38,4 +38,14 @@
         $("[id='" + tab + "']").removeClass('govuk-tabs__panel--hidden');
     });
 
+    // Remove focus manually
+   // $(".nhsuk-button").click(function() {
+    //    $(this).focus().blur();
+   // });
+
+    // Show notification V3
+    $('#save-button').click(function(){
+        $('.lblGridSaveAllStatus').fadeIn('fast').delay(5000).fadeOut('fast');
+    });
+
 </script>
