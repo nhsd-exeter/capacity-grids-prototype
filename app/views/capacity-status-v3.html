@@ -1,6 +1,6 @@
 {% set appPage = true %}
 {% set navSearch = true %}
-{% set m111 = true %}
+{% set m111 = false %}
 
 {% set critical = {
 'L3 beds empty and available': '0',
@@ -69,363 +69,105 @@
 
 <style>
     .nhsuk-form-group:nth-child(even) {
-        background: #ececec
-    }
-
-    .nhsuk-form-group {
-        padding: 10px
-    }
-
-    .panel {
-        padding: 10px;
-        background: #ececec
-    }
-
-    #paneToggle {
-        display: none;
-    }
-
-    .nhsuk-form-group:nth-child(even) {
         background: none !important;
-    } 
+    }
 </style>
+{% include "includes/gds-tab-nhsuk-styles.html" %}
+
 <script src="govuk-frontend-3.11.0.min.js"></script>
-<div class=searchwrapper>
+
+<div class="nhsuk-design">
     <!-- LEFT SIDEBAR -->
     {% include "includes/left-nhsuk.html" %}
-    <div id="paneToggle"><span class="paneToggle" title="Show/Hide Map">
-            << </span>
-    </div>
     <!-- CONTENT -->
-    <div id="resizeMapsViaJquery" class="rightCanvas" style="height:1286px">
-        <div id="nameSearchResult" style="display:block">
-            <div class="errorMessages sf-hidden"></div>
-            <div class="searchResults">
-                <div id="serviceBasicDetails" class="orgDetails">
-                    <div class="orgName">
-                        <h2>SE KM Darent Valley Hospital - General ICU</h2>
-                    </div>
-                    <!-- Control Details -->
-                    {% include "includes/control-details.html" %}
-                </div>
+    <div class="nhsuk-width-container">  
+        <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+            <div class="nhsuk-grid-row">
+                <h2>SE KM Darent Valley Hospital - General ICU</h2>
+
+                <!-- Control Details -->
+                {% include "includes/control-details.html" %}
+
                 <!-- GDS Tabs -->
-                <div class="">
-                    <main class="">
-                        <div class="govuk-grid-row">
-                            <div class="govuk-grid-column-full">
-                                <div class="govuk-tabs" data-module="govuk-tabs">
-                                    <h2 class="govuk-tabs__title">
-                                        Contents
-                                    </h2>
-                                    <ul class="govuk-tabs__list">
-                                        <li class="govuk-tabs__list-item">
-                                            <a class="govuk-tabs__tab" href="#demographic">
-                                                Demographic Details
-                                            </a>
-                                        </li>
-                                        <li class="govuk-tabs__list-item">
-                                            <a class="govuk-tabs__tab" href="#grids">
-                                                Capacity Grids
-                                            </a>
-                                        </li>
-                                        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-                                            <a class="govuk-tabs__tab" href="#status">
-                                                Capacity Status
-                                            </a>
-                                        </li>
-                                        <li class="govuk-tabs__list-item">
-                                            <a class="govuk-tabs__tab" href="#history">
-                                                Change History
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="demographic">
-                                        <h2 class="govuk-heading-l">Demographic Details</h2>
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full">
+                        <div class="govuk-tabs" data-module="govuk-tabs">
+                            <h2 class="govuk-tabs__title">
+                                Contents
+                            </h2>
+                            <!-- GDS Tab Headings -->
+                            {% include "includes/gds-tab-headings.html" %}
+                            <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="demographic">
+                                <h2 class="govuk-heading-l">Demographic Details</h2>
+                                <!-- Demographic Details -->
+                                {% include "includes/demographic-details-new.html" %}
+                            </div>
+                            <div class="govuk-tabs__panel" id="grids">
+                                <h2 class="govuk-heading-l">Capacity Grids</h2>
 
+                                <!-- Notification - Save All -->
+                                {% include "includes/notification-save-all.html" %}
+
+                                <div>
+                                    <!-- Last Updated -->
+                                    {% include "includes/last-updated.html" %}
+
+                                    <div data-name="Critical Care">
                                         <div class="nhsuk-design">
-                                            <div class="nhsuk-grid-row">
-                                                <div class="nhsuk-grid-column-full">
-                                                    <div class="nhsuk-grid-row">
-                                                        <div class="nhsuk-grid-column-one-half">
 
-                                                            <h3>Contact Details</h3>
-                                                            {% for key, value in contact %}
-                                                            <div class="nhsuk-grid-row">
-                                                                <div class="nhsuk-grid-column-one-half">
-                                                                    <strong>{{ key }}</strong>
-                                                                </div>
-                                                                <div class="nhsuk-grid-column-one-half"
-                                                                    style="text-align: left">
-                                                                    <p>{{ value }}</p>
-                                                                </div>
-                                                            </div>
-                                                            {% endfor %}
-
-                                                            <h3>Public Facing Information</h3>
-                                                            <p>No instructions specified</p>
-
-                                                            <h3>Parent Services</h3>
-                                                            <ul>
-                                                                <li><a href="">National Critical Care & Burns</a>
-                                                                    <ul>
-                                                                        <li><a href="">Kent and Medway Area Network</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
-
-                                                        </div>
-                                                        <div class="nhsuk-grid-column-one-half">
-
-                                                            <h3>Opening Times</h3>
-                                                            {% for key, value in openHours %}
-                                                            <div class="nhsuk-grid-row">
-                                                                <div class="nhsuk-grid-column-one-half">
-                                                                    <strong>{{ key }}</strong>
-                                                                </div>
-                                                                <div class="nhsuk-grid-column-one-half"
-                                                                    style="text-align: right">
-                                                                    <p>{{ value }}</p>
-                                                                </div>
-                                                            </div>
-                                                            {% endfor %}
-
-                                                            <h3>Public Holiday Dates</h3>
-                                                            {% for key, value in publicHols %}
-                                                            <div class="nhsuk-grid-row">
-                                                                <div class="nhsuk-grid-column-one-half">
-                                                                    <strong>{{ key }}</strong>
-                                                                </div>
-                                                                <div class="nhsuk-grid-column-one-half"
-                                                                    style="text-align: right">
-                                                                    <p>{{ value }}</p>
-                                                                </div>
-                                                            </div>
-                                                            {% endfor %}
-
-                                                            <h3>Referral Information</h3>
-                                                            <p>No instructions specified</p>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-
-                                    </div>
-                                    <div class="govuk-tabs__panel govuk-tabs__panel--hidden nhsuk-design"
-                                        id="grids">
-                                        <h2 class="govuk-heading-l">Capacity Grids</h2>
-                                        {# <h2 class="underline" title="Service Capacity Grids">Capacity Grids:</h2> #}
-                                        <div id="saveAllSection" data-initial-count="1" class="nhsuk-design">
-
-                                            <a class="nhsuk-button" id="save-button" href="#" style="margin-top: 15px">
-                                                Save all changed grids
-                                            </a>
-
-                                            <div id="lblGridSaveAllStatus" class="nhsuk-design" style="display: none">
-                                                <div style="display: none;" class="ui-state-highlight ui-corner-all"><span
-                                                        class="ui-icon ui-icon-info jqueryUiIconFloater"></span>Saved
-                                                    Critical Care
-                                                </div>
-                                                <div class="nhsuk-warning-callout">
-                                                    <h3 class="nhsuk-warning-callout__label">
-                                                       Saved
-                                                    </h3>
-                                                    <p>Critical Care has been saved</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="populateGridContainersViaJquery">
-
-                                            <div id="gridLoadError" class="red small-font"></div>
-                                            <div class="capacityInputterGrid">
-                                                <h4 class="capacityGridName">
-                                                    <span class="fontBold" title="Grid ID 1761 : Critical Care">Critical
-                                                        Care</span>
-                                                    <span class="small-font"
-                                                        title="Date/Time grid was last updated or verified">(last
-                                                        updated: <span id="lastUpdated1761">02 Mar 2021
-                                                            08:05:33</span>)</span>
-                                                </h4>
-                                            </div>
-
-                                            <div data-name="Critical Care">
-                                                <div class="nhsuk-design">
-
-                                                    <!--<div class="nhsuk-width-container">-->
-                                                    <div class="">
-                                                        <main class="nhsuk-main-wrapper">
-                                                            <div class="nhsuk-grid-row">
-                                                                <div class="nhsuk-grid-column-two-thirds
-                                                                                            ">
-                                                                    {% for key, value in critical %}
-                                                                    <div class="nhsuk-form-group">
-                                                                        <div class="nhsuk-grid-row">
-                                                                            
-                                                                            <label class="nhsuk-label" for={{key}}>
-                                                                                {{ key }}
-                                                                            </label>
-                                                                        
-                                                                            <input class="nhsuk-input" id={{key}}
-                                                                                name={{key}} type="text"
-                                                                                value={{value}}>
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                    {% endfor %}
-                                                                </div>
-                                                            </div>
-                                                        </main>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <br class="clear">
-                                            <div class="nhsuk-design">
-                                                <a class="nhsuk-button nhsuk-design" id="saveGrid" href="#">
-                                                    Save Grid
-                                                </a>
-                                                <div id="lblGridSaveStatus1761"></div>
-                                            </div>
-                                            <br>
-                                            <hr class="clear">
-                                            <br>
-                                        </div>
-                                    
-
-                                    </div>
-                                    <div class="govuk-tabs__panel" id="status">
-                                        <!-- Status Section -->
-                                        <h2 class="govuk-heading-l">Capacity Status</h2>
-                                        <div class="">
-                                            <div class="nhsuk-design">
+                                            <!--<div class="nhsuk-width-container">-->
+                                            <div class="">
                                                 <main class="nhsuk-main-wrapper">
                                                     <div class="nhsuk-grid-row">
-                                                        <div class="nhsuk-grid-column-two-thirds panel">
+                                                        <div class="nhsuk-grid-column-two-thirds">
+                                                            {% for key, value in critical %}
                                                             <div class="nhsuk-form-group">
-                                                                <div class="nhsuk-hint">
-                                                                    {{ "You are not able to set the status information
-                                                                    below." if m111 else "You are able to set the status
-                                                                    information below." }}
+                                                                <div class="nhsuk-grid-row">
+                                                                    
+                                                                    <label class="nhsuk-label" for={{key}}>
+                                                                        {{ key }}
+                                                                    </label>
+                                                                
+                                                                    <input class="nhsuk-input" id={{key}}
+                                                                        name={{key}} type="text"
+                                                                        value={{value}}>
+                                                                    
                                                                 </div>
-                                                                <label for="" class="nhsuk-label">Status</label>
-                                                                <fieldset class="nhsuk-fieldset">
-                                                                    <div class="nhsuk-radios nhsuk-radios--inline">
-                                                                        <div
-                                                                            style="background-color: green; padding: 10px; display:inline-block">
-                                                                            <div class="nhsuk-radios__item"
-                                                                                style="margin-right: 0;">
-                                                                                <input class="nhsuk-radios__input"
-                                                                                    id="green" name="status"
-                                                                                    type="radio" value="green" {% if
-                                                                                    m111%}disabled{% endif %}>
-                                                                                <label
-                                                                                    class="nhsuk-label nhsuk-radios__label"
-                                                                                    for="green"
-                                                                                    style="padding: 5px; color: white">
-                                                                                    Green
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div
-                                                                            style="background-color: orange; padding: 10px; display:inline-block">
-                                                                            <div class="nhsuk-radios__item"
-                                                                                style="background-color: orange; margin-right: 0;">
-                                                                                <input class="nhsuk-radios__input"
-                                                                                    id="amber" name="status"
-                                                                                    type="radio" value="amber" {% if
-                                                                                    m111%}disabled{% endif %}>
-                                                                                <label
-                                                                                    class="nhsuk-label nhsuk-radios__label"
-                                                                                    for="amber"
-                                                                                    style="padding: 5px; color: white">
-                                                                                    Amber
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div
-                                                                            style="background-color: red; padding: 10px; display:inline-block">
-                                                                            <div class="nhsuk-radios__item"
-                                                                                style="background-color: red; margin-right: 0;">
-                                                                                <input class="nhsuk-radios__input"
-                                                                                    id="red" name="status" type="radio"
-                                                                                    value="red" {% if m111%}disabled{%
-                                                                                    endif %}>
-                                                                                <label
-                                                                                    class="nhsuk-label nhsuk-radios__label"
-                                                                                    for="red"
-                                                                                    style="padding: 5px; color: white">
-                                                                                    Red
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </fieldset>
                                                             </div>
-
-                                                            <div class="nhsuk-form-group">
-                                                                <label for="" class="nhsuk-label">Reset Time At</label>
-                                                                <div class="nhsuk-hint">Reset Time must be within the
-                                                                    next 120 hours
-                                                                    (5 days)</div>
-
-
-                                                                <input class="nhsuk-input nhsuk-input--width-4"
-                                                                    id="example" name="example" type="text" {% if
-                                                                    m111%}disabled{% endif %}>
-                                                                <select class="nhsuk-select nhsuk-input--width-4"
-                                                                    id="select-1" name="select-1" {% if m111%}disabled{%
-                                                                    endif %}>
-                                                                    <option value="1">--</option>
-                                                                    <option value="2">23</option>
-                                                                </select>
-                                                                <select class="nhsuk-select nhsuk-input--width-4"
-                                                                    id="select-2" name="select-2" {% if m111%}disabled{%
-                                                                    endif %}>
-                                                                    <option value="1">--</option>
-                                                                    <option value="1">45</option>
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="nhsuk-form-group">
-                                                                <label for="" class="nhsuk-label">Last Updated By
-                                                                    Notes</label>
-                                                                <textarea class="nhsuk-textarea" id="example"
-                                                                    name="example" rows="5"
-                                                                    aria-describedby="example-hint" {% if
-                                                                    m111%}disabled{% endif %}></textarea>
-                                                                <a class="nhsuk-button" href="#" {% if m111%}disabled{%
-                                                                    endif %} style="margin-top: 15px">
-                                                                    Save
-                                                                </a>
-                                                            </div>
-
+                                                            {% endfor %}
                                                         </div>
                                                     </div>
                                                 </main>
-
                                             </div>
+
                                         </div>
                                     </div>
-                                    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="history">
-                                        <h2 class="govuk-heading-l">Change History</h2>
-                                        <p>[CONTENT PLACEHOLDER]</p>
 
-                                    </div>
-
+                                    <!-- Notification - Save Grid -->
+                                    {% include "includes/notification-save-grid.html" %}
                                 </div>
+                            
 
                             </div>
+                            <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="status">
+                                <h2 class="govuk-heading-l">Capacity Status</h2>
+                                <!-- Status Section -->
+                                {% include "includes/status-section.html" %}
+                            </div>
+                            <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="history">
+                                <h2 class="govuk-heading-l">Change History</h2>
+                                <!-- Change History -->
+                                {% include "includes/change-history.html" %}
+                            </div>
+
                         </div>
-                    </main>
+
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div>    
+        </main>
     </div>
+    
 
 </div>
 

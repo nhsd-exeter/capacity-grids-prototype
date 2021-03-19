@@ -1,6 +1,7 @@
 
 {% set appPage = true %}
 {% set navSearch = true %}
+{% set m111 = true %}
 
 {% set critical = {
     'Are you currently accepting primary triage candidate positive major trauma patients?': 'Yes',
@@ -38,6 +39,35 @@
 
 {% block beforeContent %}
 <style>
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid #fad42e;
+    background: url(images/ui-bg_flat_55_fbec88_40x100.png) 50% 50% repeat-x #fbec88;
+    color: #363636;
+}
+.ui-state-highlight .ui-icon {
+    background-image: url(images/ui-icons_2e83ff_256x240.png);
+}
+.ui-icon, .ui-widget-content .ui-icon {
+    background-image: url(images/ui-icons_4b6c9e_256x240.png);
+}
+.jqueryUiIconFloater {
+    float: left;
+    margin-right: 0.3em;
+}
+.ui-icon-info {
+    background-position: -16px -144px;
+}
+.ui-icon {
+    width: 16px;
+    height: 16px;
+    background-position: 16px 16px;
+}
+.ui-icon {
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
 /* Tablet overrides */
 @media only screen and (max-width: 641px) {
   #header {
@@ -71,127 +101,21 @@
             </div>
                 <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
                     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
-
                         <li id="demographicDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="demographicDetailsView" aria-labelledby="ui-id-9" aria-selected="false"><a href="demographic-details" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-9">Demographic Details</a></li>
                         <li id="capacityStatus" class="ui-state-default ui-corner-top ui-state-focus ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="capacityStatusView" aria-labelledby="ui-id-10" aria-selected="true"><a href="capacity-status" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-10">Capacity Status</a></li>
-                        <li id="attributeDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="attributeDetailsView" aria-labelledby="ui-id-11" aria-selected="false"><a href="#attributeDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-11">Service Attributes</a></li>
-                        <li id="endPointDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="endPointDetailsView" aria-labelledby="ui-id-12" aria-selected="false"><a href="#endPointDetailsView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-12">Endpoint Details</a></li>
-                        <li id="alignedServices" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="alignedServicesView" aria-labelledby="ui-id-13" aria-selected="false"><a href="#alignedServicesView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-13">Search Rankings</a></li>
                         <li id="changeHistory" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="changeHistoryView" aria-labelledby="ui-id-14" aria-selected="false"><a href="#changeHistoryView" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-14">Change History</a></li>
                     </ul>
-                    <div id="demographicDetailsView" aria-labelledby="ui-id-9" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
-
-                    </div>
-                    <div id="serviceAdminView">
-                    </div>
+                    <div id="demographicDetailsView" aria-labelledby="ui-id-9" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none"></div>
                     <div id="capacityStatusView" aria-labelledby="ui-id-10" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display:block">
                         <div id="capactityRAG">
                             <div class="">
-                                <div class="nhsuk-design">
-                                    <main class="nhsuk-main-wrapper">
-                                        <div class="nhsuk-grid-row">
-                                            <div class="nhsuk-grid-column-three-quarters">
-                                                <div class="nhsuk-form-group">
-                                                    <label for="" class="nhsuk-label">Status</label>
-                                                    <fieldset class="nhsuk-fieldset">
-                                                        <div class="nhsuk-radios nhsuk-radios--inline">
-                                                            <div style="background-color: green; padding: 10px; display:inline-block">
-                                                                <div class="nhsuk-radios__item" style="margin-right: 0;">
-                                                                    <input class="nhsuk-radios__input" id="green" name="status" type="radio" value="green">
-                                                                    <label class="nhsuk-label nhsuk-radios__label" for="green" style="padding: 5px; color: white">
-                                                                    Green
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div style="background-color: orange; padding: 10px; display:inline-block">
-                                                                <div class="nhsuk-radios__item" style="background-color: orange; margin-right: 0;">
-                                                                    <input class="nhsuk-radios__input" id="amber" name="status" type="radio" value="amber">
-                                                                    <label class="nhsuk-label nhsuk-radios__label" for="amber" style="padding: 5px; color: white">
-                                                                    Amber
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div style="background-color: red; padding: 10px; display:inline-block">
-                                                                <div class="nhsuk-radios__item" style="background-color: red; margin-right: 0;">
-                                                                    <input class="nhsuk-radios__input" id="red" name="status" type="radio" value="red">
-                                                                    <label class="nhsuk-label nhsuk-radios__label" for="red" style="padding: 5px; color: white">
-                                                                    Red
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </fieldset>
-                                                </div>
-
-                                                <div class="nhsuk-form-group">
-                                                    <label for="" class="nhsuk-label">Reset Time At</label>
-                                                    <div class="nhsuk-hint">Reset Time must be within the next 120 hours (5 days)</div>
-                                                    
-                                                   
-                                                    <input class="nhsuk-input nhsuk-input--width-4" id="example" name="example" type="text" readonly>
-                                                    <select class="nhsuk-select nhsuk-input--width-4" id="select-1" name="select-1" disabled>
-                                                        <option value="1">--</option>
-                                                        <option value="2">23</option>
-                                                    </select>
-                                                    <select class="nhsuk-select nhsuk-input--width-4" id="select-2" name="select-2" disabled>
-                                                        <option value="1">--</option>
-                                                        <option value="1">45</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="nhsuk-form-group">
-                                                    <label for="" class="nhsuk-label">Last Updated By Notes</label>
-                                                    <textarea class="nhsuk-textarea" id="example" name="example" rows="5" aria-describedby="example-hint"></textarea>
-                                                    <button id="updateCapacityStatusViaJquery" style="margin-top: 20px;" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-disabled ui-state-disabled" role="button" aria-disabled="true" disabled=""><span class="ui-button-text">Save</span></button>
-                                                    
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </main>
-                                    
-                                </div>
+                                <!-- Status Section -->
+                                 {% include "includes/status-section.html" %}
                             </div>
-
-                            
-                            
                             <h4 class="underline" title="Service Capacity Grids">Capacity Grids:</h4>
                             <div id="saveAllSection" data-initial-count="1">
                                 <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveAllCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save all changed
-                                        grids</span></button>&nbsp;
-
-                                
-                                <style>
-                                    ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
-                                        border: 1px solid #fad42e;
-                                        background: url(images/ui-bg_flat_55_fbec88_40x100.png) 50% 50% repeat-x #fbec88;
-                                        color: #363636;
-                                    }
-                                    .ui-state-highlight .ui-icon {
-                                        background-image: url(images/ui-icons_2e83ff_256x240.png);
-                                    }
-                                    .ui-icon, .ui-widget-content .ui-icon {
-                                        background-image: url(images/ui-icons_4b6c9e_256x240.png);
-                                    }
-                                    .jqueryUiIconFloater {
-                                        float: left;
-                                        margin-right: 0.3em;
-                                    }
-                                    .ui-icon-info {
-                                        background-position: -16px -144px;
-                                    }
-                                    .ui-icon {
-                                        width: 16px;
-                                        height: 16px;
-                                        background-position: 16px 16px;
-                                    }
-                                    .ui-icon {
-                                        display: block;
-                                        text-indent: -99999px;
-                                        overflow: hidden;
-                                        background-repeat: no-repeat;
-                                    }
-                                </style>
+                                        grids</span></button>
                                 <div class="lblGridSaveAllStatus" style="display: none;"><div class="ui-state-highlight ui-corner-all"><span class="ui-icon ui-icon-info jqueryUiIconFloater"><img src="images/ui-icons_2e83ff_256x240.png" alt=""></span>Saved Trauma Unit</div></div>
                             </div>
                             <div id="populateGridContainersViaJquery">
@@ -206,71 +130,52 @@
                                 
                                 <div data-name="Trauma Unit">
                                     <div class="nhsuk-design">
+                                        <main class="nhsuk-main-wrapper">
+                                            <div class="nhsuk-grid-row">
+                                                <div class="nhsuk-grid-column-two-thirds
+                                                ">
+                                                    {% for key, value in critical %}
+                                                        <div class="nhsuk-form-group">
+                                                            <div class="nhsuk-grid-row">
+                                                                <div class="nhsuk-grid-column-three-quarters">
+                                                                    <label class="nhsuk-label" for={{key}}>
+                                                                        {{ key }} 
+                                                                    </label>
+                                                                </div>
 
-                                        <!--<div class="nhsuk-width-container">-->
-                                        <div class="">
-                                            <main class="nhsuk-main-wrapper">
-                                                <div class="nhsuk-grid-row">
-                                                    <div class="nhsuk-grid-column-two-thirds
-                                                    ">
-                                                        {% for key, value in critical %}
-                                                            <div class="nhsuk-form-group">
-                                                                <div class="nhsuk-grid-row">
-                                                                    <div class="nhsuk-grid-column-three-quarters">
-                                                                        <label class="nhsuk-label" for={{key}}>
-                                                                            {{ key }} 
-                                                                        </label>
-                                                                    </div>
-
-                                                                    <div class="nhsuk-grid-column-one-quarter">
-                                                                        <input class="nhsuk-input" id={{key}} name={{key}} type="text" value={{value}}>
-                                                                    </div>
+                                                                <div class="nhsuk-grid-column-one-quarter">
+                                                                    <input class="nhsuk-input" id={{key}} name={{key}} type="text" value={{value}}>
                                                                 </div>
                                                             </div>
-                                                        {% endfor %}
-                                                    </div>
+                                                        </div>
+                                                    {% endfor %}
                                                 </div>
-                                            </main>
-                                        </div>
-  
+                                            </div>
+                                        </main>
                                     </div>
                                 </div>
+
                                 <br class="clear">
+
                                 <button class="selectable marT ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="saveCapacityGridData" role="button" aria-disabled="false"><span class="ui-button-text">Save grid
                                     </span></button>
                          
-                                <div class="lblGridSaveAllStatus" style="display: none;"><div class="ui-state-highlight ui-corner-all"><span class="ui-icon ui-icon-info jqueryUiIconFloater"></span>Saved Trauma Unit</div></div>
+                                <div class="lblGridSaveAllStatus" style="display: none;">
+                                    <div class="ui-state-highlight ui-corner-all">
+                                        <span class="ui-icon ui-icon-info jqueryUiIconFloater"></span>Saved Trauma Unit
+                                    </div>
+                                </div>
+
                                 <br>
                                 <hr class="clear">
                                 <br>
                             </div>
-
-
-
-
                         </div>
-                    </div>
-
-                    <div id="endPointDetailsView" aria-labelledby="ui-id-12" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
-
-
-
-
-                    </div>
-                    <div id="alignedServicesView" aria-labelledby="ui-id-13" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
-                    </div>
-                    <div id="attributeDetailsView" aria-labelledby="ui-id-11" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
-
-
-
-
-                    </div>
-                    <div id="changeHistoryView" aria-labelledby="ui-id-14" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display:none">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="allSearchResults" style="overflow-x:hidden;display:none"></div>
+
     </div>
 
 </div>

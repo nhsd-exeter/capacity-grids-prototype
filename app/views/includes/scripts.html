@@ -3,34 +3,34 @@
 
 <!-- Add any custom scripts -->
 <script>
-    $('#paneToggle').click(function() {
+    $('#paneToggle').click(function () {
         $('.search-config').toggle();
         $('.paneToggle').text($(this).text() == "<<" ? ">>" : "<<")
     });
-    
-    $('#ui-id-3').click(function() {
+
+    $('#ui-id-3').click(function () {
         $('#myServices').hide();
         $('#mySavedSearches').show();
         $('#ui-id-2').removeClass('ui-tabs-active ui-state-active');
-        $( "[aria-labelledby='ui-id-2']" ).removeClass('ui-tabs-active ui-state-active');
+        $("[aria-labelledby='ui-id-2']").removeClass('ui-tabs-active ui-state-active');
         $('#ui-id-3').addClass('ui-tabs-active ui-state-active');
     });
 
-    $('#ui-id-2').click(function() {
+    $('#ui-id-2').click(function () {
         $('#myServices').show();
         $('#mySavedSearches').hide();
         $('#ui-id-3').removeClass('ui-tabs-active ui-state-active');
-        $('#ui-id-2').addClass('ui-tabs-active ui-state-active'); 
+        $('#ui-id-2').addClass('ui-tabs-active ui-state-active');
     });
 
     // Show notification
-    $('button.selectable').click(function(){
+    $('button.selectable').click(function () {
         $('.lblGridSaveAllStatus').fadeIn('fast').delay(5000).fadeOut('fast');
     });
 
     // GDS Tabs (TODO: Not working using gds js!!)
-    $('li.govuk-tabs__list-item').click(function(){
-        $('li.govuk-tabs__list-item').removeClass('govuk-tabs__list-item--selected');         
+    $('li.govuk-tabs__list-item').click(function () {
+        $('li.govuk-tabs__list-item').removeClass('govuk-tabs__list-item--selected');
         $(this).addClass('govuk-tabs__list-item--selected');
 
         $('div.govuk-tabs__panel').addClass('govuk-tabs__panel--hidden');
@@ -39,13 +39,22 @@
     });
 
     // Remove focus manually
-   // $(".nhsuk-button").click(function() {
-    //    $(this).focus().blur();
-   // });
+    // $("a").click(function () {
+    //     $(this).focus().blur();
+    // });
 
-    // Show notification V3
-    $('#save-button').click(function(){
-        $('.lblGridSaveAllStatus').fadeIn('fast').delay(5000).fadeOut('fast');
+    // Show notification V3 - Save All Grids
+    $('#save-all-button').click(function (e) {
+        e.preventDefault();
+        $('#notification-all').fadeIn('fast').delay(2000).fadeOut('fast');
+        $(this).focus().blur();
+    });
+
+    // Show notification V3 - Save Grid
+    $('#save-grid-button').click(function (e) {
+        e.preventDefault();
+        $('#notification-grid').fadeIn('fast').delay(2000).fadeOut('fast');
+        $(this).focus().blur();
     });
 
 </script>

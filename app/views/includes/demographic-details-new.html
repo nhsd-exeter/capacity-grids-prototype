@@ -1,0 +1,69 @@
+<div class="nhsuk-design">
+    <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-full">
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-one-half">
+
+                    <h3>Contact Details</h3>
+                    {% for key, value in contact %}
+                    <div class="nhsuk-grid-row">
+                        <div class="nhsuk-grid-column-one-half">
+                            <strong>{{ key }}</strong>
+                        </div>
+                        <div class="nhsuk-grid-column-one-half"
+                            style="text-align: left">
+                            <p>{{ value }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <h3>Public Facing Information</h3>
+                    <p>No instructions specified</p>
+
+                    <h3>Parent Services</h3>
+                    <ul>
+                        <li><a href="">National Critical Care & Burns</a>
+                            <ul>
+                                <li><a href="">Kent and Medway Area Network</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="nhsuk-grid-column-one-half">
+
+                    <h3>Opening Times</h3>
+                    {% for key, value in openHours %}
+                    <div class="nhsuk-grid-row">
+                        <div class="nhsuk-grid-column-one-half">
+                            <strong>{{ key }}</strong>
+                        </div>
+                        <div class="nhsuk-grid-column-one-half"
+                            style="text-align: right">
+                            <p>{{ value }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <h3>Public Holiday Dates</h3>
+                    {% for key, value in publicHols %}
+                    <div class="nhsuk-grid-row">
+                        <div class="nhsuk-grid-column-one-half">
+                            <strong>{{ key }}</strong>
+                        </div>
+                        <div class="nhsuk-grid-column-one-half"
+                            style="text-align: right">
+                            <p>{{ value }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <h3>Referral Information</h3>
+                    <p>No instructions specified</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<style>
+    .panel {
+        padding: 10px;
+        background: #ececec
+    }
+</style>
+<div class="">
+    <div class="nhsuk-design">
+        <main class="nhsuk-main-wrapper">
+            <div class="nhsuk-grid-row">
+                <div class="nhsuk-grid-column-three-quarters panel">
+                    <div class="nhsuk-form-group">
+                        <div class="nhsuk-hint">
+                            {{ "You are not able to set the status information
+                            below." if m111 else "You are able to set the status
+                            information below." }}
+                        </div>
+                        <label for="" class="nhsuk-label">Status</label>
+                        <fieldset class="nhsuk-fieldset">
+                            <div class="nhsuk-radios nhsuk-radios--inline">
+                                <div style="background-color: green; padding: 10px; display:inline-block">
+                                    <div class="nhsuk-radios__item" style="margin-right: 0;">
+                                        <input class="nhsuk-radios__input" id="green" name="status" type="radio"
+                                            value="green" {% if m111%}disabled{% endif %}>
+                                        <label class="nhsuk-label nhsuk-radios__label" for="green"
+                                            style="padding: 5px; color: white">
+                                            Green
+                                        </label>
+                                    </div>
+                                </div>
+                                <div style="background-color: orange; padding: 10px; display:inline-block">
+                                    <div class="nhsuk-radios__item" style="background-color: orange; margin-right: 0;">
+                                        <input class="nhsuk-radios__input" id="amber" name="status" type="radio"
+                                            value="amber" {% if m111%}disabled{% endif %}>
+                                        <label class="nhsuk-label nhsuk-radios__label" for="amber"
+                                            style="padding: 5px; color: white">
+                                            Amber
+                                        </label>
+                                    </div>
+                                </div>
+                                <div style="background-color: red; padding: 10px; display:inline-block">
+                                    <div class="nhsuk-radios__item" style="background-color: red; margin-right: 0;">
+                                        <input class="nhsuk-radios__input" id="red" name="status" type="radio"
+                                            value="red" {% if m111%}disabled{% endif %}>
+                                        <label class="nhsuk-label nhsuk-radios__label" for="red"
+                                            style="padding: 5px; color: white">
+                                            Red
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="nhsuk-form-group">
+                        <label for="" class="nhsuk-label">Reset Time At</label>
+                        <div class="nhsuk-hint">Reset Time must be within the
+                            next 120 hours
+                            (5 days)</div>
+
+
+                        <input class="nhsuk-input nhsuk-input--width-4" id="example" name="example" type="text" {% if
+                            m111%}disabled{% endif %}>
+                        <select class="nhsuk-select nhsuk-input--width-4" id="select-1" name="select-1" {% if
+                            m111%}disabled{% endif %}>
+                            <option value="1">--</option>
+                            <option value="2">23</option>
+                        </select>
+                        <select class="nhsuk-select nhsuk-input--width-4" id="select-2" name="select-2" {% if
+                            m111%}disabled{% endif %}>
+                            <option value="1">--</option>
+                            <option value="1">45</option>
+                        </select>
+                    </div>
+
+                    <div class="nhsuk-form-group">
+                        <label for="" class="nhsuk-label">Last Updated By
+                            Notes</label>
+                        <textarea class="nhsuk-textarea" id="example" name="example" rows="5"
+                            aria-describedby="example-hint" {% if m111%}disabled{% endif %}></textarea>
+                        <a class="nhsuk-button" href="#" {% if m111%}disabled{% endif %} style="margin-top: 15px">
+                            Save
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
