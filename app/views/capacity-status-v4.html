@@ -3,17 +3,6 @@
 {% set m111 = false %}
 
 {% set critical = {
-'Are you currently accepting primary triage candidate positive major trauma patients?': 'Yes',
-'TU OPEL status': '0',
-'Number of Major Trauma Inpatients': '2',
-'Number of Major Trauma Inpatients on the Intensive Care Unit (ICU)': '1',
-'Number of Patients waiting for specialist rehabilitation': '',
-'Is it planned that your site can accept Primary triaged candidate positive major trauma Patients for the next 24 hours
-(Yes/No)': '',
-'Is it planned that your site will have staff to support critical secondary transfers for the next 24 hours (Yes/No)':
-'Yes',
-'Number of trauma Inpatients awaiting transfer to Major Trauma Centre': 'Yes',
-'Comments regarding trauma': '',
 'L3 beds empty and available': '0',
 'L2 beds empty and available': '0',
 'Total L3/L2 Mix': '6',
@@ -26,143 +15,160 @@
 }
 %}
 
-{% set public = {
-'Type': 'Critical Care (CC)',
-'Service ID': '1384256819',
-'ODS Code': '',
-'Created by': 'ROBOT on 12-11-2013 11:46',
-'Status': 'Active',
-'Modified by': 'capacityuser on 02-03-2021 08:05'
+{% set contact = {
+'Address': 'Darenth Wood Road, Dartford, DA2 8DA',
+'Postal Locality': 'DARENTH',
+'Public Phone': '01322 428100 x 8404',
+'Non-Public Phone': '-',
+'Fax': '-',
+'Non-Public Email': '-',
+'Website': '-'
+}
+%}
+
+{% set openHours = {
+'Monday': 'OPEN 24 HOURS',
+'Tuesday': 'OPEN 24 HOURS',
+'Wednesday': 'OPEN 24 HOURS',
+'Thursday': 'OPEN 24 HOURS',
+'Friday': 'OPEN 24 HOURS',
+'Saturday': 'OPEN 24 HOURS',
+'Sunday': 'OPEN 24 HOURS'
+}
+%}
+
+{% set publicHols = {
+'02-04-2021': 'Closed',
+'04-04-2021': 'Closed',
+'05-04-2021': 'Closed',
+'03-05-2021': 'Closed',
+'31-05-2021': 'Closed',
+'30-08-2021': 'Closed',
+'27-12-2021': 'Closed',
+'28-12-2021': 'Closed'
 }
 %}
 
 {% extends 'layout.html' %}
 
 {% block beforeContent %}
+<!--[if !IE 8]><!-->
+<link rel="stylesheet" href="govuk-frontend-3.11.0.min.css">
+<!--<![endif]-->
+<!--[if IE 8]>
+      <link rel="stylesheet" href="govuk-frontend-ie8-3.11.0.min.css">
+    <![endif]-->
+
 {% endblock %}
 
 {% block outerContent %}
+
 {% endblock %}
 
 {% block content %}
 
-<div class=searchwrapper>
+<style>
+    .nhsuk-form-group:nth-child(even) {
+        background: none !important;
+    }
+</style>
+{% include "includes/gds-tab-nhsuk-styles.html" %}
+
+<script src="govuk-frontend-3.11.0.min.js"></script>
+
+<div class="nhsuk-design">
     <!-- LEFT SIDEBAR -->
-    {% include "includes/left.html" %}
-    <div id="paneToggle"><span class="paneToggle" title="Show/Hide Map">
-            << </span>
-    </div>
+    {% include "includes/left-nhsuk.html" %}
     <!-- CONTENT -->
-    <div id="resizeMapsViaJquery" class="rightCanvas" style="height:auto">
-        <div id="nameSearchResult" style="display:block">
-            <div class="errorMessages sf-hidden"></div>
-            <div class="searchResults">
-                <div id="serviceBasicDetails" class="orgDetails">
-                    <div class="orgName">
-                        <h2>SE KM Darent Valley Hospital - General ICU</h2>
-                    </div>
-                    <!-- Control Details -->
-                    {% include "includes/control-details.html" %}
-                </div>
-            </div>
-            <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-                <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"
-                    role="tablist">
+    <div class="nhsuk-width-container">  
+        <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+            <div class="nhsuk-grid-row">
+                <h2>SE KM Darent Valley Hospital - General ICU</h2>
 
-                    <li id="demographicDetails" class="ui-state-default ui-corner-top" role="tab" tabindex="-1"
-                        aria-controls="demographicDetailsView" aria-labelledby="ui-id-9" aria-selected="false"><a
-                            href="demographic-details" class="ui-tabs-anchor" role="presentation" tabindex="-1"
-                            id="ui-id-9">Demographic Details</a></li>
-                    <li id="capacityStatus"
-                        class="ui-state-default ui-corner-top ui-state-focus ui-tabs-active ui-state-active" role="tab"
-                        tabindex="0" aria-controls="capacityStatusView" aria-labelledby="ui-id-10" aria-selected="true">
-                        <a href="capacity-status" class="ui-tabs-anchor" role="presentation" tabindex="-1"
-                            id="ui-id-10">Capacity Status</a>
-                    </li>
-                    <li id="changeHistory" class="ui-state-default ui-corner-top" role="tab" tabindex="-1"
-                        aria-controls="changeHistoryView" aria-labelledby="ui-id-14" aria-selected="false"><a
-                            href="#changeHistoryView" class="ui-tabs-anchor" role="presentation" tabindex="-1"
-                            id="ui-id-14">Change History</a></li>
-                </ul>
-                <div id="demographicDetailsView" aria-labelledby="ui-id-9"
-                    class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false"
-                    aria-hidden="true" style="display:none">
+                <!-- Control Details -->
+                {% include "includes/control-details.html" %}
 
-                </div>
-                <div id="serviceAdminView">
-                </div>
-                <div id="capacityStatusView" aria-labelledby="ui-id-10"
-                    class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true"
-                    aria-hidden="false" style="display:block">
-                    <div id="capactityRAG">
-                        <!-- Status Section -->
-                        {% include "includes/status-section.html" %}
-
-                        <h4 class="underline" title="Service Capacity Grids">Capacity Grids:</h4>
-                        <div id="saveAllSection" data-initial-count="1" class="nhsuk-design">
-                            <a class="nhsuk-button" href="#" style="margin-top: 15px">
-                                Save all changed grids
-                            </a>
-
-                            <div id="lblGridSaveAllStatus">
-                                <div class="ui-state-highlight ui-corner-all"><span
-                                        class="ui-icon ui-icon-info jqueryUiIconFloater"></span>Saved Critical Care
-                                </div>
+                <!-- GDS Tabs -->
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full">
+                        <div class="govuk-tabs" data-module="govuk-tabs">
+                            <h2 class="govuk-tabs__title">
+                                Contents
+                            </h2>
+                            <!-- GDS Tab Headings -->
+                            {% include "includes/gds-tab-headings.html" %}
+                            <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="demographic">
+                                <h2 class="govuk-heading-l">Demographic Details</h2>
+                                <!-- Demographic Details -->
+                                {% include "includes/demographic-details-new.html" %}
                             </div>
-                        </div>
-                        <div id="populateGridContainersViaJquery">
+                            <div class="govuk-tabs__panel" id="grids">
+                                <h2 class="govuk-heading-l">Capacity Grids</h2>
 
-                            <div id="gridLoadError" class="red small-font"></div>
-                            <div class="capacityInputterGrid">
-                                <div class="capacityGridName">
-                                    <span class="fontBold" title="Grid ID 1761 : Critical Care">Critical
-                                        Care</span>
-                                    <span class="small-font" title="Date/Time grid was last updated or verified">(last
-                                        updated: <span id="lastUpdated1761">02 Mar 2021 08:05:33</span>)</span>
-                                </div>
-                            </div>
+                                <!-- Notification - Save All -->
+                                {% include "includes/notification-save-all.html" %}
 
-                            <div data-name="Critical Care">
-                                <div class="nhsuk-design">
-                                    <div>
-                                        <main class="nhsuk-main-wrapper">
-                                            <div class="nhsuk-grid-row">
-                                                <div class="nhsuk-grid-column-three-quarters
-                                                    ">
-                                                    {% for key, value in critical %}
-                                                    <div class="nhsuk-form-group">
-                                                        <label class="nhsuk-label" for={{key}}>
-                                                            {{ key }}
-                                                        </label>
-                                                        <input class="nhsuk-input" id={{key}} name={{key}} type="text"
-                                                            value={{value}}>
+                                <div>
+                                    <!-- Last Updated -->
+                                    {% include "includes/last-updated.html" %}
+
+                                    <div data-name="Critical Care">
+                                        <div class="nhsuk-design">
+
+                                            <!--<div class="nhsuk-width-container">-->
+                                            <div class="">
+                                                <main class="nhsuk-main-wrapper">
+                                                    <div class="nhsuk-grid-row">
+                                                        <div class="nhsuk-grid-column-two-thirds">
+                                                            {% for key, value in critical %}
+                                                            <div class="nhsuk-form-group">
+                                                                <div class="nhsuk-grid-row">
+                                                                    
+                                                                    <label class="nhsuk-label" for={{key}}>
+                                                                        {{ key }}
+                                                                    </label>
+                                                                
+                                                                    <input class="nhsuk-input" id={{key}}
+                                                                        name={{key}} type="text"
+                                                                        value={{value}}>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            {% endfor %}
+                                                        </div>
                                                     </div>
-                                                    {% endfor %}
-                                                </div>
+                                                </main>
                                             </div>
-                                        </main>
+
+                                        </div>
                                     </div>
 
+                                    <!-- Notification - Save Grid -->
+                                    {% include "includes/notification-save-grid.html" %}
                                 </div>
+                            
+
                             </div>
-                            <br class="clear">
-                            <div class="nhsuk-design">
-                                <a class="nhsuk-button nhsuk-design" id="saveGrid" href="#">
-                                    Save Grid
-                                </a>
-                                <div id="lblGridSaveStatus1761"></div>
+                            <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="status">
+                                <h2 class="govuk-heading-l">Capacity Status</h2>
+                                <!-- Status Section -->
+                                {% include "includes/status-section.html" %}
                             </div>
-                            <br>
-                            <hr class="clear">
-                            <br>
+                            <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="history">
+                                <h2 class="govuk-heading-l">Change History</h2>
+                                <!-- Change History -->
+                                {% include "includes/change-history.html" %}
+                            </div>
+
                         </div>
+
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>    
+        </main>
     </div>
-    <div class="allSearchResults" style="overflow-x:hidden;display:none"></div>
-</div>
+    
 
 </div>
+
 {% endblock %}

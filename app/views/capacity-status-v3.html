@@ -1,6 +1,6 @@
 {% set appPage = true %}
 {% set navSearch = true %}
-{% set m111 = false %}
+{% set m111 = true %}
 
 {% set critical = {
 'L3 beds empty and available': '0',
@@ -69,7 +69,7 @@
 
 <style>
     .nhsuk-form-group:nth-child(even) {
-        background: none !important;
+        background: #ececec
     }
 </style>
 {% include "includes/gds-tab-nhsuk-styles.html" %}
@@ -79,95 +79,105 @@
 <div class="nhsuk-design">
     <!-- LEFT SIDEBAR -->
     {% include "includes/left-nhsuk.html" %}
+    <div id="paneToggle"><span class="paneToggle" title="Show/Hide Map">
+            << </span>
+    </div>
     <!-- CONTENT -->
     <div class="nhsuk-width-container">  
         <main class="nhsuk-main-wrapper" id="maincontent" role="main">
             <div class="nhsuk-grid-row">
-                <h2>SE KM Darent Valley Hospital - General ICU</h2>
+                <div class="nhsuk-grid-column-two-thirds">
+                    <h2>SE KM Darent Valley Hospital - General ICU</h2>
+                        
+                    <!-- Control Details -->
+                    {% include "includes/control-details.html" %}
+                    
+                    <!-- GDS Tabs -->
+                    <div class="">
+                        <main class="">
+                            <div class="govuk-grid-row">
+                                <div class="govuk-grid-column-full">
+                                    <div class="govuk-tabs" data-module="govuk-tabs">
+                                        <h2 class="govuk-tabs__title">
+                                            Contents
+                                        </h2>
+                                        <!-- GDS Tab Headings -->
+                                        {% include "includes/gds-tab-headings.html" %}
+                                        <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="demographic">
+                                            <h2 class="govuk-heading-l">Demographic Details</h2>
+                                            <!-- Demographic Details -->
+                                            {% include "includes/demographic-details-new.html" %}
+                                        </div>
+                                        <div class="govuk-tabs__panel" id="grids">
+                                            <h2 class="govuk-heading-l">Capacity Grids</h2>
 
-                <!-- Control Details -->
-                {% include "includes/control-details.html" %}
+                                            <!-- Notification - Save All -->
+                                            {% include "includes/notification-save-all.html" %}
 
-                <!-- GDS Tabs -->
-                <div class="govuk-grid-row">
-                    <div class="govuk-grid-column-full">
-                        <div class="govuk-tabs" data-module="govuk-tabs">
-                            <h2 class="govuk-tabs__title">
-                                Contents
-                            </h2>
-                            <!-- GDS Tab Headings -->
-                            {% include "includes/gds-tab-headings.html" %}
-                            <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="demographic">
-                                <h2 class="govuk-heading-l">Demographic Details</h2>
-                                <!-- Demographic Details -->
-                                {% include "includes/demographic-details-new.html" %}
-                            </div>
-                            <div class="govuk-tabs__panel" id="grids">
-                                <h2 class="govuk-heading-l">Capacity Grids</h2>
+                                            
+                                                <!-- Last Updated -->
+                                                {% include "includes/last-updated.html" %}
 
-                                <!-- Notification - Save All -->
-                                {% include "includes/notification-save-all.html" %}
+                                                <div data-name="Critical Care">
+                                                    <div class="nhsuk-design">
 
-                                <div>
-                                    <!-- Last Updated -->
-                                    {% include "includes/last-updated.html" %}
+                                                        <div class="">
+                                                            
+                                                            <div class="nhsuk-grid-row">
+                                                                <div class="nhsuk-grid-column-two-thirds">
+                                                                    {% for key, value in critical %}
+                                                                    <div class="nhsuk-form-group">
+                                                                        <div class="nhsuk-grid-row">
+                                                                            <div
+                                                                                class="nhsuk-grid-column-three-quarters">
+                                                                                <label class="nhsuk-label" for={{key}}>
+                                                                                    {{ key }}
+                                                                                </label>
+                                                                            </div>
 
-                                    <div data-name="Critical Care">
-                                        <div class="nhsuk-design">
-
-                                            <!--<div class="nhsuk-width-container">-->
-                                            <div class="">
-                                                <main class="nhsuk-main-wrapper">
-                                                    <div class="nhsuk-grid-row">
-                                                        <div class="nhsuk-grid-column-two-thirds">
-                                                            {% for key, value in critical %}
-                                                            <div class="nhsuk-form-group">
-                                                                <div class="nhsuk-grid-row">
-                                                                    
-                                                                    <label class="nhsuk-label" for={{key}}>
-                                                                        {{ key }}
-                                                                    </label>
-                                                                
-                                                                    <input class="nhsuk-input" id={{key}}
-                                                                        name={{key}} type="text"
-                                                                        value={{value}}>
-                                                                    
+                                                                            <div class="nhsuk-grid-column-one-quarter">
+                                                                                <input class="nhsuk-input" id={{key}}
+                                                                                    name={{key}} type="text"
+                                                                                    value={{value}}>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    {% endfor %}
                                                                 </div>
                                                             </div>
-                                                            {% endfor %}
+                                                            
                                                         </div>
+
                                                     </div>
-                                                </main>
-                                            </div>
+                                                </div>
+
+                                                
+                                            
+                                            <!-- Notification - Save Grid -->
+                                                {% include "includes/notification-save-grid.html" %}
 
                                         </div>
+                                        <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="status">
+                                            <h2 class="govuk-heading-l">Capacity Status</h2>
+                                            <!-- Status Section -->
+                                            {% include "includes/status-section.html" %}
+                                        </div>
+                                        <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="history">
+                                            <h2 class="govuk-heading-l">Change History</h2>
+                                            <!-- Change History -->
+                                            {% include "includes/change-history.html" %}
+                                        </div>
+
                                     </div>
 
-                                    <!-- Notification - Save Grid -->
-                                    {% include "includes/notification-save-grid.html" %}
                                 </div>
-                            
-
                             </div>
-                            <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="status">
-                                <h2 class="govuk-heading-l">Capacity Status</h2>
-                                <!-- Status Section -->
-                                {% include "includes/status-section.html" %}
-                            </div>
-                            <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="history">
-                                <h2 class="govuk-heading-l">Change History</h2>
-                                <!-- Change History -->
-                                {% include "includes/change-history.html" %}
-                            </div>
-
-                        </div>
-
+                        </main>
                     </div>
                 </div>
-            </div>    
+            </div>
         </main>
     </div>
-    
 
 </div>
 
