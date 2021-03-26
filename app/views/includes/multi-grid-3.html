@@ -1,0 +1,202 @@
+<!-- For now, have seperate loops and div blocks i guess :( -->
+{% set critical = {
+'Are you currently accepting primary triage candidate positive major trauma patients?': 'Yes',
+'TU OPEL status': '0',
+'Number of Major Trauma Inpatients': '2',
+'Number of Major Trauma Inpatients on the Intensive Care Unit (ICU)': '1',
+'Number of Patients waiting for specialist rehabilitation': '',
+'Is it planned that your site can accept Primary triaged candidate positive major trauma Patients for the next 24 hours
+(Yes/No)': '',
+'Is it planned that your site will have staff to support critical secondary transfers for the next 24 hours (Yes/No)':
+'Yes',
+'Number of trauma Inpatients awaiting transfer to Major Trauma Centre': 'Yes',
+'Comments regarding trauma': '',
+'L3 beds empty and available': '0',
+'L2 beds empty and available': '0',
+'Total L3/L2 Mix': '6',
+'L3 patients on unit': '3',
+'L2 patients on unit': '2',
+'L1/0 patients in unit': '1',
+'L3 patients outside unit': '0',
+'L2 patients outside unit': '0',
+'Beds committed': '0'
+}
+%}
+
+{% set critical1 = {
+'L3 beds empty and available': '0',
+'L2 beds empty and available': '0',
+'Total L3/L2 Mix': '6',
+'L3 patients on unit': '3',
+'L2 patients on unit': '2',
+'L1/0 patients in unit': '1',
+'L3 patients outside unit': '0',
+'L2 patients outside unit': '0',
+'Beds committed': '0'
+}
+%}
+
+{% set critical2 = {
+'Are you currently accepting primary triage candidate positive major trauma patients?': 'Yes',
+'TU OPEL status': '0',
+'Number of Major Trauma Inpatients': '2',
+'Number of Major Trauma Inpatients on the Intensive Care Unit (ICU)': '1',
+'Number of Patients waiting for specialist rehabilitation': '',
+'Is it planned that your site can accept Primary triaged candidate positive major trauma Patients for the next 24 hours
+(Yes/No)': '',
+'Is it planned that your site will have staff to support critical secondary transfers for the next 24 hours (Yes/No)':
+'Yes',
+'Number of trauma Inpatients awaiting transfer to Major Trauma Centre': 'Yes',
+'Comments regarding trauma': '',
+'L3 beds empty and available': '0',
+'L2 beds empty and available': '0',
+'Total L3/L2 Mix': '6',
+'L3 patients on unit': '3',
+'L2 patients on unit': '2',
+'L1/0 patients in unit': '1',
+'L3 patients outside unit': '0',
+'L2 patients outside unit': '0',
+'Beds committed': '0'
+}
+%}
+<div class="nhsuk-design">
+
+<details class="nhsuk-details nhsuk-expander">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+      Critcal Grid
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+<!-- Grid 1 -->
+<div id="populateGridContainersViaJquery">
+    <div id="gridLoadError" class="red small-font"></div>
+    <!-- Last Updated -->
+    {% include "includes/last-updated.html" %}
+
+    <div data-name="Critical Care">
+        <div class="nhsuk-design">
+            <div>
+                <main class="nhsuk-main-wrapper">
+                    <div class="nhsuk-grid-row">
+                        <div class="nhsuk-grid-column-three-quarters
+                                                    ">
+                            {% for key, value in critical %}
+                            <div class="nhsuk-form-group">
+                                <label class="nhsuk-label" for={{key}}>
+                                    {{ key }}
+                                </label>
+                                <input class="nhsuk-input" id={{key}} name={{key}} type="text" value={{value}}>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Notification - Save Grid -->
+    {% include "includes/notification-save-grid.html" %}
+</div>
+  </div>
+</details>
+
+<details class="nhsuk-details nhsuk-expander">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+      Critcal Grid 02
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+<!-- Grid 2 -->
+<div id="populateGridContainersViaJquery">
+    <div id="gridLoadError" class="red small-font"></div>
+    <!-- Last Updated -->
+    {% include "includes/last-updated.html" %}
+
+    <div data-name="Critical Care">
+        <div class="nhsuk-design">
+            <div>
+                <main class="nhsuk-main-wrapper">
+                    <div class="nhsuk-grid-row">
+                        <div class="nhsuk-grid-column-three-quarters
+                                                    ">
+                            {% for key, value in critical1 %}
+                            <div class="nhsuk-form-group">
+                                <label class="nhsuk-label" for={{key}}>
+                                    {{ key }}
+                                </label>
+                                <input class="nhsuk-input" id={{key}} name={{key}} type="text" value={{value}}>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Notification - Save Grid -->
+    {% include "includes/notification-save-grid.html" %}
+</div>
+  </div>
+</details>
+
+<details class="nhsuk-details nhsuk-expander">
+  <summary class="nhsuk-details__summary">
+    <span class="nhsuk-details__summary-text">
+      Grid 3
+    </span>
+  </summary>
+  <div class="nhsuk-details__text">
+<!-- Grid 3 -->
+<div id="populateGridContainersViaJquery">
+    <div id="gridLoadError" class="red small-font"></div>
+    <!-- Last Updated -->
+    {% include "includes/last-updated.html" %}
+
+    <div data-name="Critical Care">
+        <div class="nhsuk-design">
+            <div>
+                <main class="nhsuk-main-wrapper">
+                    <div class="nhsuk-grid-row">
+                        <div class="nhsuk-grid-column-three-quarters
+                                                    ">
+                            {% for key, value in critical2 %}
+                            <div class="nhsuk-form-group">
+                                <label class="nhsuk-label" for={{key}}>
+                                    {{ key }}
+                                </label>
+                                <input class="nhsuk-input" id={{key}} name={{key}} type="text" value={{value}}>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Notification - Save Grid -->
+    {% include "includes/notification-save-grid.html" %}
+</div>
+  </div>
+</details>
+
+</div>
+
+{# <div class="nhsuk-design">
+    <hr>
+</div>
+
+
+
+
+<div class="nhsuk-design">
+    <hr>
+</div> #}
+

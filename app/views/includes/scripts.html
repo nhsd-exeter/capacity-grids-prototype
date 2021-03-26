@@ -43,17 +43,33 @@
     //     $(this).focus().blur();
     // });
 
+    let t = new Date();
+    let timestamp = `${t.getDate()} ${t.getFullYear()} ${t.getHours()}:${t.getMinutes()}:${t.getSeconds()}`;
+
     // Show notification V3 - Save All Grids
-    $('#save-all-button').click(function (e) {
+    $('.save-all-button').click(function (e) {
         e.preventDefault();
-        $('#notification-all').fadeIn('fast').delay(2000).fadeOut('fast');
+        $(this).prev('.notification-all').fadeIn('fast').delay(2000).fadeOut('fast');
+        let t = new Date();
+        $('.timestamp').text(t.toUTCString().replace("GMT",""));
         $(this).focus().blur();
     });
 
     // Show notification V3 - Save Grid
-    $('#save-grid-button').click(function (e) {
+    $('.save-grid-button').click(function (e) {
         e.preventDefault();
-        $('#notification-grid').fadeIn('fast').delay(2000).fadeOut('fast');
+        $(this).prev('.notification-grid').fadeIn('fast').delay(2000).fadeOut('fast');
+        let t = new Date();
+        $('.timestamp').text(t.toUTCString().replace("GMT",""));
+        $(this).focus().blur();
+    });
+
+    // Show notification V3 - Save Grid
+    $('.save-grids-button').click(function (e) {
+        e.preventDefault();
+        $(this).prev('.notification-grids').fadeIn('fast').delay(2000).fadeOut('fast');
+        let t = new Date();
+        $('.timestamp').text(t.toUTCString().replace("GMT",""));
         $(this).focus().blur();
     });
 

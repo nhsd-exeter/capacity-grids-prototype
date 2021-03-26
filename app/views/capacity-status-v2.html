@@ -1,7 +1,8 @@
 {% set appPage = true %}
 {% set navSearch = true %}
-{% set m111 = false %}
+{% set m111 = true %}
 
+<!-- For now, have seperate loops and div blocks i guess :( -->
 {% set critical = {
 'Are you currently accepting primary triage candidate positive major trauma patients?': 'Yes',
 'TU OPEL status': '0',
@@ -39,6 +40,7 @@
 {% extends 'layout.html' %}
 
 {% block beforeContent %}
+{% include "includes/style-resets.html" %}
 {% endblock %}
 
 {% block outerContent %}
@@ -65,7 +67,9 @@
                     {% include "includes/control-details.html" %}
                 </div>
             </div>
+
             <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+                <!-- Tab Headings -->
                 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"
                     role="tablist">
 
@@ -91,77 +95,53 @@
                 </div>
                 <div id="serviceAdminView">
                 </div>
-                <div id="capacityStatusView" aria-labelledby="ui-id-10"
-                    class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true"
-                    aria-hidden="false" style="display:block">
-                    <div id="capactityRAG">
-                        <!-- Status Section -->
-                        {% include "includes/status-section.html" %}
+                <div id="capacityStatusView" style="display:block">
+                    <div class="nhsuk-design">
+                        <div class="nhsuk-grid-row">
+                            <div class="nhsuk-grid-column-three-quarters">
 
-                        <h4 class="underline" title="Service Capacity Grids">Capacity Grids:</h4>
-                        <div id="saveAllSection" data-initial-count="1" class="nhsuk-design">
-                            <a class="nhsuk-button" href="#" style="margin-top: 15px">
-                                Save all changed grids
-                            </a>
+                                <!-- Status Section -->
+                                {% include "includes/status-section.html" %}
 
-                            <div id="lblGridSaveAllStatus">
-                                <div class="ui-state-highlight ui-corner-all"><span
-                                        class="ui-icon ui-icon-info jqueryUiIconFloater"></span>Saved Critical Care
-                                </div>
-                            </div>
-                        </div>
-                        <div id="populateGridContainersViaJquery">
+                                <h2>Capacity Grids</h2>
+                                <!-- Notification - Save All -->
+                                {% include "includes/notification-save-all.html" %}
 
-                            <div id="gridLoadError" class="red small-font"></div>
-                            <div class="capacityInputterGrid">
-                                <div class="capacityGridName">
-                                    <span class="fontBold" title="Grid ID 1761 : Critical Care">Critical
-                                        Care</span>
-                                    <span class="small-font" title="Date/Time grid was last updated or verified">(last
-                                        updated: <span id="lastUpdated1761">02 Mar 2021 08:05:33</span>)</span>
-                                </div>
-                            </div>
+                                <!-- Grid -->
+                                <div>
+                                    <!-- Last Updated -->
+                                    {% include "includes/last-updated.html" %}
 
-                            <div data-name="Critical Care">
-                                <div class="nhsuk-design">
-                                    <div>
-                                        <main class="nhsuk-main-wrapper">
-                                            <div class="nhsuk-grid-row">
-                                                <div class="nhsuk-grid-column-three-quarters
-                                                    ">
-                                                    {% for key, value in critical %}
-                                                    <div class="nhsuk-form-group">
-                                                        <label class="nhsuk-label" for={{key}}>
-                                                            {{ key }}
-                                                        </label>
-                                                        <input class="nhsuk-input" id={{key}} name={{key}} type="text"
-                                                            value={{value}}>
-                                                    </div>
-                                                    {% endfor %}
+                                    <div data-name="Critical Care">
+                                        <div class="nhsuk-design">
+                                            <div>
+                                                {% for key, value in critical %}
+                                                <div class="nhsuk-form-group">
+                                                    <label class="nhsuk-label" for={{key}}>
+                                                        {{ key }}
+                                                    </label>
+                                                    <input class="nhsuk-input" id={{key}} name={{key}} type="text"
+                                                        value={{value}}>
                                                 </div>
+                                                {% endfor %}
                                             </div>
-                                        </main>
-                                    </div>
 
+                                        </div>
+                                    </div>
+                                    <!-- Notification - Save Grid -->
+                                    {% include "includes/notification-save-grid.html" %}
+                                    <!-- Last Updated -->
+                                    {% include "includes/last-updated.html" %}
                                 </div>
+                                <hr>    
+                                
                             </div>
-                            <br class="clear">
-                            <div class="nhsuk-design">
-                                <a class="nhsuk-button nhsuk-design" id="saveGrid" href="#">
-                                    Save Grid
-                                </a>
-                                <div id="lblGridSaveStatus1761"></div>
-                            </div>
-                            <br>
-                            <hr class="clear">
-                            <br>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="allSearchResults" style="overflow-x:hidden;display:none"></div>
 </div>
 
 </div>
