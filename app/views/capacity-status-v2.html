@@ -134,6 +134,62 @@
                                     {% include "includes/last-updated.html" %}
                                 </div>
                                 <hr>    
+
+                                 <!-- Grid -->
+                                <div>
+                                    <!-- Last Updated -->
+                                    {% include "includes/last-updated.html" %}
+
+                                    <div data-name="Critical Care">
+                                        <div class="nhsuk-design">
+                                            <div>
+                                                {% for key, value in critical %}
+                                                <div class="nhsuk-form-group">
+                                                    <label class="nhsuk-label" for={{key}}>
+                                                        {{ key }}
+                                                    </label>
+                                                    <input class="nhsuk-input" id={{key}} name={{key}} type="text"
+                                                        value={{value}}>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- Notification - Save Grid -->
+                                    {% include "includes/notification-save-grid.html" %}
+                                    <!-- Last Updated -->
+                                    {% include "includes/last-updated.html" %}
+                                </div>
+                                <hr> 
+
+                                 <!-- Grid -->
+                                <div>
+                                    <!-- Last Updated -->
+                                    {% include "includes/last-updated.html" %}
+
+                                    <div data-name="Critical Care">
+                                        <div class="nhsuk-design">
+                                            <div>
+                                                {% for key, value in critical %}
+                                                <div class="nhsuk-form-group">
+                                                    <label class="nhsuk-label" for={{key}}>
+                                                        {{ key }}
+                                                    </label>
+                                                    <input class="nhsuk-input" id={{key}} name={{key}} type="text"
+                                                        value={{value}}>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- Notification - Save Grid -->
+                                    {% include "includes/notification-save-grid.html" %}
+                                    <!-- Last Updated -->
+                                    {% include "includes/last-updated.html" %}
+                                </div>
+                                
                                 
                             </div>
                         </div>
