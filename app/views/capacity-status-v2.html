@@ -1,6 +1,6 @@
 {% set appPage = true %}
 {% set navSearch = true %}
-{% set m111 = true %}
+{% set m111 = false %}
 
 <!-- For now, have seperate loops and div blocks i guess :( -->
 {% set critical = {
@@ -44,15 +44,22 @@
 {% endblock %}
 
 {% block outerContent %}
+
 {% endblock %}
 
 {% block content %}
 
+<style>
+.nhsuk-design .nhsuk-section-break--visible, .nhsuk-design hr {
+    border-bottom: 5px solid #d8dde0;
+}
+</style>
+
 <div class=searchwrapper>
     <!-- LEFT SIDEBAR -->
     {% include "includes/left.html" %}
-    <div id="paneToggle"><span class="paneToggle" title="Show/Hide Map">
-            << </span>
+    <div id="paneToggle">
+        <span class="paneToggle" title="Show/Hide Map"><<</span>
     </div>
     <!-- CONTENT -->
     <div id="resizeMapsViaJquery" class="rightCanvas" style="height:auto">
@@ -100,15 +107,15 @@
                         <div class="nhsuk-grid-row">
                             <div class="nhsuk-grid-column-three-quarters">
 
+                                <h2 class="nhsuk-u-margin-top-4">Capacity Status</h2>
                                 <!-- Status Section -->
                                 {% include "includes/status-section.html" %}
-
-                                <h2>Capacity Grids</h2>
+                                
+                                <h2 class="nhsuk-u-margin-top-6">Capacity Grids</h2>
                                 <!-- Notification - Save All -->
                                 {% include "includes/notification-save-all.html" %}
-
                                 <!-- Grid -->
-                                <div>
+                                <form id="form1" data-name="Critical Care">
                                     <!-- Last Updated -->
                                     {% include "includes/last-updated.html" %}
 
@@ -131,16 +138,16 @@
                                     <!-- Notification - Save Grid -->
                                     {% include "includes/notification-save-grid.html" %}
                                     <!-- Last Updated -->
-                                    {% include "includes/last-updated.html" %}
-                                </div>
+                                    {% include "includes/last-updated-lower.html" %}
+                                </form>
                                 <hr>    
 
                                  <!-- Grid -->
-                                <div>
+                                <form id="form2" data-name="Critical Care 2">
                                     <!-- Last Updated -->
                                     {% include "includes/last-updated.html" %}
 
-                                    <div data-name="Critical Care">
+                                    <div data-name="Critical Care 2">
                                         <div class="nhsuk-design">
                                             <div>
                                                 {% for key, value in critical %}
@@ -159,16 +166,15 @@
                                     <!-- Notification - Save Grid -->
                                     {% include "includes/notification-save-grid.html" %}
                                     <!-- Last Updated -->
-                                    {% include "includes/last-updated.html" %}
-                                </div>
-                                <hr> 
-
+                                    {% include "includes/last-updated-lower.html" %}
+                                </form>
+                                <hr>
                                  <!-- Grid -->
-                                <div>
+                                <form id="form3" data-name="Critical Care 03">
                                     <!-- Last Updated -->
                                     {% include "includes/last-updated.html" %}
 
-                                    <div data-name="Critical Care">
+                                    <div data-name="Critical Care 03">
                                         <div class="nhsuk-design">
                                             <div>
                                                 {% for key, value in critical %}
@@ -187,8 +193,8 @@
                                     <!-- Notification - Save Grid -->
                                     {% include "includes/notification-save-grid.html" %}
                                     <!-- Last Updated -->
-                                    {% include "includes/last-updated.html" %}
-                                </div>
+                                    {% include "includes/last-updated-lower.html" %}
+                                </form>
                                 
                                 
                             </div>

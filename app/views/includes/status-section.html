@@ -6,22 +6,21 @@
         margin-bottom: 20px;
     }
 </style>
+  {# <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> #}
+<script>
+    
+</script>
 <div class="">
     <div class="nhsuk-design">
         <div class="panel">
             <div class="nhsuk-form-group">
-                <div class="nhsuk-hint">
-                    {{ "You are not able to set the status information
-                    below." if m111 else "You are able to set the status
-                    information below." }}
-                </div>
                 <label for="" class="nhsuk-label">Status</label>
                 <fieldset class="nhsuk-fieldset">
                     <div class="nhsuk-radios nhsuk-radios--inline">
                         <div style="background-color: green; padding: 10px; display:inline-block">
                             <div class="nhsuk-radios__item" style="margin-right: 0;">
                                 <input class="nhsuk-radios__input" id="green" name="status" type="radio"
-                                    value="green" {% if m111%}disabled{% endif %}>
+                                    value="green">
                                 <label class="nhsuk-label nhsuk-radios__label" for="green"
                                     style="padding: 5px; color: white">
                                     Green
@@ -31,7 +30,7 @@
                         <div style="background-color: orange; padding: 10px; display:inline-block">
                             <div class="nhsuk-radios__item" style="background-color: orange; margin-right: 0;">
                                 <input class="nhsuk-radios__input" id="amber" name="status" type="radio"
-                                    value="amber" {% if m111%}disabled{% endif %}>
+                                    value="amber">
                                 <label class="nhsuk-label nhsuk-radios__label" for="amber"
                                     style="padding: 5px; color: white">
                                     Amber
@@ -41,7 +40,7 @@
                         <div style="background-color: red; padding: 10px; display:inline-block">
                             <div class="nhsuk-radios__item" style="background-color: red; margin-right: 0;">
                                 <input class="nhsuk-radios__input" id="red" name="status" type="radio"
-                                    value="red" {% if m111%}disabled{% endif %}>
+                                    value="red" checked>
                                 <label class="nhsuk-label nhsuk-radios__label" for="red"
                                     style="padding: 5px; color: white">
                                     Red
@@ -53,32 +52,81 @@
             </div>
 
             <div class="nhsuk-form-group">
-                <label for="" class="nhsuk-label">Reset Time At</label>
+                <label for="" class="nhsuk-label">Reset Time</label>
                 <div class="nhsuk-hint">Reset Time must be within the
                     next 120 hours
                     (5 days)</div>
 
 
-                <input class="nhsuk-input nhsuk-input--width-4" id="example" name="example" type="text" {% if
-                    m111%}disabled{% endif %}>
-                <select class="nhsuk-select nhsuk-input--width-4" id="select-1" name="select-1" {% if
-                    m111%}disabled{% endif %}>
+                <input class="nhsuk-input nhsuk-input--width-4" id="status-date" name="status-date" type="text">
+
+                <span class="nhsuk-hint" style="display: inline; margin: 0 10px;">at</span>
+
+                <select class="nhsuk-select nhsuk-input--width-4" id="select-time-1" name="select-time-1">
                     <option value="1">--</option>
-                    <option value="2">23</option>
+                    <option value="2">00</option>
+                    <option value="3">01</option>
+                    <option value="4">01</option>
+                    <option value="5">02</option>
+                    <option value="6">03</option>
+                    <option value="7">04</option>
+                    <option value="8">05</option>
+                    <option value="9">06</option>
+                    <option value="10">07</option>
+                    <option value="11">08</option>
+                    <option value="12">09</option>
+                    <option value="13">10</option>
+                    <option value="14">11</option>
+                    <option value="15">12</option>
+                    <option value="16">13</option>
+                    <option value="17">14</option>
+                    <option value="18">15</option>
+                    <option value="19">16</option>
+                    <option value="20">17</option>
+                    <option value="21">18</option>
+                    <option value="22">19</option>
+                    <option value="23">20</option>
+                    <option value="24">21</option>
+                    <option value="25">22</option>
+                    <option value="26">23</option>
+
                 </select>
-                <select class="nhsuk-select nhsuk-input--width-4" id="select-2" name="select-2" {% if
-                    m111%}disabled{% endif %}>
+                <select class="nhsuk-select nhsuk-input--width-4" id="select-time-2" name="select-time-2">
                     <option value="1">--</option>
-                    <option value="1">45</option>
+                    <option value="2">00</option>
+                    <option value="3">15</option>
+                    <option value="4">30</option>
+                    <option value="5">45</option>
                 </select>
+                <div class="nhsuk-hint nhsuk-u-margin-top-3" id="status-msg">The service capacity status will reset to <span>GREEN</span> at <span id="time1">03</span>:<span id="time2">00</span> on <span id="reset-date">Fri, 26 Mar 2021</span></div>
             </div>
 
             <div class="nhsuk-form-group">
-                <label for="" class="nhsuk-label">Last Updated By
+                <label for="" class="nhsuk-label">Last Updated On
+                    <strong id="status-update-date">Fri 26/03/2021 10:56</strong></label>
+            </div>
+
+            <div class="nhsuk-form-group">
+                <label for="" class="nhsuk-label">By
+                    <strong>Satnam</strong></label>
+            </div>
+
+            <div class="nhsuk-form-group nhsuk-u-margin-bottom-0">
+                <label for="" class="nhsuk-label">
                     Notes</label>
                 <textarea class="nhsuk-textarea" id="example" name="example" rows="5"
-                    aria-describedby="example-hint" {% if m111%}disabled{% endif %}></textarea>
-                <a class="nhsuk-button" href="#" {% if m111%}disabled{% endif %} style="margin-top: 15px">
+                    aria-describedby="example-hint"></textarea>
+            </div>
+            <div class="nhsuk-form-group">
+                <div id="" class="nhsuk-design notification-cs" style="display: none;">
+                    <div class="nhsuk-warning-callout">
+                        <h3 class="nhsuk-warning-callout__label">
+                            The Capacity Status has been updated
+                        </h3>
+                        <p>If you also update your Service's capacity grids make sure you click the Save button <strong>below</strong> the capacity grid (if a grid exists for this service)</p>
+                    </div>
+                </div>
+                <a class="nhsuk-button nhsuk-u-margin-bottom-0" id="save-status" href="#" style="margin-top: 15px">
                     Save
                 </a>
             </div>
