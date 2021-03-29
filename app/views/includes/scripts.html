@@ -145,4 +145,11 @@
         $('#reset-date').text($('#status-date').val());
     });
 
+    $('.show-add-grid').click(function(e){
+        e.preventDefault();
+        $('#assign').toggle();
+        //$('#assign').scrollTo(100); 
+        $(this).focus().blur();
+    });
+
 </script>
