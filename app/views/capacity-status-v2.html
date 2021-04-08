@@ -2,41 +2,6 @@
 {% set navSearch = true %}
 {% set m111 = false %}
 
-<!-- For now, have seperate loops and div blocks i guess :( -->
-{% set critical = {
-'Are you currently accepting primary triage candidate positive major trauma patients?': 'Yes',
-'TU OPEL status': '0',
-'Number of Major Trauma Inpatients': '2',
-'Number of Major Trauma Inpatients on the Intensive Care Unit (ICU)': '1',
-'Number of Patients waiting for specialist rehabilitation': '',
-'Is it planned that your site can accept Primary triaged candidate positive major trauma Patients for the next 24 hours
-(Yes/No)': '',
-'Is it planned that your site will have staff to support critical secondary transfers for the next 24 hours (Yes/No)':
-'Yes',
-'Number of trauma Inpatients awaiting transfer to Major Trauma Centre': 'Yes',
-'Comments regarding trauma': '',
-'L3 beds empty and available': '0',
-'L2 beds empty and available': '0',
-'Total L3/L2 Mix': '6',
-'L3 patients on unit': '3',
-'L2 patients on unit': '2',
-'L1/0 patients in unit': '1',
-'L3 patients outside unit': '0',
-'L2 patients outside unit': '0',
-'Beds committed': '0'
-}
-%}
-
-{% set public = {
-'Type': 'Critical Care (CC)',
-'Service ID': '1384256819',
-'ODS Code': '',
-'Created by': 'ROBOT on 12-11-2013 11:46',
-'Status': 'Active',
-'Modified by': 'capacityuser on 02-03-2021 08:05'
-}
-%}
-
 {% extends 'layout.html' %}
 
 {% block beforeContent %}
@@ -114,104 +79,17 @@
                                 <h2 class="nhsuk-u-margin-top-6">Capacity Grids</h2>
                                 <!-- Notification - Save All -->
                                 {% include "includes/notification-save-all.html" %}
-                                <!-- Grid -->
-                                <form id="form1" data-name="Critical Care">
-                                    <!-- Last Updated -->
-                                    {% include "includes/last-updated.html" %}
 
-                                    <div data-name="Critical Care">
-                                        <div class="nhsuk-design">
-                                            <div>
-                                                {% for key, value in critical %}
-                                                <div class="nhsuk-form-group">
-                                                    <label class="nhsuk-label" for={{key}}>
-                                                        {{ key }}
-                                                    </label>
-                                                    <input class="nhsuk-input" id={{key}} name={{key}} type="text"
-                                                        value={{value}}>
-                                                </div>
-                                                {% endfor %}
-                                            </div>
+                                <!-- Grids -->
+                                {% include "includes/grids.html" %}
 
-                                        </div>
-                                    </div>
-                                    <!-- Notification - Save Grid -->
-                                    {% include "includes/notification-save-grid.html" %}
-                                    <!-- Last Updated -->
-                                    {% include "includes/last-updated-lower.html" %}
-                                </form>
-                                <hr>    
-
-                                 <!-- Grid -->
-                                <form id="form2" data-name="Critical Care 2">
-                                    <!-- Last Updated -->
-                                    {% include "includes/last-updated.html" %}
-
-                                    <div data-name="Critical Care 2">
-                                        <div class="nhsuk-design">
-                                            <div>
-                                                {% for key, value in critical %}
-                                                <div class="nhsuk-form-group">
-                                                    <label class="nhsuk-label" for={{key}}>
-                                                        {{ key }}
-                                                    </label>
-                                                    <input class="nhsuk-input" id={{key}} name={{key}} type="text"
-                                                        value={{value}}>
-                                                </div>
-                                                {% endfor %}
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <!-- Notification - Save Grid -->
-                                    {% include "includes/notification-save-grid.html" %}
-                                    <!-- Last Updated -->
-                                    {% include "includes/last-updated-lower.html" %}
-                                </form>
-                                <hr>
-                                 <!-- Grid -->
-                                <form id="form3" data-name="Critical Care 03">
-                                    <!-- Last Updated -->
-                                    {% include "includes/last-updated.html" %}
-
-                                    <div data-name="Critical Care 03">
-                                        <div class="nhsuk-design">
-                                            <div>
-                                                {% for key, value in critical %}
-                                                <div class="nhsuk-form-group">
-                                                    <label class="nhsuk-label" for={{key}}>
-                                                        {{ key }}
-                                                    </label>
-                                                    <input class="nhsuk-input" id={{key}} name={{key}} type="text"
-                                                        value={{value}}>
-                                                </div>
-                                                {% endfor %}
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <!-- Notification - Save Grid -->
-                                    {% include "includes/notification-save-grid.html" %}
-                                    <!-- Last Updated -->
-                                    {% include "includes/last-updated-lower.html" %}
-                                </form>
-
-                                <hr>
                                  <!-- Grid Options -->
                                 <div class="nhsuk-design">
-                                    <div class="nhsuk-design notification-grid" style="display: none">
-                                        <div class="nhsuk-warning-callout">
-                                            <h3 class="nhsuk-warning-callout__label">
-                                                Saved
-                                            </h3>
-                                            <p><strong>Critial Care</strong> Grid has been saved</p>
-                                        </div>
-                                    </div>
-                                    <a class="nhsuk-button nhsuk-design show-add-grid" href="#">
+                                    {# <a class="nhsuk-button nhsuk-design show-add-grid" href="#">
                                         Show Capacity grid options >>
-                                    </a>
-
-                                    <div class="nhsuk-form-group" style="display: none;" id="assign">
+                                    </a> #}
+                                    <h2>Add Grid</h2>
+                                    <div class="nhsuk-form-group" style="display: block;" id="assign">
                                         <label class="nhsuk-label" for="select-1">
                                             Assign new capacity grid to service
                                         </label>
@@ -225,7 +103,16 @@
                                             <option value="7">Suffolk Community Team Grid</option>
                                             <option value="8">Suffolk NHS DToC</option>
                                         </select>
+                                        <br/>
+                                        <a class="nhsuk-button nhsuk-design nhsuk-button--secondary blur nhsuk-u-margin-top-3" href="#">
+                                        Refresh
+                                        </a>
+                                        <a class="nhsuk-button nhsuk-design blur nhsuk-u-margin-top-3" href="#">
+                                            Add
+                                        </a>
                                     </div>
+                                    
+                                    
                                 </div>
                             </div>
                         </div>

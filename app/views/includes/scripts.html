@@ -41,49 +41,48 @@
     });
 
     // Remove focus manually
-    // $("a").click(function () {
-    //     $(this).focus().blur();
-    // });
+     $(".blur").click(function (e) {
+        e.preventDefault();
+         $(this).focus().blur();
+     });
 
     // SAVE FUNCTION ----------------------------------------------------------------------------------- //
 
     // Show notification V3 - Save All Grids
 
-    let form1 = $('#form1'), form2 = $('#form2'), form3 = $('#form3'),
+    let form1 = $('#1'), form2 = $('#2'), form3 = $('#3'),
     origForm1 = form1.serialize(), origForm2 = form2.serialize(), origForm3 = form3.serialize(), message = "No changes found";
 
     $('.save-all-button').click(function (e) {
         e.preventDefault();
 
-        if (form1.serialize() !== origForm1 || form2.serialize() !== origForm2 || form3.serialize() !== origForm3){
-            let a = form1.serialize() !== origForm1 ? `<strong>${form1.attr('data-name')}</strong> has been saved <br/>` : ``;
-            let b = form2.serialize() !== origForm2 ? `<strong>${form2.attr('data-name')}</strong> has been saved <br/>` : ``;
-            let c = form3.serialize() !== origForm3 ? `<strong>${form3.attr('data-name')}</strong> has been saved <br/>` : ``;
-
-            message = a+b+c;
-        }
+        let a, b, c;
+        a = form1.serialize() !== origForm1 ? `<img src="images/info.png" class="icon-exclam"/><strong>${form1.attr('data-name')}</strong> has been saved <br/>` : `<span class="nhsuk-u-margin-bottom-1" style="color: black"><img src="images/exclamation.png" class="icon-exclam"/><strong>${form1.attr('data-name')}</strong> has not been saved</span><br/>`;
+        b = form2.serialize() !== origForm2 ? `<img src="images/info.png" class="icon-exclam"/><strong>${form2.attr('data-name')}</strong> has been saved <br/>` : `<span class="nhsuk-u-margin-bottom-1" style="color: black"><img src="images/exclamation.png" class="icon-exclam"/><strong>${form2.attr('data-name')}</strong> has not been saved</span><br/>`;
+        c = form3.serialize() !== origForm3 ? `<img src="images/info.png" class="icon-exclam"/><strong>${form3.attr('data-name')}</strong> has been saved <br/>` : `<span class="nhsuk-u-margin-bottom-1" style="color: black"><img src="images/exclamation.png" class="icon-exclam"/><strong>${form3.attr('data-name')}</strong> has not been saved</span><br/>`;
+        message = a + b + c;
 
         $(this).prev('.notification-all').find('p').html(message);
-        $(this).prev('.notification-all').fadeIn('fast').delay(2000).fadeOut('fast');
+        $(this).prev('.notification-all').show();
 
         //Timestamp
         let t = new Date();
-        let newUTC = String(t.toGMTString().replace("GMT",""));
+        let newUTC = String(t.toGMTString().replace("GMT", ""));
         $('.timestamp').text(newUTC.substring(5));
 
         $(this).focus().blur();
     });
 
-    
+
 
     // Show notification V3 - Save Grid
     $('.save-grid-button').click(function (e) {
         e.preventDefault();
         $(this).prev('.notification-grid').fadeIn('fast').delay(2000).fadeOut('fast');
-        
+
         //Timestamp
         let t = new Date();
-        let newUTC = String(t.toGMTString().replace("GMT",""));
+        let newUTC = String(t.toGMTString().replace("GMT", ""));
         $('.timestamp').text(newUTC.substring(5));
 
         $(this).focus().blur();
@@ -96,7 +95,7 @@
 
         //Timestamp
         let t = new Date();
-        let newUTC = String(t.toGMTString().replace("GMT",""));
+        let newUTC = String(t.toGMTString().replace("GMT", ""));
         $('.timestamp').text(newUTC.substring(5));
 
         $(this).focus().blur();
@@ -110,45 +109,45 @@
 
         //Timestamp
         let t = new Date();
-        let newUTC = String(t.toGMTString().replace("GMT",""));
+        let newUTC = String(t.toGMTString().replace("GMT", ""));
         $('#status-update-date').text(newUTC);
 
         $(this).focus().blur();
     });
 
-    $('#select-time-1').on('change', function(){
+    $('#select-time-1').on('change', function () {
         $('#time1').text($('#select-time-1 option:selected').text());
     });
 
-    $('#select-time-2').on('change', function(){
+    $('#select-time-2').on('change', function () {
         $('#time2').text($('#select-time-2 option:selected').text());
     });
 
     // Traffic lights
-    $('#green, #amber, #red').on('change', function(){
-        if($('#green').is(":checked")){
-            $('#status-date, #select-time-1, #select-time-2').prop( "disabled", true );
+    $('#green, #amber, #red').on('change', function () {
+        if ($('#green').is(":checked")) {
+            $('#status-date, #select-time-1, #select-time-2').prop("disabled", true);
             $('#select-time-1, #select-time-2').val(1);
             $('#status-date').val('');
             $('#status-msg').hide();
         } else {
-            $('#status-date, #select-time-1, #select-time-2').prop( "disabled", false );
+            $('#status-date, #select-time-1, #select-time-2').prop("disabled", false);
             $('#status-msg').show();
         }
     });
 
-    $(function() {
+    $(function () {
         $('#status-date').datepicker({ dateFormat: 'D, dd M yy' });
     });
 
-    $('#status-date').on('change', function(){
+    $('#status-date').on('change', function () {
         $('#reset-date').text($('#status-date').val());
     });
 
-    $('.show-add-grid').click(function(e){
+    $('.show-add-grid').click(function (e) {
         e.preventDefault();
         $('#assign').toggle();
-        //$('#assign').scrollTo(100); 
+        $('#assign').offset().top + 10
         $(this).focus().blur();
     });
 

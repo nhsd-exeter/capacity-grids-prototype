@@ -1,0 +1,113 @@
+{% 
+    set grids = [
+        {
+            name: 'Critcal Care',
+            id: '1',
+            updated: '01 Mar 2021 08:05:33',
+            data: {
+                'Are you currently accepting primary triage candidate positive major trauma patients?': 'Yes',
+                'TU OPEL status': '0',
+                'Number of Major Trauma Inpatients': '2',
+                'Number of Major Trauma Inpatients on the Intensive Care Unit (ICU)': '1',
+                'Number of Patients waiting for specialist rehabilitation': '',
+                'Is it planned that your site can accept Primary triaged candidate positive major trauma Patients for the next 24 hours
+                (Yes/No)': '',
+                'Is it planned that your site will have staff to support critical secondary transfers for the next 24 hours (Yes/No)':
+                'Yes',
+                'Number of trauma Inpatients awaiting transfer to Major Trauma Centre': 'Yes',
+                'Comments regarding trauma': '',
+                'L3 beds empty and available': '0',
+                'L2 beds empty and available': '0',
+                'Total L3/L2 Mix': '6',
+                'L3 patients on unit': '3',
+                'L2 patients on unit': '2',
+                'L1/0 patients in unit': '1',
+                'L3 patients outside unit': '0',
+                'L2 patients outside unit': '0',
+                'Beds committed': '0'
+            }
+        },
+        {
+            name: 'Critcal Care 2222',
+            id: '2',
+            updated: '02 Mar 2021 08:05:33',
+            data: {
+                'Are you currently accepting primary triage candidate positive major trauma patients?': 'Yes',
+                'L3 patients outside unit': '0',
+                'L2 patients outside unit': '0',
+                'Beds committed': '0'
+            }
+        },
+        {
+            name: 'Trauma Grid',
+            id: '3',
+            updated: '03 Mar 2021 08:05:33',
+            data: {
+                'Are you currently accepting primary triage candidate positive major trauma patients?': 'Yes',
+                'L3 patients outside unit': '0',
+                'L2 patients outside unit': '0',
+                'Beds committed': '0'
+            }
+        }
+    ]
+%}
+
+<!-- Grid -->
+{% for grid in grids %}
+<form id="{{ grid.id }}" data-name="{{ grid.name }}">
+    <!-- Last Updated -->
+    <div class="nhsuk-design">
+        <h3 class="nhsuk-u-margin-bottom-0">
+            <span class="fontBold" title="Grid ID: {{ grid.id }}" style="font-size: 20px">{{ grid.name }}<img src="images/remove.png" class="nhsuk-u-margin-left-2"/></span>
+        </h3>
+        <h3 class="nhsuk-u-margin-top-0">
+            <span title="Date/Time grid was last updated or verified" style="color:grey">
+            Last updated: <span class="timestamp">{{ grid.updated }}<img src="images/icon_edit.gif" class="nhsuk-u-margin-left-2"/></span>
+            </span>
+        </h3>
+    </div>
+
+    <div data-name="{{ grid.name }}">
+        <div class="nhsuk-design">
+            <div>
+                {% for key, value in grid.data %}
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for={{key}}>
+                        {{ key }}
+                    </label>
+                    <input class="nhsuk-input" id={{key}} name={{key}} type="text" value={{value}}>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification - Save Grid -->
+    <div class="nhsuk-design">
+        <div class="nhsuk-design notification-grid" style="display: none">
+            <div class="nhsuk-warning-callout">
+                <h3 class="nhsuk-warning-callout__label">
+                    Saved
+                </h3>
+                <p><img src="images/info.png" class="icon-exclam"/>te<strong>{{ grid.name }}</strong> has been saved</p>
+            </div>
+        </div>
+        <a class="nhsuk-button nhsuk-design save-grid-button" href="#">
+            Save Grid
+        </a>
+    </div>
+
+    <!-- Last Updated -->
+    <div class="nhsuk-design">
+        <h3>
+            <span title="Date/Time grid was last updated or verified" style="color:grey">
+            Last updated: <span class="timestamp">{{ grid.updated }}<img src="images/icon_edit.gif" class="nhsuk-u-margin-left-2"/></span>
+            </span>
+        </h3>
+    </div>
+
+</form>
+<hr>
+{% endfor %}
+
+

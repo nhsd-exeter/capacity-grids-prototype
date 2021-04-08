@@ -5,6 +5,24 @@
         margin-top: 20px;
         margin-bottom: 20px;
     }
+    .capacity-status-block {
+        background-color: green;
+        padding: 10px;
+        display: inline-block;
+    }
+    .capacity-status-block--label {
+        padding: 5px;
+        color: white;
+    }
+    .background-green {
+        background-color: green;
+    }
+    .background-amber {
+        background-color: orange;
+    }
+    .background-red {
+        background-color: red;
+    }
 </style>
   {# <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> #}
 <script>
@@ -17,32 +35,26 @@
                 <label for="" class="nhsuk-label">Status</label>
                 <fieldset class="nhsuk-fieldset">
                     <div class="nhsuk-radios nhsuk-radios--inline">
-                        <div style="background-color: green; padding: 10px; display:inline-block">
-                            <div class="nhsuk-radios__item" style="margin-right: 0;">
-                                <input class="nhsuk-radios__input" id="green" name="status" type="radio"
-                                    value="green">
-                                <label class="nhsuk-label nhsuk-radios__label" for="green"
-                                    style="padding: 5px; color: white">
+                        <div class="capacity-status-block background-green">
+                            <div class="nhsuk-radios__item nhsuk-u-margin-right-0" style="">
+                                <input class="nhsuk-radios__input" id="green" name="status" type="radio" value="GREEN" checked>
+                                <label class="nhsuk-label nhsuk-radios__label capacity-status-block--label" for="green">
                                     Green
                                 </label>
                             </div>
                         </div>
-                        <div style="background-color: orange; padding: 10px; display:inline-block">
-                            <div class="nhsuk-radios__item" style="background-color: orange; margin-right: 0;">
-                                <input class="nhsuk-radios__input" id="amber" name="status" type="radio"
-                                    value="amber">
-                                <label class="nhsuk-label nhsuk-radios__label" for="amber"
-                                    style="padding: 5px; color: white">
+                        <div class="capacity-status-block background-amber">
+                            <div class="nhsuk-radios__item nhsuk-u-margin-right-0">
+                                <input class="nhsuk-radios__input" id="amber" name="status" type="radio" value="AMBER">
+                                <label class="nhsuk-label nhsuk-radios__label capacity-status-block--label" for="amber">
                                     Amber
                                 </label>
                             </div>
                         </div>
-                        <div style="background-color: red; padding: 10px; display:inline-block">
-                            <div class="nhsuk-radios__item" style="background-color: red; margin-right: 0;">
-                                <input class="nhsuk-radios__input" id="red" name="status" type="radio"
-                                    value="red" checked>
-                                <label class="nhsuk-label nhsuk-radios__label" for="red"
-                                    style="padding: 5px; color: white">
+                        <div class="capacity-status-block background-red">
+                            <div class="nhsuk-radios__item nhsuk-u-margin-right-0">
+                                <input class="nhsuk-radios__input" id="red" name="status" type="radio" value="RED">
+                                <label class="nhsuk-label nhsuk-radios__label capacity-status-block--label" for="red">
                                     Red
                                 </label>
                             </div>
@@ -98,7 +110,7 @@
                     <option value="4">30</option>
                     <option value="5">45</option>
                 </select>
-                <div class="nhsuk-hint nhsuk-u-margin-top-3" id="status-msg">The service capacity status will reset to <span>GREEN</span> at <span id="time1">03</span>:<span id="time2">00</span> on <span id="reset-date">Fri, 26 Mar 2021</span></div>
+                <div class="nhsuk-hint nhsuk-u-margin-top-3" id="status-msg" style="display: none;">The service capacity status will reset to <span id="status-colour">GREEN</span> at <span id="time1">03</span>:<span id="time2">00</span> on <span id="reset-date">Fri, 26 Mar 2021</span></div>
             </div>
 
             <div class="nhsuk-form-group">
@@ -126,7 +138,7 @@
                         <p>If you also update your Service's capacity grids make sure you click the Save button <strong>below</strong> the capacity grid (if a grid exists for this service)</p>
                     </div>
                 </div>
-                <a class="nhsuk-button nhsuk-u-margin-bottom-0" id="save-status" href="#" style="margin-top: 15px">
+                <a class="nhsuk-button nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-4" id="save-status" href="#">
                     Save
                 </a>
             </div>
