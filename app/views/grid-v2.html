@@ -1,23 +1,221 @@
 {% set appPage = true %}
 {% set navSearch = true %}
+{% set gridView = true %}
 
-<!-- Use this page as the index for your project -->
+{% set tableHeader = {
+        name: 'Name',
+        options: 'Options',
+        L3emptyLabel: 'L3 beds empty and available', 
+        L2emptyLabel: 'L2 beds empty and available',
+        totalLabel: 'Total L3/L2 Mix',
+        L3onLabel: 'L3 patients on unit',
+        L2onLabel: 'L2 patients on unit',
+        L1inLabel: 'L1/0 patients in unit',
+        L3outLabel: 'L3 patients outside unit',
+        L2outLabel: 'L2 patients outside unit',
+        bedsLabel: 'Beds committed',
+        notesLabel: 'Service Notes'
+    }
+%}
 
-<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+{% set gridData = [
+{
+name: 'EoE E 01. Colchester ITU',
+id: '1',
+data: {
+'L3emptyLabel': 'L3 beds empty and available', 
+'L2emptyLabel': 'L2 beds empty and available',
+'totalLabel': 'Total L3/L2 Mix',
+'L3onLabel': 'L3 patients on unit',
+'L2onLabel': 'L2 patients on unit',
+'L1inLabel': 'L1/0 patients in unit',
+'L3outLabel': 'L3 patients outside unit',
+'L2outLabel': 'L2 patients outside unit',
+'bedsLabel': 'Beds committed',
+'notesLabel': 'Service Notes',
+'L3empty': '0',
+'L2empty': '0',
+'total': '13',
+'L3on': '6',
+'L2on': '5',
+'L1in': '1',
+'L3out': '0',
+'L2out': '0',
+'beds': '0',
+'notes': '-'
+}
+},
+{
+name: 'EoE E 02. Princess Alexandra – Harlow ITU',
+id: '2',
+data: {
+'L3emptyLabel': 'L3 beds empty and available',
+'L2emptyLabel': 'L2 beds empty and available',
+'totalLabel': 'Total L3/L2 Mix',
+'L3onLabel': 'L3 patients on unit',
+'L2onLabel': 'L2 patients on unit',
+'L1inLabel': 'L1/0 patients in unit',
+'L3outLabel': 'L3 patients outside unit',
+'L2outLabel': 'L2 patients outside unit',
+'bedsLabel': 'Beds committed',
+'notesLabel': 'Service Notes',
+'L3empty': '0',
+'L2empty': '1',
+'total': '11',
+'L3on': '7',
+'L2on': '1',
+'L1in': '2',
+'L3out': '0',
+'L2out': '0',
+'beds': '1',
+'notes': '-'
+}
+},
+{
+name: 'EoE E 03. Basildon ITU',
+id: '3',
+data: {
+'L3emptyLabel': 'L3 beds empty and available',
+'L2emptyLabel': 'L2 beds empty and available',
+'totalLabel': 'Total L3/L2 Mix',
+'L3onLabel': 'L3 patients on unit',
+'L2onLabel': 'L2 patients on unit',
+'L1inLabel': 'L1/0 patients in unit',
+'L3outLabel': 'L3 patients outside unit',
+'L2outLabel': 'L2 patients outside unit',
+'bedsLabel': 'Beds committed',
+'notesLabel': 'Service Notes',
+'L3empty': '1',
+'L2empty': '1',
+'total': '8',
+'L3on': '1',
+'L2on': '1',
+'L1in': '0',
+'L3out': '0',
+'L2out': '1',
+'beds': '1',
+'notes': '-'
+}
+},
+{
+name: 'EoE E 04. Essex CTC Cardio Thoracic - ITU/HDU',
+id: '4',
+data: {
+'L3emptyLabel': 'L3 beds empty and available',
+'L2emptyLabel': 'L2 beds empty and available',
+'totalLabel': 'Total L3/L2 Mix',
+'L3onLabel': 'L3 patients on unit',
+'L2onLabel': 'L2 patients on unit',
+'L1inLabel': 'L1/0 patients in unit',
+'L3outLabel': 'L3 patients outside unit',
+'L2outLabel': 'L2 patients outside unit',
+'bedsLabel': 'Beds committed',
+'notesLabel': 'Service Notes',
+'L3empty': '1',
+'L2empty': '0',
+'total': '16',
+'L3on': '7',
+'L2on': '2',
+'L1in': '0',
+'L3out': '0',
+'L2out': '0',
+'beds': '2',
+'notes': 'Nothing to put in notes at this point'
+}
+},
+{
+name: 'EoE E 05. Southend ITU',
+id: '5',
+data: {
+'L3emptyLabel': 'L3 beds empty and available',
+'L2emptyLabel': 'L2 beds empty and available',
+'totalLabel': 'Total L3/L2 Mix',
+'L3onLabel': 'L3 patients on unit',
+'L2onLabel': 'L2 patients on unit',
+'L1inLabel': 'L1/0 patients in unit',
+'L3outLabel': 'L3 patients outside unit',
+'L2outLabel': 'L2 patients outside unit',
+'bedsLabel': 'Beds committed',
+'notesLabel': 'Service Notes',
+'L3empty': '1',
+'L2empty': '0',
+'total': '10',
+'L3on': '3',
+'L2on': '3',
+'L1in': '0',
+'L3out': '0',
+'L2out': '0',
+'beds': '3',
+'notes': '-'
+}
+},
+{
+name: 'EoE E 06. Broomfield - Chelmsford ICU',
+id: '6',
+data: {
+'L3emptyLabel': 'L3 beds empty and available',
+'L2emptyLabel': 'L2 beds empty and available',
+'totalLabel': 'Total L3/L2 Mix',
+'L3onLabel': 'L3 patients on unit',
+'L2onLabel': 'L2 patients on unit',
+'L1inLabel': 'L1/0 patients in unit',
+'L3outLabel': 'L3 patients outside unit',
+'L2outLabel': 'L2 patients outside unit',
+'bedsLabel': 'Beds committed',
+'notesLabel': 'Service Notes',
+'L3empty': '0',
+'L2empty': '0',
+'total': '10',
+'L3on': '4',
+'L2on': '6',
+'L1in': '0',
+'L3out': '0',
+'L2out': '0',
+'beds': '0',
+'notes': 'Total of 10 free beds at this time'
+}
+},
+{
+name: 'EoE E 08. Queens Neuro ICU',
+id: '7',
+data: {
+'L3emptyLabel': 'L3 beds empty and available',
+'L2emptyLabel': 'L2 beds empty and available',
+'totalLabel': 'Total L3/L2 Mix',
+'L3onLabel': 'L3 patients on unit',
+'L2onLabel': 'L2 patients on unit',
+'L1inLabel': 'L1/0 patients in unit',
+'L3outLabel': 'L3 patients outside unit',
+'L2outLabel': 'L2 patients outside unit',
+'bedsLabel': 'Beds committed',
+'notesLabel': 'Service Notes',
+'L3empty': '0',
+'L2empty': '0',
+'total': '12',
+'L3on': '7',
+'L2on': '5',
+'L1in': '0',
+'L3out': '0',
+'L2out': '0',
+'beds': '0',
+'notes': '-'
+}
+}
 
-<!-- Extends the layout from /views/layout.html -->
+]
+%}
+
 {% extends 'layout.html' %}
-<!-- 
-  In /views/layout.html you can:
-    - change the header and footer 
-    - add custom CSS and JavaScript
--->
-
 
 
 <!-- For adding a breadcrumb -->
 <!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
 {% block beforeContent %}
+<style>
+    .overflow-scroll {
+        overflow: scroll;
+    }
+</style>
 {% endblock %}
 
 <!-- For adding a back link -->
@@ -28,22 +226,10 @@
 <!-- For adding page content -->
 <!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
 {% block content %}
-{# <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
-        <!-- Change the page title here -->
-        <h1>
-            Capacity Grids Prototype **Placeholder**
-            <span class="nhsuk-caption-xl nhsuk-caption--bottom">Version 1.01</span>
-        </h1>
-    </div>
-</div> #}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!--
- Page saved with SingleFile 
- url: https://core-dos-test4-ddc-core-dos-ui.k8s-nonprod.texasplatform.uk/app/controllers/search/search.php#org/1384256819 
- saved date: Tue Mar 02 2021 09:23:10 GMT+0000 (Greenwich Mean Time)
--->
+
 <meta charset=utf-8>
 <title>Service Profile | NHS Pathways DoS</title>
 <meta http-equiv=X-UA-Compatible content="IE=edge">
@@ -348,7 +534,7 @@
             <div id=nameSearchResult style=display:block>
                 <div class="errorMessages sf-hidden"></div>
                 <div class=searchResults>
-                    <div id=serviceBasicDetails class=orgDetails>
+                    {# <div id=serviceBasicDetails class=orgDetails>
                         <div class=orgName>
                             <h2>
                                 SE KM Darent Valley Hospital - General ICU </h2>
@@ -379,268 +565,7 @@
                                     </td>
                                 </tr>
                         </table>
-                    </div>
-
-
-                    <!-- Material UI -->
-                    <!-- <div class="mdc-data-table">
-                        <table class="mdc-data-table__table" aria-label="Dessert calories">
-                            <thead>
-                                <tr class="mdc-data-table__header-row">
-                                    <th class="mdc-data-table__header-cell mdc-data-table__header-cell--with-sort"
-                                        role="columnheader" scope="col" aria-sort="none" data-column-id="dessert">
-                                        <div class="mdc-data-table__header-cell-wrapper">
-                                            <div class="mdc-data-table__header-cell-label">
-                                                Dessert
-                                            </div>
-                                            <button
-                                                class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
-                                                aria-label="Sort by dessert"
-                                                aria-describedby="dessert-status-label">arrow_upward</button>
-                                            <div class="mdc-data-table__sort-status-label" aria-hidden="true"
-                                                id="dessert-status-label">
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric mdc-data-table__header-cell--with-sort mdc-data-table__header-cell--sorted"
-                                        role="columnheader" scope="col" aria-sort="ascending" data-column-id="carbs">
-                                        <div class="mdc-data-table__header-cell-wrapper">
-                                            <button
-                                                class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
-                                                aria-label="Sort by carbs"
-                                                aria-describedby="carbs-status-label">arrow_upward</button>
-                                            <div class="mdc-data-table__header-cell-label">
-                                                Carbs (g)
-                                            </div>
-                                            <div class="mdc-data-table__sort-status-label" aria-hidden="true"
-                                                id="carbs-status-label"></div>
-                                        </div>
-                                    </th>
-                                    <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric mdc-data-table__header-cell--with-sort"
-                                        role="columnheader" scope="col" aria-sort="none" data-column-id="protein">
-                                        <div class="mdc-data-table__header-cell-wrapper">
-                                            <button
-                                                class="mdc-icon-button material-icons mdc-data-table__sort-icon-button"
-                                                aria-label="Sort by protein"
-                                                aria-describedby="protein-status-label">arrow_upward</button>
-                                            <div class="mdc-data-table__header-cell-label">
-                                                Protein (g)
-                                            </div>
-                                            <div class="mdc-data-table__sort-status-label" aria-hidden="true"
-                                                id="protein-status-label"></div>
-                                        </div>
-                                    </th>
-                                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col"
-                                        data-column-id="comments">
-                                        Comments
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="mdc-data-table__content">
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                                <tr class="mdc-data-table__row">
-                                    <td class="mdc-data-table__cell">Frozen yogurt</td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        24
-                                    </td>
-                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                                        4.0
-                                    </td>
-                                    <td class="mdc-data-table__cell">Super tasty</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> 
-                    -->
+                    </div> #}
 
                     <div id=endPointDetailsView aria-labelledby=ui-id-12
                         class="ui-tabs-panel ui-widget-content ui-corner-bottom" role=tabpanel aria-expanded=false
@@ -663,26 +588,21 @@
             <div class="allSearchResults" style="overflow-x: hidden; display: block;">
 
 
-                <div class="gridToggle">
-                    <span id="serviceViewLink"><input type="radio" id="serviceView" name="viewToggle"
-                            checked="checked"></span>
-                    <label for="serviceView">Service View</label>
-                    <span id="gridViewToggle"><input type="radio" id="gridView" name="viewToggle"></span>
-                    <label for="gridView">Grid View</label>
-                    <span class="slide-button"></span>
-                </div>
+                {% include "includes/gridToggle.html" %}
+
 
                 <p>&nbsp;
-                    <img width="25" src="/app/img/map/googlemaps_icon.png" class="selectable"
+                    {# <img width="25" src="/app/img/map/googlemaps_icon.png" class="selectable"
                         alt="View results on Map (new window)" title="View results on Map (new window)"
                         id="openMap">&nbsp;
                     <img src="/app/img/search/print.png" title="Print results" id="printButton" alt="print" height="25">
+                    #}
 
                     <span class="fontBold" title="Search name">test 5</span>&nbsp;|
                     Total results: 7 | Data at <span class="red fontBold">10-03-2021 08:21:19</span> (<span
                         class="blue underline selectable" id="refreshData" title="Reload latest data">REFRESH</span>)
                 </p>
-
+                <!-- SERVICE VIEW --------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                 <div id="toggleServiceViewViaJquery" class="locationResults" style="display: none;">
 
                     <table class="dosTable" id="sortResultsViaTableSorter"
@@ -702,19 +622,6 @@
 
                         <tbody>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
                             <tr class="result">
                                 <td>EoE E 01. Colchester ITU</td>
                                 <td class="noWrap">Critical Care (CC)</td>
@@ -725,24 +632,7 @@
                                 <td>
                                 </td>
                                 <td class="sicons">
-                                    <span style="white-space:nowrap;display:block;width:138px">
-                                        <img src="/app/img/search/icons/demographic_details.png"
-                                            alt="EoE E 01. Colchester ITU" title="Demographic Details" id="1376511976"
-                                            class="servIconDemographicDetails">
-                                        <img src="/app/img/search/icons/capacity_status.png"
-                                            alt="EoE E 01. Colchester ITU" title="Capacity Status" id="1376511976"
-                                            class="servIconCapacityStatus">
-                                        <img src="/app/img/search/icons/clinical_details.png"
-                                            alt="EoE E 01. Colchester ITU" title="Clinical Details" id="1376511976"
-                                            class="servIconClinicalDetails">
-                                        <img src="/app/img/search/icons/search_ranking_details.png"
-                                            alt="EoE E 01. Colchester ITU" title="Search Ranking
-Details" id="1376511976" class="servIconSearchRanking">
-                                        <img src="/app/img/search/icons/view.png" alt="Go to service"
-                                            title="Go to service" id="1376511976" class="servIconBrowseToService">
-                                        <img src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                            title="Hide from search" id="1376511976" class="servIconDelete">
-                                    </span>
+                                    {% include "includes/search-results-icons.html" %}
                                 </td>
                             </tr>
                             <tr class="result">
@@ -755,24 +645,7 @@ Details" id="1376511976" class="servIconSearchRanking">
                                 <td>
                                 </td>
                                 <td class="sicons">
-                                    <span style="white-space:nowrap;display:block;width:138px">
-                                        <img src="/app/img/search/icons/demographic_details.png"
-                                            alt="EoE E 02. Princess Alexandra – Harlow ITU" title="Demographic Details"
-                                            id="1376512033" class="servIconDemographicDetails">
-                                        <img src="/app/img/search/icons/capacity_status.png"
-                                            alt="EoE E 02. Princess Alexandra – Harlow ITU" title="Capacity Status"
-                                            id="1376512033" class="servIconCapacityStatus">
-                                        <img src="/app/img/search/icons/clinical_details.png"
-                                            alt="EoE E 02. Princess Alexandra – Harlow ITU" title="Clinical Details"
-                                            id="1376512033" class="servIconClinicalDetails">
-                                        <img src="/app/img/search/icons/search_ranking_details.png"
-                                            alt="EoE E 02. Princess Alexandra – Harlow ITU" title="Search Ranking
-Details" id="1376512033" class="servIconSearchRanking">
-                                        <img src="/app/img/search/icons/view.png" alt="Go to service"
-                                            title="Go to service" id="1376512033" class="servIconBrowseToService">
-                                        <img src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                            title="Hide from search" id="1376512033" class="servIconDelete">
-                                    </span>
+                                    {% include "includes/search-results-icons.html" %}
                                 </td>
                             </tr>
                             <tr class="result">
@@ -785,24 +658,7 @@ Details" id="1376512033" class="servIconSearchRanking">
                                 <td>
                                 </td>
                                 <td class="sicons">
-                                    <span style="white-space:nowrap;display:block;width:138px">
-                                        <img src="/app/img/search/icons/demographic_details.png"
-                                            alt="EoE E 03. Basildon ITU" title="Demographic Details" id="1376512075"
-                                            class="servIconDemographicDetails">
-                                        <img src="/app/img/search/icons/capacity_status.png"
-                                            alt="EoE E 03. Basildon ITU" title="Capacity Status" id="1376512075"
-                                            class="servIconCapacityStatus">
-                                        <img src="/app/img/search/icons/clinical_details.png"
-                                            alt="EoE E 03. Basildon ITU" title="Clinical Details" id="1376512075"
-                                            class="servIconClinicalDetails">
-                                        <img src="/app/img/search/icons/search_ranking_details.png"
-                                            alt="EoE E 03. Basildon ITU" title="Search Ranking
-Details" id="1376512075" class="servIconSearchRanking">
-                                        <img src="/app/img/search/icons/view.png" alt="Go to service"
-                                            title="Go to service" id="1376512075" class="servIconBrowseToService">
-                                        <img src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                            title="Hide from search" id="1376512075" class="servIconDelete">
-                                    </span>
+                                    {% include "includes/search-results-icons.html" %}
                                 </td>
                             </tr>
                             <tr class="result">
@@ -815,25 +671,7 @@ Details" id="1376512075" class="servIconSearchRanking">
                                 <td>
                                 </td>
                                 <td class="sicons">
-                                    <span style="white-space:nowrap;display:block;width:138px">
-                                        <img src="/app/img/search/icons/demographic_details.png"
-                                            alt="EoE E 04. Essex CTC Cardio Thoracic - ITU/HDU"
-                                            title="Demographic Details" id="1376511857"
-                                            class="servIconDemographicDetails">
-                                        <img src="/app/img/search/icons/capacity_status.png"
-                                            alt="EoE E 04. Essex CTC Cardio Thoracic - ITU/HDU" title="Capacity Status"
-                                            id="1376511857" class="servIconCapacityStatus">
-                                        <img src="/app/img/search/icons/clinical_details.png"
-                                            alt="EoE E 04. Essex CTC Cardio Thoracic - ITU/HDU" title="Clinical Details"
-                                            id="1376511857" class="servIconClinicalDetails">
-                                        <img src="/app/img/search/icons/search_ranking_details.png"
-                                            alt="EoE E 04. Essex CTC Cardio Thoracic - ITU/HDU" title="Search Ranking
-Details" id="1376511857" class="servIconSearchRanking">
-                                        <img src="/app/img/search/icons/view.png" alt="Go to service"
-                                            title="Go to service" id="1376511857" class="servIconBrowseToService">
-                                        <img src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                            title="Hide from search" id="1376511857" class="servIconDelete">
-                                    </span>
+                                    {% include "includes/search-results-icons.html" %}
                                 </td>
                             </tr>
                             <tr class="result">
@@ -846,24 +684,7 @@ Details" id="1376511857" class="servIconSearchRanking">
                                 <td>
                                 </td>
                                 <td class="sicons">
-                                    <span style="white-space:nowrap;display:block;width:138px">
-                                        <img src="/app/img/search/icons/demographic_details.png"
-                                            alt="EoE E 05. Southend ITU" title="Demographic Details" id="1376512119"
-                                            class="servIconDemographicDetails">
-                                        <img src="/app/img/search/icons/capacity_status.png"
-                                            alt="EoE E 05. Southend ITU" title="Capacity Status" id="1376512119"
-                                            class="servIconCapacityStatus">
-                                        <img src="/app/img/search/icons/clinical_details.png"
-                                            alt="EoE E 05. Southend ITU" title="Clinical Details" id="1376512119"
-                                            class="servIconClinicalDetails">
-                                        <img src="/app/img/search/icons/search_ranking_details.png"
-                                            alt="EoE E 05. Southend ITU" title="Search Ranking
-Details" id="1376512119" class="servIconSearchRanking">
-                                        <img src="/app/img/search/icons/view.png" alt="Go to service"
-                                            title="Go to service" id="1376512119" class="servIconBrowseToService">
-                                        <img src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                            title="Hide from search" id="1376512119" class="servIconDelete">
-                                    </span>
+                                    {% include "includes/search-results-icons.html" %}
                                 </td>
                             </tr>
                             <tr class="result">
@@ -876,24 +697,7 @@ Details" id="1376512119" class="servIconSearchRanking">
                                 <td>
                                 </td>
                                 <td class="sicons">
-                                    <span style="white-space:nowrap;display:block;width:138px">
-                                        <img src="/app/img/search/icons/demographic_details.png"
-                                            alt="EoE E 06. Broomfield - Chelmsford ICU" title="Demographic Details"
-                                            id="1376509804" class="servIconDemographicDetails">
-                                        <img src="/app/img/search/icons/capacity_status.png"
-                                            alt="EoE E 06. Broomfield - Chelmsford ICU" title="Capacity Status"
-                                            id="1376509804" class="servIconCapacityStatus">
-                                        <img src="/app/img/search/icons/clinical_details.png"
-                                            alt="EoE E 06. Broomfield - Chelmsford ICU" title="Clinical Details"
-                                            id="1376509804" class="servIconClinicalDetails">
-                                        <img src="/app/img/search/icons/search_ranking_details.png"
-                                            alt="EoE E 06. Broomfield - Chelmsford ICU" title="Search Ranking
-Details" id="1376509804" class="servIconSearchRanking">
-                                        <img src="/app/img/search/icons/view.png" alt="Go to service"
-                                            title="Go to service" id="1376509804" class="servIconBrowseToService">
-                                        <img src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                            title="Hide from search" id="1376509804" class="servIconDelete">
-                                    </span>
+                                    {% include "includes/search-results-icons.html" %}
                                 </td>
                             </tr>
                             <tr class="result">
@@ -906,24 +710,7 @@ Details" id="1376509804" class="servIconSearchRanking">
                                 <td>
                                 </td>
                                 <td class="sicons">
-                                    <span style="white-space:nowrap;display:block;width:138px">
-                                        <img src="/app/img/search/icons/demographic_details.png"
-                                            alt="EoE E 08. Queens Neuro ICU" title="Demographic Details" id="1376512152"
-                                            class="servIconDemographicDetails">
-                                        <img src="/app/img/search/icons/capacity_status.png"
-                                            alt="EoE E 08. Queens Neuro ICU" title="Capacity Status" id="1376512152"
-                                            class="servIconCapacityStatus">
-                                        <img src="/app/img/search/icons/clinical_details.png"
-                                            alt="EoE E 08. Queens Neuro ICU" title="Clinical Details" id="1376512152"
-                                            class="servIconClinicalDetails">
-                                        <img src="/app/img/search/icons/search_ranking_details.png"
-                                            alt="EoE E 08. Queens Neuro ICU" title="Search Ranking
-Details" id="1376512152" class="servIconSearchRanking">
-                                        <img src="/app/img/search/icons/view.png" alt="Go to service"
-                                            title="Go to service" id="1376512152" class="servIconBrowseToService">
-                                        <img src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                            title="Hide from search" id="1376512152" class="servIconDelete">
-                                    </span>
+                                    {% include "includes/search-results-icons.html" %}
                                 </td>
                             </tr>
                         </tbody>
@@ -934,399 +721,186 @@ Details" id="1376512152" class="servIconSearchRanking">
 
                 </div>
 
+                <!-- GRID VIEW ------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
                 <div id="toggleGridViewViaJquery" style="">
 
+                    <style>
+                        /*
+                        * Grid specific table
+                        */
+                        .gridViewTable {
+                            text-align: left;
+                            border-collapse: collapse;
+                            width: 99%;
+                            font-size: 0.8em;
+                            border: 1px solid #69c;
+                            margin: 5px 0px 30px 5px;
+                        }
 
+                        .gridViewTable th {
+                            background: #4b6c9e;
+                            font-weight: bold;
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                            color: white;
+                            font-size: 11px;
+                            padding-left: 3px;
+                        }
 
-                    <div class="divOverflowX">
-                        <table class="gridViewTable" style="table-layout: auto; min-width: 2166px;">
-                            <thead>
-                                <tr style="vertical-align:top;">
-                                    <th style="width:150px;">Critical Care</th>
-                                    <th style="text-align: center;width:30px;">L3 beds empty and available</th>
-                                    <th style="text-align: center;width:30px;">L2 beds empty and available</th>
-                                    <th style="text-align: center;width:30px;">Total L3/L2 Mix</th>
-                                    <th style="text-align: center;width:30px;">L3 patients on unit</th>
-                                    <th style="text-align: center;width:30px;">L2 patients on unit</th>
-                                    <th style="text-align: center;width:30px;">L1/0 patients in unit</th>
-                                    <th style="text-align: center;width:30px;">L3 patients outside unit</th>
-                                    <th style="text-align: center;width:30px;">L2 patients outside unit</th>
-                                    <th style="text-align: center;width:30px;">Beds committed</th>
-                                    <!--<th class="notes">GRID NOTES</th>-->
-                                    <th class="notes">SERVICE NOTES</th>
-                                    <th class="sicons"></th>
+                        .gridViewTable td {
+                            padding: 8px 8px 8px 8px;
+                            vertical-align: top;
+                            border: 1px solid black;
+                        }
+
+                        .gridViewTable tr td img {
+                            padding-right: 5px;
+                        }
+
+                        .gridViewTable .sortable {
+                            background-image: url(../img/search/icons/sort-asc.png);
+                            background-repeat: no-repeat;
+                            vertical-align: middle;
+                            cursor: pointer;
+                        }
+
+                        .gridViewTable .totalRow,
+                        .gridViewTable table.nonSummaryFieldDetails .totalRow {
+                            background-color: #ccc;
+                            font-size: 12px;
+                        }
+
+                        .gridViewTable tr .headerSortUp {
+                            background-image: url(../img/search/icons/sort-desc.png);
+                            background-repeat: no-repeat;
+                        }
+
+                        .gridViewTable tr .headerSortDown {
+                            background-image: url(../img/search/icons/sort-asc.png);
+                            background-repeat: no-repeat;
+                        }
+
+                        .gridDetailSingle {
+                            border-collapse: collapse;
+                            border: 1px solid black;
+                        }
+
+                        .floated {
+                            overflow: visible !important;
+                        }
+
+                        .font12 {
+                            font-size: 12px;
+                        }
+
+                        .gridToggle {
+                            float: right;
+                            clear: both;
+                            width: 185px;
+                            margin-bottom: 20px;
+                            margin-right: 25px;
+                            white-space: nowrap;
+                        }
+                    </style>
+
+                    <!-- GRID VIEW -->
+                    <div class="nhsuk-design overflow-scroll nhsuk-u-padding-top-4 nhsuk-u-padding-right-4 nhsuk-u-padding-bottom-4 nhsuk-u-padding-left-4">
+                       <style>
+                       .nhsuk-design thead th.table-header {
+                            text-align: center !important;
+                            width: 30px !important;
+                       }
+                       </style>
+                        <table role="table" class="nhsuk-table-responsive">
+                            <caption class="nhsuk-table__caption">Critical Care</caption>
+                            <thead role="rowgroup" class="nhsuk-table__head">
+                                
+                                <tr role="row">
+                                    <th role="columnheader" class="table-header" scope="col">Name</th>
+                                    <th role="columnheader" class="table-header" scope="col">Options</th>
+                                    <th role="columnheader" class="table-header" scope="col">L3 beds<br> empty and<br> available</th>
+                                    <th role="columnheader" class="table-header" scope="col">L2 beds<br> empty and<br> available</th>
+                                    <th role="columnheader" class="table-header" scope="col">Total <br>L3/L2 Mix</th>
+                                    <th role="columnheader" class="table-header" scope="col">L3 patients <br>on unit</th>
+                                    <th role="columnheader" class="table-header" scope="col">L2 patients <br>on unit</th>
+                                    <th role="columnheader" class="table-header" scope="col">L1/0 patients <br>in unit	</th>
+                                    <th role="columnheader" class="table-header" scope="col">L3 patients <br>outside unit</th>
+                                    <th role="columnheader" class="table-header" scope="col">L2 patients <br>outside unit</th>
+                                    <th role="columnheader" class="table-header" scope="col">Beds <br>committed</th>
+                                    <th role="columnheader" class="table-header" scope="col">Service <br>Notes</th>
                                 </tr>
+                                
                             </thead>
-                            <colgroup>
-                                <col style="width: 167px;">
-                                <col style="width: 60px;">
-                                <col style="width: 60px;">
-                                <col style="width: 42px;">
-                                <col style="width: 55px;">
-                                <col style="width: 55px;">
-                                <col style="width: 55px;">
-                                <col style="width: 55px;">
-                                <col style="width: 55px;">
-                                <col style="width: 71px;">
-                                <col style="width: 1337px;">
-                                <col style="width: 155px;">
-                            </colgroup>
-                            <!--BECAUSE OF IE9 RENDERING BUG FOLLOWING CODE IN TABLE HAS TO BE ON THE SAME LINE (no spaces or carriage returns) -->
-                            <tbody>
-                                <tr>
-                                    <td class="fontBold font12">EoE E 01. Colchester ITU<br><span class="red small-font"
-                                            title="Last updated"></span></td>
-                                    <td title="L3 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L2 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="Total L3/L2 Mix" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">13</td>
-                                    <td title="L3 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">6</td>
-                                    <td title="L2 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">5</td>
-                                    <td title="L1/0 patients in unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">1</td>
-                                    <td title="L3 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L2 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="Beds committed" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <!--<td class="notes" >
-                                                                            </td>-->
-                                    <td class="notes"><span class="navy" title="Last updated"></span>
-                                        - </td>
-                                    <td class="sicons"><span style="white-space:nowrap;display:block;width:138px"><img
-                                                src="/app/img/search/icons/demographic_details.png"
-                                                alt="EoE E 01. Colchester ITU" title="Demographic Details"
-                                                id="1376511976" class="servIconDemographicDetails"><img
-                                                src="/app/img/search/icons/capacity_status.png"
-                                                alt="EoE E 01. Colchester ITU" title="Capacity Status" id="1376511976"
-                                                class="servIconCapacityStatus"><img
-                                                src="/app/img/search/icons/clinical_details.png"
-                                                alt="EoE E 01. Colchester ITU" title="Clinical Details" id="1376511976"
-                                                class="servIconClinicalDetails"><img
-                                                src="/app/img/search/icons/search_ranking_details.png"
-                                                alt="EoE E 01. Colchester ITU" title="Search Ranking
-Details" id="1376511976" class="servIconSearchRanking"><img src="/app/img/search/icons/view.png" alt="Go to service"
-                                                title="Go to service" id="1376511976"
-                                                class="servIconBrowseToService"><img
-                                                src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                                title="Hide from search" id="1376511976" class="servIconDelete"></span>
+
+                            <tbody class="nhsuk-table__body">
+                                {% for item in gridData %}
+                                <tr role="row" class="nhsuk-table__row">
+                                    <td role="cell" class="nhsuk-table__cell">
+                                        <span class="nhsuk-table-responsive__heading">Name </span>{{item.name}}
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td class="fontBold font12">EoE E 02. Princess Alexandra – Harlow ITU<br><span
-                                            class="red small-font" title="Last updated"></span></td>
-                                    <td title="L3 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">1</td>
-                                    <td title="L2 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">1</td>
-                                    <td title="Total L3/L2 Mix" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">8</td>
-                                    <td title="L3 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">1</td>
-                                    <td title="L2 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">6</td>
-                                    <td title="L1/0 patients in unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">1</td>
-                                    <td title="L3 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L2 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="Beds committed" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">1</td>
-                                    <!--<td class="notes" >
-                                                                            </td>-->
-                                    <td class="notes"><span class="navy" title="Last updated"></span>
-                                        - </td>
-                                    <td class="sicons"><span style="white-space:nowrap;display:block;width:138px"><img
-                                                src="/app/img/search/icons/demographic_details.png"
-                                                alt="EoE E 02. Princess Alexandra – Harlow ITU"
-                                                title="Demographic Details" id="1376512033"
-                                                class="servIconDemographicDetails"><img
-                                                src="/app/img/search/icons/capacity_status.png"
-                                                alt="EoE E 02. Princess Alexandra – Harlow ITU" title="Capacity Status"
-                                                id="1376512033" class="servIconCapacityStatus"><img
-                                                src="/app/img/search/icons/clinical_details.png"
-                                                alt="EoE E 02. Princess Alexandra – Harlow ITU" title="Clinical Details"
-                                                id="1376512033" class="servIconClinicalDetails"><img
-                                                src="/app/img/search/icons/search_ranking_details.png"
-                                                alt="EoE E 02. Princess Alexandra – Harlow ITU" title="Search Ranking
-Details" id="1376512033" class="servIconSearchRanking"><img src="/app/img/search/icons/view.png" alt="Go to service"
-                                                title="Go to service" id="1376512033"
-                                                class="servIconBrowseToService"><img
-                                                src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                                title="Hide from search" id="1376512033" class="servIconDelete"></span>
+                                    <td role="cell" class="nhsuk-table__cell sicons"> 
+                                        <span class="nhsuk-table-responsive__heading">Options </span>{% include "includes/search-results-icons.html" %}
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td class="fontBold font12">EoE E 03. Basildon ITU<br><span class="red small-font"
-                                            title="Last updated"></span></td>
-                                    <td title="L3 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L2 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">1</td>
-                                    <td title="Total L3/L2 Mix" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">11</td>
-                                    <td title="L3 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">7</td>
-                                    <td title="L2 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">1</td>
-                                    <td title="L1/0 patients in unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">2</td>
-                                    <td title="L3 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L2 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="Beds committed" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">1</td>
-                                    <!--<td class="notes" >
-                                                                            </td>-->
-                                    <td class="notes"><span class="navy" title="Last updated"></span>
-                                        - </td>
-                                    <td class="sicons"><span style="white-space:nowrap;display:block;width:138px"><img
-                                                src="/app/img/search/icons/demographic_details.png"
-                                                alt="EoE E 03. Basildon ITU" title="Demographic Details" id="1376512075"
-                                                class="servIconDemographicDetails"><img
-                                                src="/app/img/search/icons/capacity_status.png"
-                                                alt="EoE E 03. Basildon ITU" title="Capacity Status" id="1376512075"
-                                                class="servIconCapacityStatus"><img
-                                                src="/app/img/search/icons/clinical_details.png"
-                                                alt="EoE E 03. Basildon ITU" title="Clinical Details" id="1376512075"
-                                                class="servIconClinicalDetails"><img
-                                                src="/app/img/search/icons/search_ranking_details.png"
-                                                alt="EoE E 03. Basildon ITU" title="Search Ranking
-Details" id="1376512075" class="servIconSearchRanking"><img src="/app/img/search/icons/view.png" alt="Go to service"
-                                                title="Go to service" id="1376512075"
-                                                class="servIconBrowseToService"><img
-                                                src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                                title="Hide from search" id="1376512075" class="servIconDelete"></span>
+                                    <td role="cell" class="nhsuk-table__cell">
+                                        <span class="nhsuk-table-responsive__heading">{{item.data.L3emptyLabel}} </span>{{item.data.L3empty}}
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td class="fontBold font12">EoE E 04. Essex CTC Cardio Thoracic - ITU/HDU<br><span
-                                            class="red small-font" title="Last updated"></span></td>
-                                    <td title="L3 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">1</td>
-                                    <td title="L2 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="Total L3/L2 Mix" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">16</td>
-                                    <td title="L3 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">7</td>
-                                    <td title="L2 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">2</td>
-                                    <td title="L1/0 patients in unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L3 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L2 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="Beds committed" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">2</td>
-                                    <!--<td class="notes" >
-                                                                            </td>-->
-                                    <td class="notes"><span class="navy" title="Last updated"></span>
-                                        - </td>
-                                    <td class="sicons"><span style="white-space:nowrap;display:block;width:138px"><img
-                                                src="/app/img/search/icons/demographic_details.png"
-                                                alt="EoE E 04. Essex CTC Cardio Thoracic - ITU/HDU"
-                                                title="Demographic Details" id="1376511857"
-                                                class="servIconDemographicDetails"><img
-                                                src="/app/img/search/icons/capacity_status.png"
-                                                alt="EoE E 04. Essex CTC Cardio Thoracic - ITU/HDU"
-                                                title="Capacity Status" id="1376511857"
-                                                class="servIconCapacityStatus"><img
-                                                src="/app/img/search/icons/clinical_details.png"
-                                                alt="EoE E 04. Essex CTC Cardio Thoracic - ITU/HDU"
-                                                title="Clinical Details" id="1376511857"
-                                                class="servIconClinicalDetails"><img
-                                                src="/app/img/search/icons/search_ranking_details.png"
-                                                alt="EoE E 04. Essex CTC Cardio Thoracic - ITU/HDU" title="Search Ranking
-Details" id="1376511857" class="servIconSearchRanking"><img src="/app/img/search/icons/view.png" alt="Go to service"
-                                                title="Go to service" id="1376511857"
-                                                class="servIconBrowseToService"><img
-                                                src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                                title="Hide from search" id="1376511857" class="servIconDelete"></span>
+                                    <td role="cell" class="nhsuk-table__cell">
+                                        <span class="nhsuk-table-responsive__heading">{{item.data.L2emptyLabel}} </span>{{item.data.L2empty}}
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td class="fontBold font12">EoE E 05. Southend ITU<br><span class="red small-font"
-                                            title="Last updated"></span></td>
-                                    <td title="L3 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">1</td>
-                                    <td title="L2 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="Total L3/L2 Mix" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">10</td>
-                                    <td title="L3 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">3</td>
-                                    <td title="L2 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">3</td>
-                                    <td title="L1/0 patients in unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L3 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L2 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="Beds committed" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">3</td>
-                                    <!--<td class="notes" >
-                                                                            </td>-->
-                                    <td class="notes"><span class="navy" title="Last updated"></span>
-                                        - </td>
-                                    <td class="sicons"><span style="white-space:nowrap;display:block;width:138px"><img
-                                                src="/app/img/search/icons/demographic_details.png"
-                                                alt="EoE E 05. Southend ITU" title="Demographic Details" id="1376512119"
-                                                class="servIconDemographicDetails"><img
-                                                src="/app/img/search/icons/capacity_status.png"
-                                                alt="EoE E 05. Southend ITU" title="Capacity Status" id="1376512119"
-                                                class="servIconCapacityStatus"><img
-                                                src="/app/img/search/icons/clinical_details.png"
-                                                alt="EoE E 05. Southend ITU" title="Clinical Details" id="1376512119"
-                                                class="servIconClinicalDetails"><img
-                                                src="/app/img/search/icons/search_ranking_details.png"
-                                                alt="EoE E 05. Southend ITU" title="Search Ranking
-Details" id="1376512119" class="servIconSearchRanking"><img src="/app/img/search/icons/view.png" alt="Go to service"
-                                                title="Go to service" id="1376512119"
-                                                class="servIconBrowseToService"><img
-                                                src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                                title="Hide from search" id="1376512119" class="servIconDelete"></span>
+                                    <td role="cell" class="nhsuk-table__cell">
+                                        <span class="nhsuk-table-responsive__heading">{{item.data.totalLabel}} </span>{{item.data.total}}
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td class="fontBold font12">EoE E 06. Broomfield - Chelmsford ICU<br><span
-                                            class="red small-font" title="Last updated"></span></td>
-                                    <td title="L3 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L2 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="Total L3/L2 Mix" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">10</td>
-                                    <td title="L3 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">4</td>
-                                    <td title="L2 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">6</td>
-                                    <td title="L1/0 patients in unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L3 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L2 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="Beds committed" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <!--<td class="notes" >
-                                                                            </td>-->
-                                    <td class="notes"><span class="navy" title="Last updated"></span>
-                                        - </td>
-                                    <td class="sicons"><span style="white-space:nowrap;display:block;width:138px"><img
-                                                src="/app/img/search/icons/demographic_details.png"
-                                                alt="EoE E 06. Broomfield - Chelmsford ICU" title="Demographic Details"
-                                                id="1376509804" class="servIconDemographicDetails"><img
-                                                src="/app/img/search/icons/capacity_status.png"
-                                                alt="EoE E 06. Broomfield - Chelmsford ICU" title="Capacity Status"
-                                                id="1376509804" class="servIconCapacityStatus"><img
-                                                src="/app/img/search/icons/clinical_details.png"
-                                                alt="EoE E 06. Broomfield - Chelmsford ICU" title="Clinical Details"
-                                                id="1376509804" class="servIconClinicalDetails"><img
-                                                src="/app/img/search/icons/search_ranking_details.png"
-                                                alt="EoE E 06. Broomfield - Chelmsford ICU" title="Search Ranking
-Details" id="1376509804" class="servIconSearchRanking"><img src="/app/img/search/icons/view.png" alt="Go to service"
-                                                title="Go to service" id="1376509804"
-                                                class="servIconBrowseToService"><img
-                                                src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                                title="Hide from search" id="1376509804" class="servIconDelete"></span>
+                                    <td role="cell" class="nhsuk-table__cell">
+                                        <span class="nhsuk-table-responsive__heading">{{item.data.L3onLabel}} </span>{{item.data.L3on}}
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td class="fontBold font12">EoE E 08. Queens Neuro ICU<br><span
-                                            class="red small-font" title="Last updated"></span></td>
-                                    <td title="L3 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L2 beds empty and available" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="Total L3/L2 Mix" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">12</td>
-                                    <td title="L3 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">7</td>
-                                    <td title="L2 patients on unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">5</td>
-                                    <td title="L1/0 patients in unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L3 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="L2 patients outside unit" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <td title="Beds committed" class="columns black alignCenter font12"
-                                        style="background-color:#ffc0cb; font-weight:bold;text-align:center;">0</td>
-                                    <!--<td class="notes" >
-                                                                            </td>-->
-                                    <td class="notes"><span class="navy" title="Last updated"></span>
-                                        - </td>
-                                    <td class="sicons"><span style="white-space:nowrap;display:block;width:138px"><img
-                                                src="/app/img/search/icons/demographic_details.png"
-                                                alt="EoE E 08. Queens Neuro ICU" title="Demographic Details"
-                                                id="1376512152" class="servIconDemographicDetails"><img
-                                                src="/app/img/search/icons/capacity_status.png"
-                                                alt="EoE E 08. Queens Neuro ICU" title="Capacity Status" id="1376512152"
-                                                class="servIconCapacityStatus"><img
-                                                src="/app/img/search/icons/clinical_details.png"
-                                                alt="EoE E 08. Queens Neuro ICU" title="Clinical Details"
-                                                id="1376512152" class="servIconClinicalDetails"><img
-                                                src="/app/img/search/icons/search_ranking_details.png"
-                                                alt="EoE E 08. Queens Neuro ICU" title="Search Ranking
-Details" id="1376512152" class="servIconSearchRanking"><img src="/app/img/search/icons/view.png" alt="Go to service"
-                                                title="Go to service" id="1376512152"
-                                                class="servIconBrowseToService"><img
-                                                src="/app/img/search/icons/trash.png" alt="Hide from search"
-                                                title="Hide from search" id="1376512152" class="servIconDelete"></span>
+                                    <td role="cell" class="nhsuk-table__cell">
+                                        <span class="nhsuk-table-responsive__heading">{{item.data.L2onLabel}} </span>{{item.data.L2on}}
                                     </td>
+                                    <td role="cell" class="nhsuk-table__cell">
+                                        <span class="nhsuk-table-responsive__heading">{{item.data.L1inLabel}} </span>{{item.data.L1in}}
+                                    </td>
+                                    <td role="cell" class="nhsuk-table__cell">
+                                        <span class="nhsuk-table-responsive__heading">{{item.data.L3outLabel}} </span>{{item.data.L3out}}
+                                    </td>
+                                    <td role="cell" class="nhsuk-table__cell">
+                                        <span class="nhsuk-table-responsive__heading">{{item.data.L2outLabel}} </span>{{item.data.L2out}}
+                                    </td>
+                                    <td role="cell" class="nhsuk-table__cell">
+                                        <span class="nhsuk-table-responsive__heading">{{item.data.bedsLabel}} </span>{{item.data.beds}}
+                                    </td>
+                                    <td role="cell" class="nhsuk-table__cell">
+                                        <span class="nhsuk-table-responsive__heading">{{item.data.notesLabel}} </span>{{item.data.notes}}
+                                    </td>
+
                                 </tr>
+                                {% endfor %}
                             </tbody>
-                            <tbody>
-                                <tr class="totalRow">
-                                    <td style="width:150px; font-weight:bold;">Totals</td>
-                                    <td class="columnTotals" style="text-align: center;font-weight:bold;">3</td>
-                                    <td class="columnTotals" style="text-align: center;font-weight:bold;">2</td>
-                                    <td class="columnTotals" style="text-align: center;font-weight:bold;">80</td>
-                                    <td class="columnTotals" style="text-align: center;font-weight:bold;">35</td>
-                                    <td class="columnTotals" style="text-align: center;font-weight:bold;">28</td>
-                                    <td class="columnTotals" style="text-align: center;font-weight:bold;">4</td>
-                                    <td class="columnTotals" style="text-align: center;font-weight:bold;">0</td>
-                                    <td class="columnTotals" style="text-align: center;font-weight:bold;">0</td>
-                                    <td class="columnTotals" style="text-align: center;font-weight:bold;">7</td>
-                                    <!--<td class="notes">&nbsp;</td>-->
-                                    <td class="notes"></td>
-                                    <td class="sicons"></td>
+
+                            <tfoot>
+                                <tr style="background-color: #ccc;">
+                                    <td>Total</td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>80</td>
+                                    <td>35</td>
+                                    <td>28</td>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>7</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
-                            </tbody>
-                            <fthfoot
-                                style="display:table-footer-group;border-spacing:0;height:0;border-collapse:collapse;">
-                                <fthtr style="display:table-row;border-spacing:0;height:0;border-collapse:collapse">
-                                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
-                                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
-                                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
-                                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
-                                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
-                                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
-                                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
-                                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
-                                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
-                                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
-                                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
-                                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
-                                </fthtr>
-                            </fthfoot>
+                            </tfoot>
                         </table>
+
                         <div style="overflow: hidden; position: fixed; margin-top: 0px; top: 93.5938px; z-index: 1001; left: 365px; width: 2190px;"
                             aria-hidden="true" class="floatThead-floatContainer floatThead-container">
                             <table class="gridViewTable floatThead-table"
                                 style="border-collapse: collapse; border-width: 1px 1px 0px; border-style: solid; border-color: rgb(102, 153, 204); border-image: initial; display: table; margin: 0px; table-layout: auto; width: 98.9954%;">
                                 <colgroup>
                                     <col style="width: 167px;">
+                                    <col style="width: 155px;">
                                     <col style="width: 60px;">
                                     <col style="width: 60px;">
                                     <col style="width: 42px;">
@@ -1337,7 +911,6 @@ Details" id="1376512152" class="servIconSearchRanking"><img src="/app/img/search
                                     <col style="width: 55px;">
                                     <col style="width: 71px;">
                                     <col style="width: 1337px;">
-                                    <col style="width: 155px;">
                                 </colgroup>
                             </table>
                         </div>

@@ -151,4 +151,54 @@
         $(this).focus().blur();
     });
 
+    // Table Sticky Header ------------------------------------------------------------------------------------------------------------------------------------------------------
+    $(window).scroll(function() {
+		var height = $(window).scrollTop();
+		if(height  > 100) {
+			$(".gridViewTable thead").css({"position": "fixed", "top":"0"});
+		} else{
+			$(".gridViewTable thead").css({"position": "relative"});
+		}
+	});
+
+    // Table Columns ------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Hide Columns
+    $(function() {
+        // on init
+        $('.gridViewTable .hide-col').each(HideColumnIndex);
+
+        // on click
+        $('.servIconDeleteColumn').click(HideColumnIndex)
+
+        function HideColumnIndex() {
+        var $el = $(this);
+        var $cell = $el.closest('th,td')
+        var $table = $cell.closest('table')
+
+        // get cell location - https://stackoverflow.com/a/4999018/1366033
+        var colIndex = $cell[0].cellIndex + 1;
+
+        // find and hide col index
+        $table.find("tbody tr, thead tr")
+            .children(":nth-child(" + colIndex + ")")
+            .addClass('hide-col');
+        }
+    });
+
+    // Restore Columns
+    $('#restoreColumns').on('click', function (){
+        $('.gridViewTable th, .gridViewTable td').removeClass('hide-col');
+    });
+
+    // Table Rows ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Hide Row
+    $('.servIconDelete').on('click', function (e){
+        e.preventDefault();
+        $(this).closest('tr').hide();
+    });
+    // Restore Rows
+    $('#restoreRows').on('click', function (){
+        $('.tableRow').show();
+    });
+
 </script>
