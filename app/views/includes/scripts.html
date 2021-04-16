@@ -174,8 +174,6 @@
         var $el = $(this);
         var $cell = $el.closest('th,td')
         var $table = $cell.closest('table')
-
-        // get cell location - https://stackoverflow.com/a/4999018/1366033
         var colIndex = $cell[0].cellIndex + 1;
 
         // find and hide col index
@@ -185,9 +183,15 @@
         }
     });
 
+    // Show Restore Column control
+    $('.servIconDeleteColumn').on('click', function(){
+        $(this).parent().parent().parent().parent().parent().parent().prev('div').find('.restoreColumns').show();
+    });
+
     // Restore Columns
-    $('#restoreColumns').on('click', function (){
-        $('.gridViewTable th, .gridViewTable td').removeClass('hide-col');
+    $('.restoreColumns').on('click', function (){
+        $(this).parent().parent('.tableControls').next('div').find('.gridViewTable th, .gridViewTable td').removeClass('hide-col');
+        $(this).hide();
     });
 
     // Table Rows ---------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -195,10 +199,58 @@
     $('.servIconDelete').on('click', function (e){
         e.preventDefault();
         $(this).closest('tr').hide();
-    });
-    // Restore Rows
-    $('#restoreRows').on('click', function (){
-        $('.tableRow').show();
+        $(this).parent().parent().parent().parent().parent().parent().parent().parent().prev('div').find('.restoreRows').show();
     });
 
+    // Restore Rows
+    $('.restoreRows').on('click', function (){
+        $(this).parent().parent('.tableControls').next('div').find('.tableRow').show();
+        $(this).hide();
+    });
+
+    // Toggle Hide/Show grid
+    $('.viewGrid').on('click', function (){
+        if ( $(this).parent().parent('.tableControls').next('div').is(":visible") ) {
+            $(this).parent().parent('.tableControls').next('div').hide();
+            $(this).text('Show Grid');
+        } 
+        else {
+            $(this).parent().parent('.tableControls').next('div').show();
+            $(this).text('Hide Grid');
+        }
+    });
+
+
+    // Modal -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    $(function() {
+        $( "#trafficModal" ).dialog({
+            autoOpen: false, 
+            buttons: {
+                Close: function() {$(this).dialog("close");}
+            },
+            title: "Capacity Grid",
+            position: {
+                my: "center center",
+                at: "center center"
+            },
+            width: 800,
+            height: 700,
+            zIndex: 9999,
+            draggable: false,
+            resizable: true
+        });
+
+        $( '.traffic' ).click(function(e) {
+            e.preventDefault();
+            $( '#trafficModal' ).dialog( "open" );
+            $('.ui-widget-overlay').show();
+        });
+
+        $( ".ui-button, .ui-button-icon" ).click(function(e) {
+            e.preventDefault();
+            $('.ui-widget-overlay').hide();
+        });
+
+        $('#trafficModal').resizable();
+    });
 </script>
