@@ -152,14 +152,14 @@
     });
 
     // Table Sticky Header ------------------------------------------------------------------------------------------------------------------------------------------------------
-    $(window).scroll(function() {
-		var height = $(window).scrollTop();
-		if(height  > 100) {
-			$(".gridViewTable thead").css({"position": "fixed", "top":"0"});
-		} else{
-			$(".gridViewTable thead").css({"position": "relative"});
-		}
-	});
+    //$(window).scroll(function() {
+	//	var height = $(window).scrollTop();
+	//	if(height  > 100) {
+	//		$(".gridViewTable thead").css({"position": "fixed", "top":"0"});
+	//	} else{
+	//		$(".gridViewTable thead").css({"position": "relative"});
+	//	}
+	//});
 
     // Table Columns ------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Hide Columns
@@ -185,13 +185,19 @@
 
     // Show Restore Column control
     $('.servIconDeleteColumn').on('click', function(){
-        $(this).parent().parent().parent().parent().parent().parent().prev('div').find('.restoreColumns').show();
+        let restoreColumns = $(this).parent().parent().parent().parent().parent().parent().prev('div').find('.restoreColumns');
+        restoreColumns.show();
+
+        let counter = parseInt(restoreColumns.find('.number').text());
+
+        restoreColumns.find('.number').text(counter + 1);
     });
 
     // Restore Columns
     $('.restoreColumns').on('click', function (){
         $(this).parent().parent('.tableControls').next('div').find('.gridViewTable th, .gridViewTable td').removeClass('hide-col');
         $(this).hide();
+        $(this).find('.number').text(0);
     });
 
     // Table Rows ---------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -252,5 +258,6 @@
         });
 
         $('#trafficModal').resizable();
+
     });
 </script>
