@@ -152,14 +152,19 @@
     });
 
     // Table Sticky Header ------------------------------------------------------------------------------------------------------------------------------------------------------
-    //$(window).scroll(function() {
-	//	var height = $(window).scrollTop();
-	//	if(height  > 100) {
-	//		$(".gridViewTable thead").css({"position": "fixed", "top":"0"});
-	//	} else{
-	//		$(".gridViewTable thead").css({"position": "relative"});
-	//	}
-	//});
+
+
+    //$(window).on('scroll', function() {
+        //var scrollTop = $(this).scrollTop();
+
+        //$('.gridViewTable thead').each(function() {
+           // var topDistance = $(this).offset().top;
+
+          //  if ( (topDistance+100) < scrollTop ) {
+         //       $(this).css({"position": "fixed", "top":"0"});
+          //  }
+      //  });
+   // });
 
     // Table Columns ------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Hide Columns
@@ -205,13 +210,19 @@
     $('.servIconDelete').on('click', function (e){
         e.preventDefault();
         $(this).closest('tr').hide();
-        $(this).parent().parent().parent().parent().parent().parent().parent().parent().prev('div').find('.restoreRows').show();
+        let restoreRows = $(this).parent().parent().parent().parent().parent().parent().parent().parent().prev('div').find('.restoreRows');
+        restoreRows.show();
+
+        let counter = parseInt(restoreRows.find('.number').text());
+
+        restoreRows.find('.number').text(counter + 1);
     });
 
     // Restore Rows
     $('.restoreRows').on('click', function (){
         $(this).parent().parent('.tableControls').next('div').find('.tableRow').show();
         $(this).hide();
+        $(this).find('.number').text(0);
     });
 
     // Toggle Hide/Show grid
