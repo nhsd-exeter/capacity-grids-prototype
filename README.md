@@ -1,4 +1,4 @@
-# Capacit Grids using NHS.UK prototype kit
+# Capacity Grids using NHS.UK prototype kit
 
 Visit the <a href="http://nhsuk-prototype-kit.azurewebsites.net/docs">NHS.UK prototype kit site</a> to download the latest version and read the documentation.
 
@@ -12,15 +12,26 @@ If you publish your prototypes online, they must be protected by a <a href="http
 
 You must protect user privacy at all times, even when using prototypes. Prototypes made with the kit look like NHS.UK, but do not have the same security provisions. Always make sure you are handling user data appropriately.
 
-## Installation instructions
+## Prototype
 
-- <a href="http://nhsuk-prototype-kit.azurewebsites.net/docs/install/simple">Install guide (non technical)</a>
-- <a href="http://nhsuk-prototype-kit.azurewebsites.net/docs/install/advanced">Developer friendly install guide (technical)</a>
+### About the prototype
 
-## Contribute
+The prototype created by [Satnam Singh](https://www.github.com/SatnamSinghUK) at Aire Logic. It was developed during Discovery and Alpha phases of the period of work. It was hosted on Heroku but has since been decomissioned in favour of the Core DoS team using their own hosting technology should it be required post handover.
 
-If you want to contribute to the NHS.UK prototype kit, by reporting bugs, fixing bugs, suggesting new features or writing documentation, then read our [contributing guidelines](CONTRIBUTING.md).
+### Installing the prototype
 
-## Support
+The prototype can be installed by following this [non-technical Install guide](http://nhsuk-prototype-kit.azurewebsites.net/docs/install/simple), or by following the steps below:
 
-The NHS.UK prototype kit is maintained by NHS Digital. [Email us](mailto:service-manual@nhs.net), open a [Github issue](https://github.com/nhsuk/nhsuk-prototype-kit/issues/new) or get in touch on the [NHS digital service manual Slack workspace](https://join.slack.com/t/nhs-service-manual/shared_invite/enQtNTIyOTEyNjU3NDkyLTk4NDQ3YzkwYzk1Njk5YjAxYTI5YTVkZmUxMGQ0ZjA3NjMyM2ZkNjBlMWMxODVjZjYzNzg1ZmU4MWY1NmE2YzE).
+#### Requirements
+
+`node.js` - LTS version 8 or higher
+
+#### Install dependencies
+
+`npm install`
+
+#### Run the kit
+
+`npm run watch`
+
+Go to [localhost:3000](http://localhost:3000/) in your browser.
